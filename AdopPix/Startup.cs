@@ -1,4 +1,6 @@
 using AdopPix.Data;
+using AdopPix.Services;
+using AdopPix.Services.IService;
 using AdopPix.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +34,8 @@ namespace AdopPix
             {
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
+
+            services.AddScoped<IS3Service, S3Service>();
 
             //Get Aws S3 configuration
             services.Configure<AwsS3Configuration>(Configuration.GetSection("AWSS3"));

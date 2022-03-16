@@ -2,7 +2,12 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form enctype="multipart/form-data" method="post" asp-controller="Home" asp-action="Index">
+    <label>Upload file to S3</label>
+    <br />
+    <input type="file" name="file" id="file"/>
+    <input type="submit" value="Upload"/>
+</form>
+    <div>@ViewBag.Success</div>
+
+    <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@ViewBag.filename}")" width="300"/>

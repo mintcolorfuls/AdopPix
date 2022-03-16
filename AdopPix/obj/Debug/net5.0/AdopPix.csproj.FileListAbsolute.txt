@@ -362,3 +362,5 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\refint\AdopPix.
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\AdopPix.pdb
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\AdopPix.genruntimeconfig.cache
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\ref\AdopPix.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AWSSDK.Core.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AWSSDK.S3.dll
