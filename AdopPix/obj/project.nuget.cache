@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "N5J9yaBNQU3ugLJ4h2nnAgRG9hKTr4jqJyRfxzkNjdfldTUnVUz0swP75YqBxZRoxips1sMLBHtKD0NRsnJDDA==",
+  "dgSpecHash": "yV6Dsq+pcDNzF97xRWOnUJHX1IirJxPz2Qhur5x6i89tiSDu5T66XVleu/JhGtxyAarBzPr/iJF3COfvqBCXIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix\\AdopPix.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mintc\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.15\\microsoft.aspnetcore.cryptography.internal.5.0.15.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.15\\microsoft.aspnetcore.cryptography.keyderivation.5.0.15.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.15\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.15.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.13\\microsoft.aspnetcore.mvc.razor.extensions.5.0.13.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.13\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.13.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.13\\microsoft.aspnetcore.razor.language.5.0.13.nupkg.sha512",
@@ -25,6 +28,8 @@
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.2\\microsoft.extensions.dependencyinjection.5.0.2.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.dependencymodel\\5.0.0\\microsoft.extensions.dependencymodel.5.0.0.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.identity.core\\5.0.15\\microsoft.extensions.identity.core.5.0.15.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.identity.stores\\5.0.15\\microsoft.extensions.identity.stores.5.0.15.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
