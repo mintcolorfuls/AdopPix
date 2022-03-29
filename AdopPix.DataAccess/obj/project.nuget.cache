@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vPav3dO9Pz97ICuxoCu8nwxjBxzdw87O+Fs63dSbort4SxuJRcctTtmIYcNXXAIA8pbuUvxoMZR1KpTi6IoRAw==",
+  "dgSpecHash": "MUDmGIkJqLj7WV0Z6uqQ/AaQnOPvg1pDXJMlq64Dyxyo2Lx34Ro2c+ivU3vwscV0RWUS0lX5xi4SHn0Wiaa06A==",
   "success": true,
   "projectFilePath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.DataAccess\\AdopPix.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.15\\microsoft.entityframeworkcore.analyzers.5.0.15.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.15\\microsoft.entityframeworkcore.design.5.0.15.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.15\\microsoft.entityframeworkcore.relational.5.0.15.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.15\\microsoft.entityframeworkcore.tools.5.0.15.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",

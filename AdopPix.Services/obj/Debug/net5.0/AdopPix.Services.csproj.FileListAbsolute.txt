@@ -1,0 +1,12 @@
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Services.deps.json
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Services.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Services.pdb
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.csproj.AssemblyReference.cache
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.AssemblyInfoInputs.cache
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.AssemblyInfo.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.csproj.CoreCompileInputs.cache
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\refint\AdopPix.Services.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.pdb
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\ref\AdopPix.Services.dll

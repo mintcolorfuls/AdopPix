@@ -1,6 +1,8 @@
+using AdopPix.DataAccess.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +25,13 @@ namespace AdopPix
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connectionString = $"Server={Configuration["AWSMySQL_Server"]};Database={Configuration["AWSMySQL_Database"]};user={Configuration["AWSMySQL_Username"]};password={Configuration["AWSMySQL_Password"]}";
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            });
+
             services.AddControllersWithViews();
         }
 
