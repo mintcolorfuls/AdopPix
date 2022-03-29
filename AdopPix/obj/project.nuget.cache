@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QxJG3ZlF9eLqA6VlYhOdFnjkpUGWjY9ShmCILX/lHJkE+vpVSEL4Zbk2572G6Y2EvPNquYmvPn91EFr5Bn36Og==",
+  "dgSpecHash": "/t/7TowV7VNW7v04dVSOV2QQluMD0UbFw7Cd7BGPIoSOQDAA9n5g/ury99fhTXIS7wWypiZO3EK2UJP3+O0lig==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mintc\\Desktop\\AdopPix\\AdopPix.csproj",
+  "projectFilePath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix\\AdopPix.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.13\\microsoft.aspnetcore.mvc.razor.extensions.5.0.13.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.13\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.13.nupkg.sha512",

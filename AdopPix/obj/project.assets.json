@@ -257,6 +257,29 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "AdopPix.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "AdopPix.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AdopPix.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AdopPix.DataAccess.dll": {}
+        }
+      },
+      "AdopPix.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/AdopPix.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AdopPix.Models.dll": {}
+        }
       }
     }
   },
@@ -728,10 +751,22 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "AdopPix.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../AdopPix.DataAccess/AdopPix.DataAccess.csproj",
+      "msbuildProject": "../AdopPix.DataAccess/AdopPix.DataAccess.csproj"
+    },
+    "AdopPix.Models/1.0.0": {
+      "type": "project",
+      "path": "../AdopPix.Models/AdopPix.Models.csproj",
+      "msbuildProject": "../AdopPix.Models/AdopPix.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "AdopPix.DataAccess >= 1.0.0",
+      "AdopPix.Models >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 5.0.13"
     ]
   },
@@ -741,11 +776,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mintc\\Desktop\\AdopPix\\AdopPix.csproj",
+      "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix\\AdopPix.csproj",
       "projectName": "AdopPix",
-      "projectPath": "C:\\Users\\mintc\\Desktop\\AdopPix\\AdopPix.csproj",
+      "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix\\AdopPix.csproj",
       "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mintc\\Desktop\\AdopPix\\obj\\",
+      "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -761,7 +796,14 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.DataAccess\\AdopPix.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.DataAccess\\AdopPix.DataAccess.csproj"
+            },
+            "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
+              "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
