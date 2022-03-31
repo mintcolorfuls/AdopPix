@@ -1,4 +1,6 @@
 using AdopPix.DataAccess.Data;
+using AdopPix.Services;
+using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,7 @@ namespace AdopPix
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
 
+            services.AddScoped<IImageService, ImageService>();
             services.AddControllersWithViews();
         }
 

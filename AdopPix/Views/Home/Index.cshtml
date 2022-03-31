@@ -2,7 +2,24 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form asp-action="Index" enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <input type="submit"/>
+</form>
+@if(ViewBag.Succeeded != null)
+{
+    @if(ViewBag.Succeeded)
+    {
+        <h1>Upload complete</h1>
+    }
+    else
+    {
+        <h1>Upload fail</h1>
+    }
+}
+<p></p>
+@if(!string.IsNullOrEmpty(ViewBag.Name))
+{
+    <img style="width: 30%;" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@ViewBag.Name}")"/>
+}
+
