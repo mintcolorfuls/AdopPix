@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "VZvUfsPwnDgNbeXzAHyyZhKdZGeewNs4EM0D0FfT2xgcto8woSlWl2ZYUSfJR8OD3RC/mEPcmYyFwVNUcO2c9g==",
+  "dgSpecHash": "twexB/wKEKYoUwsWcTdvUT9smDogOvBv8Rl9xjEFxoCEcl72jalaH95xRpC24mN2iwe+ytmzLqtdEmg+A2hbHw==",
   "success": true,
   "projectFilePath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\mintc\\.nuget\\packages\\awssdk.core\\3.7.10.1\\awssdk.core.3.7.10.1.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\awssdk.s3\\3.7.8.13\\awssdk.s3.3.7.8.13.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.15\\microsoft.aspnetcore.http.features.5.0.15.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\5.0.0\\microsoft.extensions.configuration.fileextensions.5.0.0.nupkg.sha512",
@@ -12,7 +15,8 @@
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\5.0.0\\microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\5.0.0\\microsoft.extensions.fileproviders.physical.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\5.0.0\\microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512",
-    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512"
+    "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
   ],
   "logs": []
 }

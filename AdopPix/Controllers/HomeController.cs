@@ -1,4 +1,6 @@
 ﻿using AdopPix.Models;
+using AdopPix.Services.IServices;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +14,32 @@ namespace AdopPix.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IImageService imageService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IImageService imageService)
         {
             _logger = logger;
+            this.imageService = imageService;
         }
 
         public IActionResult Index()
         {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(IFormFile file)
+        {
+            string[] extension = { ".png", ".jpg" };
+            if(imageService.ValidateExtension(extension, file))
+            {
+                ViewBag.Name = await imageService.UploadImageAsync(file);
+                ViewBag.Succeeded = imageService.Succeeded;
+            }
+            else
+            {
+                ViewBag.Succeeded = false;
+            }
+            
             return View();
         }
 

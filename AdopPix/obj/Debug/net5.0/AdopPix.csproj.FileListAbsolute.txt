@@ -39,7 +39,6 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Connections.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Extensions.dll
-C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.AspNetCore.HttpOverrides.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.AspNetCore.HttpsPolicy.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Identity.dll
@@ -120,7 +119,6 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.DataAnnotations.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.dll
-C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.Extensions.Primitives.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.Extensions.WebEncoders.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.JSInterop.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\Microsoft.Net.Http.Headers.dll
@@ -178,7 +176,6 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\System.IO.
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\System.IO.FileSystem.Watcher.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\System.IO.IsolatedStorage.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\System.IO.MemoryMappedFiles.dll
-C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\System.IO.Pipelines.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\System.IO.Pipes.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\System.IO.UnmanagedMemoryStream.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\refs\System.Linq.dll
@@ -366,3 +363,10 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\refint\AdopPix.
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\AdopPix.pdb
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\AdopPix.genruntimeconfig.cache
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\ref\AdopPix.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AWSSDK.Core.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AWSSDK.S3.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\System.IO.Pipelines.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AdopPix.Services.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AdopPix.Services.pdb

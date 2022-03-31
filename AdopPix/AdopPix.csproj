@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AdopPix.DataAccess\AdopPix.DataAccess.csproj" />
     <ProjectReference Include="..\AdopPix.Models\AdopPix.Models.csproj" />
+    <ProjectReference Include="..\AdopPix.Services\AdopPix.Services.csproj" />
   </ItemGroup>
 
 </Project>
