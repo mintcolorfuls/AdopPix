@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdopPix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220329064120_InitialAdopPixModel")]
-    partial class InitialAdopPixModel
+    [Migration("20220414091720_InitialDatabase")]
+    partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,9 @@ namespace AdopPix.DataAccess.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
+
+                    b.Property<double>("HotClose")
+                        .HasColumnType("double");
 
                     b.Property<int>("HourId")
                         .HasColumnType("int");
@@ -140,8 +143,7 @@ namespace AdopPix.DataAccess.Migrations
 
             modelBuilder.Entity("AdopPix.Models.AuctionTag", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("TagId")
                         .HasColumnType("int");
 
                     b.Property<string>("AuctionId")
@@ -150,14 +152,9 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("TagId", "AuctionId");
 
                     b.HasIndex("AuctionId");
-
-                    b.HasIndex("TagId");
 
                     b.ToTable("AuctionTags");
                 });
@@ -216,6 +213,65 @@ namespace AdopPix.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Notification");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.PaymentLogging", b =>
+                {
+                    b.Property<int>("PLogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("double");
+
+                    b.Property<string>("Brand")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Charge")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Financing")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("PLogId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PaymentLoggings");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.PointLogging", b =>
+                {
+                    b.Property<int>("pLogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<double>("amount")
+                        .HasColumnType("double");
+
+                    b.Property<DateTime>("created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("userId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("pLogId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("PointLoggings");
                 });
 
             modelBuilder.Entity("AdopPix.Models.Post", b =>
@@ -281,9 +337,6 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<string>("PostId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("name")
-                        .HasColumnType("longtext");
-
                     b.HasKey("ImageId");
 
                     b.HasIndex("PostId");
@@ -293,26 +346,38 @@ namespace AdopPix.DataAccess.Migrations
 
             modelBuilder.Entity("AdopPix.Models.PostLike", b =>
                 {
-                    b.Property<int>("LikeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("PostId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
 
-                    b.HasKey("LikeId");
+                    b.HasKey("UserId", "PostId");
 
                     b.HasIndex("PostId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("PostLikes");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.PostTag", b =>
+                {
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PostId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("TagId", "PostId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("PostTags");
                 });
 
             modelBuilder.Entity("AdopPix.Models.PostView", b =>
@@ -339,7 +404,53 @@ namespace AdopPix.DataAccess.Migrations
                     b.ToTable("PostViews");
                 });
 
-            modelBuilder.Entity("AdopPix.Models.SocialMedias", b =>
+            modelBuilder.Entity("AdopPix.Models.RankLogging", b =>
+                {
+                    b.Property<int>("rLogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<double>("amount")
+                        .HasColumnType("double");
+
+                    b.Property<DateTime>("created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("userId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("rLogId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("RankLoggings");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.SocialMedia", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("SocialId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("SocialMediaTypeSocialId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("UserId", "SocialId");
+
+                    b.HasIndex("SocialMediaTypeSocialId");
+
+                    b.ToTable("SocialMedias");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.SocialMediaType", b =>
                 {
                     b.Property<int>("SocialId")
                         .ValueGeneratedOnAdd()
@@ -350,7 +461,7 @@ namespace AdopPix.DataAccess.Migrations
 
                     b.HasKey("SocialId");
 
-                    b.ToTable("SocialMedias");
+                    b.ToTable("SocialMediaTypes");
                 });
 
             modelBuilder.Entity("AdopPix.Models.Tag", b =>
@@ -436,22 +547,16 @@ namespace AdopPix.DataAccess.Migrations
 
             modelBuilder.Entity("AdopPix.Models.UserFollow", b =>
                 {
-                    b.Property<int>("FollowId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("IsFollowing")
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("IsFollowing")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("FollowId");
-
-                    b.HasIndex("UserId");
+                    b.HasKey("UserId", "IsFollowing");
 
                     b.ToTable("UserFollows");
                 });
@@ -496,39 +601,9 @@ namespace AdopPix.DataAccess.Migrations
                     b.ToTable("UserProfiles");
                 });
 
-            modelBuilder.Entity("AdopPix.Models.UserSocial", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("SocialId")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("SocialMediasSocialId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SocialMediasSocialId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserSocials");
-                });
-
             modelBuilder.Entity("AdopPix.Models.WinningBidder", b =>
                 {
-                    b.Property<string>("WinningId")
+                    b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("AuctionId")
@@ -537,18 +612,13 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<double>("amount")
                         .HasColumnType("double");
 
-                    b.HasKey("WinningId");
+                    b.HasKey("UserId", "AuctionId");
 
                     b.HasIndex("AuctionId")
                         .IsUnique();
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("WinningBidders");
                 });
@@ -749,7 +819,9 @@ namespace AdopPix.DataAccess.Migrations
                 {
                     b.HasOne("AdopPix.Models.Auction", "Auction")
                         .WithMany("AuctionTags")
-                        .HasForeignKey("AuctionId");
+                        .HasForeignKey("AuctionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AdopPix.Models.Tag", "Tag")
                         .WithMany("AuctionTags")
@@ -769,6 +841,24 @@ namespace AdopPix.DataAccess.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.PaymentLogging", b =>
+                {
+                    b.HasOne("AdopPix.Models.User", "User")
+                        .WithMany("PaymentLoggings")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.PointLogging", b =>
+                {
+                    b.HasOne("AdopPix.Models.UserProfile", "UserProfile")
+                        .WithMany("PointLogging")
+                        .HasForeignKey("userId");
+
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("AdopPix.Models.Post", b =>
@@ -808,15 +898,38 @@ namespace AdopPix.DataAccess.Migrations
                 {
                     b.HasOne("AdopPix.Models.Post", "Post")
                         .WithMany("PostLikes")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AdopPix.Models.User", "User")
                         .WithMany("PostLikes")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Post");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.PostTag", b =>
+                {
+                    b.HasOne("AdopPix.Models.Post", "Post")
+                        .WithMany("PostTags")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AdopPix.Models.Tag", "Tag")
+                        .WithMany("PostTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("AdopPix.Models.PostView", b =>
@@ -834,11 +947,39 @@ namespace AdopPix.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("AdopPix.Models.RankLogging", b =>
+                {
+                    b.HasOne("AdopPix.Models.UserProfile", "UserProfile")
+                        .WithMany("RankLogging")
+                        .HasForeignKey("userId");
+
+                    b.Navigation("UserProfile");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.SocialMedia", b =>
+                {
+                    b.HasOne("AdopPix.Models.SocialMediaType", "SocialMediaType")
+                        .WithMany("UserSocials")
+                        .HasForeignKey("SocialMediaTypeSocialId");
+
+                    b.HasOne("AdopPix.Models.User", "User")
+                        .WithMany("SocialMedias")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SocialMediaType");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("AdopPix.Models.UserFollow", b =>
                 {
                     b.HasOne("AdopPix.Models.User", "User")
                         .WithMany("UserFollows")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -854,30 +995,19 @@ namespace AdopPix.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AdopPix.Models.UserSocial", b =>
-                {
-                    b.HasOne("AdopPix.Models.SocialMedias", "SocialMedias")
-                        .WithMany("UserSocials")
-                        .HasForeignKey("SocialMediasSocialId");
-
-                    b.HasOne("AdopPix.Models.User", "User")
-                        .WithMany("UserSocials")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("SocialMedias");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("AdopPix.Models.WinningBidder", b =>
                 {
                     b.HasOne("AdopPix.Models.Auction", "Auction")
                         .WithOne("WinningBidder")
-                        .HasForeignKey("AdopPix.Models.WinningBidder", "AuctionId");
+                        .HasForeignKey("AdopPix.Models.WinningBidder", "AuctionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AdopPix.Models.User", "User")
                         .WithMany("WinningBidders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Auction");
 
@@ -964,10 +1094,12 @@ namespace AdopPix.DataAccess.Migrations
 
                     b.Navigation("PostLikes");
 
+                    b.Navigation("PostTags");
+
                     b.Navigation("PostViews");
                 });
 
-            modelBuilder.Entity("AdopPix.Models.SocialMedias", b =>
+            modelBuilder.Entity("AdopPix.Models.SocialMediaType", b =>
                 {
                     b.Navigation("UserSocials");
                 });
@@ -975,6 +1107,8 @@ namespace AdopPix.DataAccess.Migrations
             modelBuilder.Entity("AdopPix.Models.Tag", b =>
                 {
                     b.Navigation("AuctionTags");
+
+                    b.Navigation("PostTags");
                 });
 
             modelBuilder.Entity("AdopPix.Models.User", b =>
@@ -987,6 +1121,8 @@ namespace AdopPix.DataAccess.Migrations
 
                     b.Navigation("Notifications");
 
+                    b.Navigation("PaymentLoggings");
+
                     b.Navigation("PostComments");
 
                     b.Navigation("PostLikes");
@@ -995,13 +1131,20 @@ namespace AdopPix.DataAccess.Migrations
 
                     b.Navigation("PostViews");
 
+                    b.Navigation("SocialMedias");
+
                     b.Navigation("UserFollows");
 
                     b.Navigation("UserProfile");
 
-                    b.Navigation("UserSocials");
-
                     b.Navigation("WinningBidders");
+                });
+
+            modelBuilder.Entity("AdopPix.Models.UserProfile", b =>
+                {
+                    b.Navigation("PointLogging");
+
+                    b.Navigation("RankLogging");
                 });
 #pragma warning restore 612, 618
         }

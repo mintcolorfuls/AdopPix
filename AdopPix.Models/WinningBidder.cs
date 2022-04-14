@@ -6,8 +6,6 @@ namespace AdopPix.Models
 {
     public class WinningBidder
     {
-        [Key]
-        public string WinningId { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
         [ForeignKey("Auction")]

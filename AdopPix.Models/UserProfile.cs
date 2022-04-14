@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,5 +22,7 @@ namespace AdopPix.Models
         public DateTime created { get; set; }
 
         public User User { get; set; }
+        public List<PointLogging> PointLogging { get; set; }
+        public List<RankLogging> RankLogging { get; set; }
     }
 }

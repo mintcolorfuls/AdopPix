@@ -17,6 +17,7 @@ namespace AdopPix.Models
         public DateTime StartTime { get; set; }
         public DateTime StopTime { get; set; }
         public double OpeningPrice { get; set; }
+        public double HotClose { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; set; }
 

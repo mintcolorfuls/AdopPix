@@ -12,5 +12,6 @@ namespace AdopPix.Models
         public DateTime Created { get; set; }
 
         public List<AuctionTag> AuctionTags { get; set; }
+        public List<PostTag> PostTags { get; set; }
     }
 }
