@@ -1,4 +1,5 @@
 ﻿using AdopPix.DataAccess.Core.IConfiguration;
+using AdopPix.DataAccess.Core.IRepository;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace AdopPix.DataAccess.Data
     {
         private readonly ApplicationDbContext context;
         private readonly ILogger logger;
+
+        public IUserProfileRepository UserProfile { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context,
                           ILoggerFactory logger)
