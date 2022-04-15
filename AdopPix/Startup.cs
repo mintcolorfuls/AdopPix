@@ -1,3 +1,4 @@
+using AdopPix.DataAccess.Core.IRepository;
 using AdopPix.DataAccess.Data;
 using AdopPix.Services;
 using AdopPix.Services.IServices;
@@ -33,7 +34,7 @@ namespace AdopPix
             {
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IImageService, ImageService>();
             services.AddControllersWithViews();
         }
