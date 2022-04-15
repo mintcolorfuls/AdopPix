@@ -1,4 +1,4 @@
-﻿using AdopPix.DataAccess.Core.IRepository;
+﻿using AdopPix.DataAccess.Core.IConfiguration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AdopPix.DataAccess.Core.IRepository
+namespace AdopPix.DataAccess.Core.IConfiguration
 {
     public interface IUnitOfWork
     {

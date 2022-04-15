@@ -1,4 +1,4 @@
-using AdopPix.DataAccess.Core.IRepository;
+using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.DataAccess.Data;
 using AdopPix.Services;
 using AdopPix.Services.IServices;
