@@ -3,14 +3,16 @@ using System;
 using AdopPix.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdopPix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220414091720_InitialDatabase")]
+    partial class InitialDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -585,8 +587,8 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<string>("lname")
                         .HasColumnType("longtext");
 
-                    b.Property<double>("money")
-                        .HasColumnType("double");
+                    b.Property<int>("money")
+                        .HasColumnType("int");
 
                     b.Property<int>("point")
                         .HasColumnType("int");

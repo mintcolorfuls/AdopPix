@@ -4,18 +4,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdopPix.Models
 {
-    public class UserSocial
+    public class SocialMedia
     {
-        [Key]
-        public int Id { get; set; }
-        public string Url { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
         [ForeignKey("SocialMedia")]
         public string SocialId { get; set; }
+        public string Url { get; set; }
         public DateTime Created { get; set; }
 
         public User User { get; set; }
-        public SocialMedias SocialMedias { get; set; }
+        public SocialMediaType SocialMediaType { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AdopPix.DataAccess.Migrations
 {
-    public partial class InitialAdopPixModel : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,7 +60,7 @@ namespace AdopPix.DataAccess.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "SocialMedias",
+                name: "SocialMediaTypes",
                 columns: table => new
                 {
                     SocialId = table.Column<int>(type: "int", nullable: false)
@@ -70,7 +70,7 @@ namespace AdopPix.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SocialMedias", x => x.SocialId);
+                    table.PrimaryKey("PK_SocialMediaTypes", x => x.SocialId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -164,6 +164,7 @@ namespace AdopPix.DataAccess.Migrations
                     StartTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     StopTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     OpeningPrice = table.Column<double>(type: "double", nullable: false),
+                    HotClose = table.Column<double>(type: "double", nullable: false),
                     Description = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -214,6 +215,39 @@ namespace AdopPix.DataAccess.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "PaymentLoggings",
+                columns: table => new
+                {
+                    PLogId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Charge = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Amount = table.Column<double>(type: "double", nullable: false),
+                    Currency = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Brand = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Financing = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentLoggings", x => x.PLogId);
+                    table.ForeignKey(
+                        name: "FK_PaymentLoggings_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -236,6 +270,37 @@ namespace AdopPix.DataAccess.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "SocialMedias",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SocialId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Url = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    SocialMediaTypeSocialId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SocialMedias", x => new { x.UserId, x.SocialId });
+                    table.ForeignKey(
+                        name: "FK_SocialMedias_SocialMediaTypes_SocialMediaTypeSocialId",
+                        column: x => x.SocialMediaTypeSocialId,
+                        principalTable: "SocialMediaTypes",
+                        principalColumn: "SocialId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SocialMedias_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -268,23 +333,21 @@ namespace AdopPix.DataAccess.Migrations
                 name: "UserFollows",
                 columns: table => new
                 {
-                    FollowId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    IsFollowing = table.Column<string>(type: "longtext", nullable: true)
+                    IsFollowing = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserFollows", x => x.FollowId);
+                    table.PrimaryKey("PK_UserFollows", x => new { x.UserId, x.IsFollowing });
                     table.ForeignKey(
                         name: "FK_UserFollows_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -375,39 +438,6 @@ namespace AdopPix.DataAccess.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "UserSocials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Url = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SocialId = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    SocialMediasSocialId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserSocials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserSocials_SocialMedias_SocialMediasSocialId",
-                        column: x => x.SocialMediasSocialId,
-                        principalTable: "SocialMedias",
-                        principalColumn: "SocialId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_UserSocials_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "UserTokens",
                 columns: table => new
                 {
@@ -471,8 +501,8 @@ namespace AdopPix.DataAccess.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     AuctionId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ImageTypeId = table.Column<int>(type: "int", nullable: false)
+                    ImageTypeId = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -529,22 +559,20 @@ namespace AdopPix.DataAccess.Migrations
                 name: "AuctionTags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     TagId = table.Column<int>(type: "int", nullable: false),
-                    AuctionId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    AuctionId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AuctionTags", x => x.Id);
+                    table.PrimaryKey("PK_AuctionTags", x => new { x.TagId, x.AuctionId });
                     table.ForeignKey(
                         name: "FK_AuctionTags_Auctions_AuctionId",
                         column: x => x.AuctionId,
                         principalTable: "Auctions",
                         principalColumn: "AuctionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AuctionTags_Tags_TagId",
                         column: x => x.TagId,
@@ -558,30 +586,28 @@ namespace AdopPix.DataAccess.Migrations
                 name: "WinningBidders",
                 columns: table => new
                 {
-                    WinningId = table.Column<string>(type: "varchar(255)", nullable: false)
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    AuctionId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    AuctionId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     amount = table.Column<double>(type: "double", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WinningBidders", x => x.WinningId);
+                    table.PrimaryKey("PK_WinningBidders", x => new { x.UserId, x.AuctionId });
                     table.ForeignKey(
                         name: "FK_WinningBidders_Auctions_AuctionId",
                         column: x => x.AuctionId,
                         principalTable: "Auctions",
                         principalColumn: "AuctionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_WinningBidders_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -625,8 +651,6 @@ namespace AdopPix.DataAccess.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     PostId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
@@ -645,29 +669,54 @@ namespace AdopPix.DataAccess.Migrations
                 name: "PostLikes",
                 columns: table => new
                 {
-                    LikeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PostId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    PostId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostLikes", x => x.LikeId);
+                    table.PrimaryKey("PK_PostLikes", x => new { x.UserId, x.PostId });
                     table.ForeignKey(
                         name: "FK_PostLikes_Posts_PostId",
                         column: x => x.PostId,
                         principalTable: "Posts",
                         principalColumn: "PostId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PostLikes_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PostTags",
+                columns: table => new
+                {
+                    TagId = table.Column<int>(type: "int", nullable: false),
+                    PostId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PostTags", x => new { x.TagId, x.PostId });
+                    table.ForeignKey(
+                        name: "FK_PostTags_Posts_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Posts",
+                        principalColumn: "PostId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PostTags_Tags_TagId",
+                        column: x => x.TagId,
+                        principalTable: "Tags",
+                        principalColumn: "TagId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -697,6 +746,52 @@ namespace AdopPix.DataAccess.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PointLoggings",
+                columns: table => new
+                {
+                    pLogId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    userId = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    amount = table.Column<double>(type: "double", nullable: false),
+                    created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PointLoggings", x => x.pLogId);
+                    table.ForeignKey(
+                        name: "FK_PointLoggings_UserProfiles_userId",
+                        column: x => x.userId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "RankLoggings",
+                columns: table => new
+                {
+                    rLogId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    userId = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    amount = table.Column<double>(type: "double", nullable: false),
+                    created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RankLoggings", x => x.rLogId);
+                    table.ForeignKey(
+                        name: "FK_RankLoggings_UserProfiles_userId",
+                        column: x => x.userId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -747,14 +842,19 @@ namespace AdopPix.DataAccess.Migrations
                 column: "AuctionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuctionTags_TagId",
-                table: "AuctionTags",
-                column: "TagId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Notification_UserId",
                 table: "Notification",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentLoggings_UserId",
+                table: "PaymentLoggings",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PointLoggings_userId",
+                table: "PointLoggings",
+                column: "userId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PostComments_PostId",
@@ -777,14 +877,14 @@ namespace AdopPix.DataAccess.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PostLikes_UserId",
-                table: "PostLikes",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Posts_UserId",
                 table: "Posts",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PostTags_PostId",
+                table: "PostTags",
+                column: "PostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PostViews_PostId",
@@ -795,6 +895,11 @@ namespace AdopPix.DataAccess.Migrations
                 name: "IX_PostViews_UserId",
                 table: "PostViews",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RankLoggings_userId",
+                table: "RankLoggings",
+                column: "userId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -808,13 +913,13 @@ namespace AdopPix.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserClaims_UserId",
-                table: "UserClaims",
-                column: "UserId");
+                name: "IX_SocialMedias_SocialMediaTypeSocialId",
+                table: "SocialMedias",
+                column: "SocialMediaTypeSocialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserFollows_UserId",
-                table: "UserFollows",
+                name: "IX_UserClaims_UserId",
+                table: "UserClaims",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -839,25 +944,10 @@ namespace AdopPix.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserSocials_SocialMediasSocialId",
-                table: "UserSocials",
-                column: "SocialMediasSocialId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserSocials_UserId",
-                table: "UserSocials",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_WinningBidders_AuctionId",
                 table: "WinningBidders",
                 column: "AuctionId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WinningBidders_UserId",
-                table: "WinningBidders",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -878,6 +968,12 @@ namespace AdopPix.DataAccess.Migrations
                 name: "Notification");
 
             migrationBuilder.DropTable(
+                name: "PaymentLoggings");
+
+            migrationBuilder.DropTable(
+                name: "PointLoggings");
+
+            migrationBuilder.DropTable(
                 name: "PostComments");
 
             migrationBuilder.DropTable(
@@ -887,10 +983,19 @@ namespace AdopPix.DataAccess.Migrations
                 name: "PostLikes");
 
             migrationBuilder.DropTable(
+                name: "PostTags");
+
+            migrationBuilder.DropTable(
                 name: "PostViews");
 
             migrationBuilder.DropTable(
+                name: "RankLoggings");
+
+            migrationBuilder.DropTable(
                 name: "RoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "SocialMedias");
 
             migrationBuilder.DropTable(
                 name: "UserClaims");
@@ -902,13 +1007,7 @@ namespace AdopPix.DataAccess.Migrations
                 name: "UserLogins");
 
             migrationBuilder.DropTable(
-                name: "UserProfiles");
-
-            migrationBuilder.DropTable(
                 name: "UserRoles");
-
-            migrationBuilder.DropTable(
-                name: "UserSocials");
 
             migrationBuilder.DropTable(
                 name: "UserTokens");
@@ -926,10 +1025,13 @@ namespace AdopPix.DataAccess.Migrations
                 name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "UserProfiles");
 
             migrationBuilder.DropTable(
-                name: "SocialMedias");
+                name: "SocialMediaTypes");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Auctions");

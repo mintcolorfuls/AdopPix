@@ -6,8 +6,6 @@ namespace AdopPix.Models
 {
     public class PostLike
     {
-        [Key]
-        public int LikeId { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
         [ForeignKey("Post")]

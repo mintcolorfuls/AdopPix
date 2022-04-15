@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,12 +15,14 @@ namespace AdopPix.Models
         public string coverName { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }
-        public int money { get; set; }
+        public double money { get; set; }
         public DateTime birthDate { get; set; }
         public int point { get; set; }
         public int rank { get; set; }
         public DateTime created { get; set; }
 
         public User User { get; set; }
+        public List<PointLogging> PointLogging { get; set; }
+        public List<RankLogging> RankLogging { get; set; }
     }
 }

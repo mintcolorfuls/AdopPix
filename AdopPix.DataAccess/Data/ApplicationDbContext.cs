@@ -48,10 +48,17 @@ namespace AdopPix.DataAccess.Data
             {
                 entity.ToTable("UserTokens");
             });
+
+            builder.Entity<SocialMedia>().HasKey(f => new { f.UserId, f.SocialId });
+            builder.Entity<UserFollow>().HasKey(f => new { f.UserId, f.IsFollowing });
+            builder.Entity<AuctionTag>().HasKey(f => new { f.TagId, f.AuctionId });
+            builder.Entity<WinningBidder>().HasKey(f => new { f.UserId, f.AuctionId });
+            builder.Entity<PostLike>().HasKey(f => new { f.UserId, f.PostId });
+            builder.Entity<PostTag>().HasKey(f => new { f.TagId, f.PostId });
         }
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<SocialMedias> SocialMedias { get; set; }
-        public DbSet<UserSocial> UserSocials { get; set; }
+        public DbSet<SocialMediaType> SocialMediaTypes { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<AuctionBid> AuctionBids { get; set; }
         public DbSet<AuctionImage> AuctionImages { get; set; }
@@ -65,5 +72,9 @@ namespace AdopPix.DataAccess.Data
         public DbSet<PostComment> PostComments { get; set; }
         public DbSet<PostView> PostViews { get; set; }
         public DbSet<UserFollow> UserFollows { get; set; }
+        public DbSet<PostTag> PostTags { get; set; }
+        public DbSet<PointLogging> PointLoggings { get; set; }
+        public DbSet<RankLogging> RankLoggings { get; set; }
+        public DbSet<PaymentLogging> PaymentLoggings { get; set; }
     }
 }

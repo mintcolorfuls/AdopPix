@@ -20,5 +20,6 @@ namespace AdopPix.Models
         public List<PostComment> PostComments { get; set; }
         public List<PostView> PostViews { get; set; }
         public List<PostImage> PostImages { get; set; }
+        public List<PostTag> PostTags { get; set; }
     }
 }
