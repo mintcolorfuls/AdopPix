@@ -1,5 +1,6 @@
 ﻿using AdopPix.Models;
 using AdopPix.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AdopPix.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

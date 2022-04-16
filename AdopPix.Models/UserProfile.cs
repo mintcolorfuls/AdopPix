@@ -12,14 +12,14 @@ namespace AdopPix.Models
         public string UserId { get; set; }
         public string Gender { get; set; }
         public string AvaterName { get; set; }
-        public string coverName { get; set; }
-        public string fname { get; set; }
-        public string lname { get; set; }
-        public double money { get; set; }
-        public DateTime birthDate { get; set; }
-        public int point { get; set; }
-        public int rank { get; set; }
-        public DateTime created { get; set; }
+        public string CoverName { get; set; }
+        public string Fname { get; set; }
+        public string Lname { get; set; }
+        public double Money { get; set; }
+        public DateTime BirthDate { get; set; }
+        public int Point { get; set; }
+        public int Rank { get; set; }
+        public DateTime Created { get; set; }
 
         public User User { get; set; }
         public List<PointLogging> PointLogging { get; set; }

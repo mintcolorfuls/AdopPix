@@ -1,10 +1,12 @@
 using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.DataAccess.Data;
+using AdopPix.Models;
 using AdopPix.Services;
 using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,8 +36,34 @@ namespace AdopPix
             {
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
+
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+
+                options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedEmail = false;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/auth/Login";
+                options.AccessDeniedPath = "/auth/AccessDenied";
+
+                options.ExpireTimeSpan = TimeSpan.FromSeconds(5);
+            });
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IImageService, ImageService>();
+            services.AddRazorPages();
             services.AddControllersWithViews();
         }
 
@@ -57,7 +85,12 @@ namespace AdopPix
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+                endpoints.MapRazorPages()
+            );
 
             app.UseEndpoints(endpoints =>
             {
