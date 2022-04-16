@@ -36,13 +36,13 @@ namespace AdopPix.DataAccess.Core.Repositories
             return true;
         }
 
-        public virtual bool UpdateAsync(T entity)
+        public virtual bool Update(T entity)
         {
             dbSet.Update(entity);
             return true;
         }
 
-        public virtual bool DeleteByIdAsync(T entity)
+        public virtual bool DeleteById(T entity)
         {
             dbSet.Remove(entity);
             return true;

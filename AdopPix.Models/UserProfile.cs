@@ -15,6 +15,7 @@ namespace AdopPix.Models
         public string CoverName { get; set; }
         public string Fname { get; set; }
         public string Lname { get; set; }
+        public string Description { get; set; }
         public double Money { get; set; }
         public DateTime BirthDate { get; set; }
         public int Point { get; set; }

@@ -58,7 +58,7 @@ namespace AdopPix
                 options.LoginPath = "/auth/Login";
                 options.AccessDeniedPath = "/auth/AccessDenied";
 
-                options.ExpireTimeSpan = TimeSpan.FromSeconds(5);
+                options.ExpireTimeSpan = TimeSpan.FromDays(1);
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
