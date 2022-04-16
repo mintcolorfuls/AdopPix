@@ -1,0 +1,54 @@
+﻿@page
+@model AdopPix.Pages.auth.RegisterModel
+@{
+}
+
+<h1>Register</h1>
+<form method="post">
+
+    <label>Email</label>
+    <input type="email" placeholder="user@example.com" asp-for="registerViewModel.Email"/>
+    <span asp-validation-for="registerViewModel.Email"></span>
+    <br />
+
+    <label>Password</label>
+    <input type="password" asp-for="registerViewModel.Password"/>
+    <span asp-validation-for="registerViewModel.Password"></span>
+    <br />
+
+    <label>Confirm password</label>
+    <input type="password" asp-for="registerViewModel.ConfirmPassword"/>
+    <span asp-validation-for="registerViewModel.ConfirmPassword"></span>
+    <br />
+
+    <label>AdopPixId</label>
+    <input type="text" asp-for="registerViewModel.AdopPixId"/>
+    <span asp-validation-for="registerViewModel.AdopPixId"></span>
+    <br />
+
+    <label asp-for="registerViewModel.Gender">Male
+        <input asp-for="registerViewModel.Gender" type="radio" id="male" value="0"/>
+    </label>
+    <label asp-for="registerViewModel.Gender">Female
+        <input asp-for="registerViewModel.Gender" type="radio" id="female" value="1"/>
+    </label>
+    <span asp-validation-for="registerViewModel.Gender"></span>
+   
+    <input type="datetime-local" asp-for="registerViewModel.BirthDay"/>
+    <span asp-validation-for="registerViewModel.BirthDay"></span>
+
+    <input type="checkbox" asp-for="registerViewModel.Agree"/>
+    <span asp-validation-for="registerViewModel.Agree"></span>
+
+    @if(ViewData["ErrorMessage"] != null)
+    {
+        <ul>
+            @foreach(string message in (List<string>)ViewData["ErrorMessage"])
+            {
+                <li>@message</li>
+            }
+        </ul>
+    }
+
+    <input type="submit" value="submit"/>
+</form>

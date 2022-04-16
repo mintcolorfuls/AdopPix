@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopPix.DataAccess", "..\Ad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopPix.Models", "..\AdopPix.Models\AdopPix.Models.csproj", "{5B27C605-04AF-4025-9660-322984F91753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdopPix.Services", "..\AdopPix.Services\AdopPix.Services.csproj", "{506BBC6D-07EA-4438-96EE-5D306E7A50C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopPix.Services", "..\AdopPix.Services\AdopPix.Services.csproj", "{506BBC6D-07EA-4438-96EE-5D306E7A50C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
