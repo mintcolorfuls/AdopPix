@@ -53,6 +53,14 @@ namespace AdopPix
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/auth/Login";
+                options.AccessDeniedPath = "/auth/AccessDenied";
+
+                options.ExpireTimeSpan = TimeSpan.FromSeconds(5);
+            });
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IImageService, ImageService>();
             services.AddRazorPages();
@@ -77,6 +85,7 @@ namespace AdopPix
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

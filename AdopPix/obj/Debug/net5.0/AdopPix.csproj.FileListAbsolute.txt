@@ -373,3 +373,5 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AdopPix.Service
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\Register.cshtml.g.cs
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\_ViewImports.cshtml.g.cs
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\_ViewStart.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\AccessDenied.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\Login.cshtml.g.cs

@@ -1,0 +1,23 @@
+﻿@page
+@model AdopPix.Pages.auth.LoginModel
+@{
+}
+
+<form method="post">
+    <div>
+        <label>email</label>
+        <input type="email" asp-for="loginViewModel.Email"/>
+        <span asp-validation-for="loginViewModel.Email"></span>
+    </div>
+    <div>
+        <label>password</label>
+        <input type="password" asp-for="loginViewModel.Password"/>
+        <span asp-validation-for="loginViewModel.Password"></span>
+    </div>
+    <div>
+        <label>Remember me</label>
+        <input type="checkbox" asp-for="loginViewModel.RememberMe"/>
+    </div>
+    <input type="submit"/>
+    <div asp-validation-summary="All"></div>
+</form>
