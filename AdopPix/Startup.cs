@@ -62,7 +62,11 @@ namespace AdopPix
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            //Register services
             services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<ITokenTopUpService, TokenTopUpService>();
+
             services.AddRazorPages();
             services.AddControllersWithViews();
         }
