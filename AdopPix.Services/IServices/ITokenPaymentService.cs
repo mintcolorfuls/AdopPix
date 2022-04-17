@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 namespace AdopPix.Services.IServices
 {
     //Top up with credit or debit card with omise
-    public interface ITokenTopUpService
+    public interface ITokenPaymentService
     {
-        Task<string> CreateCharge(int amount, string currency, string omiseToken); 
+        Task<string> CreateCharge(decimal amount, string currency, string omiseToken); 
         Task<ChargeDetailModelService> GetChargeById(string chargeId);
     }
 }

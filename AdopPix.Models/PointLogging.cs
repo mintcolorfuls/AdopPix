@@ -10,7 +10,7 @@ namespace AdopPix.Models
         public int pLogId { get; set; }
         [ForeignKey("UserProfile")]
         public string userId { get; set; }
-        public double amount { get; set; }
+        public decimal amount { get; set; }
         public DateTime created { get; set; }
 
         public UserProfile UserProfile { get; set; }

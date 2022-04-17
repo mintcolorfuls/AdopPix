@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Hn/yzoZOXD+xlfywi9mxfizUqac50apFrWiehHbsSeR8Wy2efMKR0WAA1CkitZ2902haLtJdpKZo3gy+EIqzxA==",
+  "dgSpecHash": "qKNLZrb+NdwCQX67xl6TY2Bif93ZdpviTiN7m53x8KDcvdCWvcf7J8C+x3x/e384eFNCl3lCowUUGOT7M1nl3w==",
   "success": true,
   "projectFilePath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix\\AdopPix.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,8 @@
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\mysqlconnector\\1.3.13\\mysqlconnector.1.3.13.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\mintc\\.nuget\\packages\\omise\\2.7.11\\omise.2.7.11.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\5.0.4\\pomelo.entityframeworkcore.mysql.5.0.4.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\mintc\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",

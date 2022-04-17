@@ -75,12 +75,11 @@ namespace AdopPix.Pages.auth
                 }
 
                 await userManager.AddToRoleAsync(user, "member");
-
                 UserProfile profile = new UserProfile
                 {
                     UserId = user.Id,
                     Gender = registerViewModel.Gender.ToString(),
-                    AvaterName = "",
+                    AvaterName = "AvatarNopic.png",
                     CoverName = "",
                     Fname = "",
                     Lname = "",

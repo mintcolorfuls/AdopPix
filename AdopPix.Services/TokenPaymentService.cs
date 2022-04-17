@@ -4,27 +4,24 @@ using Microsoft.Extensions.Configuration;
 using Omise;
 using Omise.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AdopPix.Services
 {
-    public class TokenTopUpService : ITokenTopUpService
+    public class TokenPaymentService : ITokenPaymentService
     {
         private readonly IConfiguration configuration;
-        Client omise;
-        public TokenTopUpService(IConfiguration configuration)
+        public TokenPaymentService(IConfiguration configuration)
         {
-            omise = new Client(this.configuration["Omise_PublicKey"], this.configuration["Omise_SecretKey"]);
+            
             this.configuration = configuration;
         }
-        public async Task<string> CreateCharge(int amount, string currency, string omiseToken)
+        public async Task<string> CreateCharge(decimal amount, string currency, string omiseToken)
         {
+            Client omise = new Client(configuration["Omise_PublicKey"], configuration["Omise_SecretKey"]);
             var charge = await omise.Charges.Create(new CreateChargeRequest
             {
-                Amount = amount * 100,
+                Amount = (int)(amount * 100),
                 Currency = currency,
                 Card = omiseToken
             });
@@ -33,12 +30,14 @@ namespace AdopPix.Services
 
         public async Task<ChargeDetailModelService> GetChargeById(string chargeId)
         {
+            Client omise = new Client(configuration["Omise_PublicKey"], configuration["Omise_SecretKey"]);
             var charge = await omise.Charges.Get(chargeId);
+
             ChargeDetailModelService chargeDetailModelService = new ChargeDetailModelService
             {
                 Charge = charge.Id,
                 Name = charge.Card.Name,
-                Amount = charge.Amount / 100,
+                Amount = Convert.ToDecimal(charge.Amount / 100.00),
                 Currency = charge.Currency,
                 Brand = charge.Card.Brand,
                 Financing = charge.Card.Financing

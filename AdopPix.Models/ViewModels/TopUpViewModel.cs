@@ -2,6 +2,7 @@
 {
     public class TopUpViewModel
     {
-        public int CurrentMoney { get; set; }
+        public decimal CurrentMoney { get; set; }
+        public decimal Money { get; set; }
     }
 }

@@ -65,7 +65,7 @@ namespace AdopPix
 
             //Register services
             services.AddScoped<IImageService, ImageService>();
-            services.AddScoped<ITokenTopUpService, TokenTopUpService>();
+            services.AddScoped<ITokenPaymentService, TokenPaymentService>();
 
             services.AddRazorPages();
             services.AddControllersWithViews();

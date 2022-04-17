@@ -3,14 +3,16 @@ using System;
 using AdopPix.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdopPix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220417045520_UpdateDoubleToDecimal")]
+    partial class UpdateDoubleToDecimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,13 +31,13 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("HotClose")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<int>("HourId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("OpeningPrice")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime(6)");
@@ -65,7 +67,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<string>("AuctionId")
                         .HasColumnType("varchar(255)");
@@ -220,7 +222,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<string>("Brand")
                         .HasColumnType("longtext");
@@ -257,7 +259,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("amount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<DateTime>("created")
                         .HasColumnType("datetime(6)");
@@ -409,7 +411,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("amount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<DateTime>("created")
                         .HasColumnType("datetime(6)");
@@ -589,13 +591,13 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Money")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<decimal>("Point")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<decimal>("Rank")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.HasKey("UserId");
 
@@ -614,7 +616,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<decimal>("amount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.HasKey("UserId", "AuctionId");
 
