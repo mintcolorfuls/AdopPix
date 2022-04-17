@@ -35,9 +35,12 @@ namespace AdopPix.Services
         public async Task<string> UploadImageAsync(IFormFile file)
         {
             string name = string.Empty;
+            string fileName = Path.GetFileName(file.FileName);
+            string fileExt = Path.GetExtension(fileName);
+
             try
             {
-                name = $"{GenerateFileName()}";
+                name = $"{GenerateFileName()}{fileExt}";
                 using (var client = new AmazonS3Client(configuration["AWSS3_PublicKey"],
                                                        configuration["AWSS3_SecretKey"], 
                                                        Amazon.RegionEndpoint.APSoutheast1))

@@ -1,0 +1,46 @@
+﻿@model AccountSettingViewModel
+
+<div>
+    @if (@Model.AvaterName != "")
+    {
+        <h3>Avatar Example</h3>
+        <img width="300" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" />
+    }
+    @if (@Model.CoverName != "")
+    {
+        <h3>Cover Example</h3>
+        <img width="300" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.CoverName}")" />
+    }
+
+    <form asp-action="Setting" method="post" enctype="multipart/form-data">
+        <div>
+            <label>CoverName</label>
+            <input type="file" asp-for="@Model.CoverFile" />
+            <input type="hidden" asp-for="@Model.CoverName"/>
+            <span asp-validation-for="CoverFile"></span>
+        </div>
+        <div>
+            <label>Avatar</label>
+            <input type="file" asp-for="@Model.AvatarFile" />
+            <input type="hidden" asp-for="@Model.AvaterName"/>
+            <span asp-validation-for="AvatarFile"></span>
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" asp-for="@Model.Description" />
+        </div>
+        <div>
+            <label>FirstName</label>
+            <input type="text" asp-for="@Model.Fname" />
+        </div>
+        <div>
+            <label>LastName</label>
+            <input type="text" asp-for="@Model.Lname" />
+        </div>
+        <div>
+            <label>Gender</label>
+            <input type="text" asp-for="@Model.Gender" />
+        </div>
+        <input type="submit" class="btn btn-success" value="submit"/>
+    </form>
+</div>

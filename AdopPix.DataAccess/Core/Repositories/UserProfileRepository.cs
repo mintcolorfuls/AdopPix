@@ -3,6 +3,8 @@ using AdopPix.DataAccess.Data;
 using AdopPix.Models;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AdopPix.DataAccess.Core.Repositories
@@ -13,18 +15,17 @@ namespace AdopPix.DataAccess.Core.Repositories
             : base(context, logger)
         {
         }
-        public override Task<bool> CreateAsync(UserProfile entity)
+        public override Task<IEnumerable<UserProfile>> GetAllAsync()
         {
             try
             {
-                return base.CreateAsync(entity);
+                return base.GetAllAsync();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return base.CreateAsync(entity);
-            }
-            
+                logger.LogError(ex.Message);
+                return null;
+            }  
         }
     }
 }

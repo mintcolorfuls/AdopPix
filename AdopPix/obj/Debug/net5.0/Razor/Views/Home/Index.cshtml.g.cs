@@ -26,8 +26,15 @@ using AdopPix.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\Views\_ViewImports.cshtml"
+using AdopPix.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e804078f620de6074b1b2912afd336111f9bd145", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"411a95cf21e770185ca1b7a1f2d3ff03986dc49b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"96e1173bd5cd85c40e7b8f78b0845b64ab18dd8d", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -68,7 +75,7 @@ using AdopPix.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e804078f620de6074b1b2912afd336111f9bd1454088", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e804078f620de6074b1b2912afd336111f9bd1454276", async() => {
                 WriteLiteral("\r\n    <input type=\"file\" name=\"file\"/>\r\n    <input type=\"submit\"/>\r\n");
             }
             );
