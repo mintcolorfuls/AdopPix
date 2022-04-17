@@ -28,14 +28,14 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
-                    b.Property<double>("HotClose")
-                        .HasColumnType("double");
+                    b.Property<decimal>("HotClose")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("HourId")
                         .HasColumnType("int");
 
-                    b.Property<double>("OpeningPrice")
-                        .HasColumnType("double");
+                    b.Property<decimal>("OpeningPrice")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime(6)");
@@ -64,8 +64,8 @@ namespace AdopPix.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("double");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("AuctionId")
                         .HasColumnType("varchar(255)");
@@ -219,8 +219,8 @@ namespace AdopPix.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("double");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Brand")
                         .HasColumnType("longtext");
@@ -256,8 +256,8 @@ namespace AdopPix.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<double>("amount")
-                        .HasColumnType("double");
+                    b.Property<decimal>("amount")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<DateTime>("created")
                         .HasColumnType("datetime(6)");
@@ -408,8 +408,8 @@ namespace AdopPix.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<double>("amount")
-                        .HasColumnType("double");
+                    b.Property<decimal>("amount")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<DateTime>("created")
                         .HasColumnType("datetime(6)");
@@ -588,14 +588,14 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<string>("Lname")
                         .HasColumnType("longtext");
 
-                    b.Property<double>("Money")
-                        .HasColumnType("double");
+                    b.Property<decimal>("Money")
+                        .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("Point")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Point")
+                        .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("Rank")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Rank")
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("UserId");
 
@@ -613,8 +613,8 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<double>("amount")
-                        .HasColumnType("double");
+                    b.Property<decimal>("amount")
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("UserId", "AuctionId");
 

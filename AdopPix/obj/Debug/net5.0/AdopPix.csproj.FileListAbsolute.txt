@@ -377,3 +377,6 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\aut
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\Login.cshtml.g.cs
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Account\Setting.cshtml.g.cs
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\Logout.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\Omise.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Payment\Index.cshtml.g.cs

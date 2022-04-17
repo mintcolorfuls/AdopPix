@@ -13,6 +13,7 @@ namespace AdopPix.DataAccess.Data
         private readonly ILogger logger;
 
         public IUserProfileRepository UserProfile { get; private set; }
+        public IPaymentLoggingRepository PaymentLogging { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context,
                           ILoggerFactory logger)
@@ -21,6 +22,7 @@ namespace AdopPix.DataAccess.Data
             this.logger = logger.CreateLogger("Log");
 
             UserProfile = new UserProfileRepository(context, this.logger);
+            PaymentLogging = new PaymentLoggingRepository(context, this.logger);
         }
         public async Task CompleateAsync()
         {

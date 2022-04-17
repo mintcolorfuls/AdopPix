@@ -51,6 +51,10 @@
             "Microsoft.Extensions.Configuration.UserSecrets": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Omise": {
+              "target": "Package",
+              "version": "[2.7.11, )"
             }
           },
           "imports": [
