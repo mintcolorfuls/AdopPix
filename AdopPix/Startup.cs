@@ -48,7 +48,7 @@ namespace AdopPix
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
 
                 options.User.RequireUniqueEmail = true;
-                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedEmail = true;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
@@ -66,6 +66,7 @@ namespace AdopPix
             //Register services
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<ITokenPaymentService, TokenPaymentService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             services.AddRazorPages();
             services.AddControllersWithViews();

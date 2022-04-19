@@ -14,12 +14,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AdopPix.DataAccess\AdopPix.DataAccess.csproj" />
     <ProjectReference Include="..\AdopPix.Models\AdopPix.Models.csproj" />
     <ProjectReference Include="..\AdopPix.Services\AdopPix.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Template\Email\" />
   </ItemGroup>
 
 </Project>

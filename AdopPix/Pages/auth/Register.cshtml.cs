@@ -1,6 +1,7 @@
 using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.DataAccess.Core.IRepository;
 using AdopPix.Models;
+using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,20 +17,26 @@ namespace AdopPix.Pages.auth
         private readonly UserManager<User> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IEmailService emailService;
 
         public RegisterModel(UserManager<User> userManager,
                              RoleManager<IdentityRole> roleManager,
-                             IUnitOfWork unitOfWork)
+                             IUnitOfWork unitOfWork,
+                             IEmailService emailService)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.unitOfWork = unitOfWork;
+            this.emailService = emailService;
         }
         [BindProperty]
         public RegisterViewModel registerViewModel { get; set; }
+        [BindProperty]
+        public bool GoConfirmEmail { get; set; }
 
         public void OnGet()
         {
+            GoConfirmEmail = false;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -75,6 +82,15 @@ namespace AdopPix.Pages.auth
                 }
 
                 await userManager.AddToRoleAsync(user, "member");
+
+                string confirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
+                string confirmationLink = Url.PageLink(pageName: "/auth/ConfirmEmail",
+                                                       values: new { userId = user.Id, token = confirmationToken });
+                string template = emailService.CreateTemplate("ConfirmEmail");
+                string content = emailService.SetupConfirmEmailTemplate(template, confirmationLink);
+
+                await emailService.SendAsync("AdopPix <account@adoppix.com>", user.Email, "Confirm your email.", content);
+
                 UserProfile profile = new UserProfile
                 {
                     UserId = user.Id,
@@ -94,7 +110,8 @@ namespace AdopPix.Pages.auth
 
                 if(profileCreate)
                 {
-                    return Redirect("/");
+                    GoConfirmEmail = true;
+                    return Page();
                 }
             }
             return Page();
