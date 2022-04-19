@@ -1,0 +1,17 @@
+﻿@page
+@model AdopPix.Pages.auth.AuthenticatorLoginModel
+@{
+}
+<form method="post">
+    <div>
+        <label>Security Code</label>
+        <input type="text" asp-for="authenticatorLoginViewModel.SecurityCode"/>
+        <span asp-validation-for="authenticatorLoginViewModel.SecurityCode"></span>
+    </div>
+    <input type="submit" value="verify" class="btn btn-success"/>
+    <input type="hidden" asp-for="authenticatorLoginViewModel.RememberMe"/>
+    @if(ViewData["ErrorMessage"] != null)
+    {
+        <p class="alert alert-danger">@ViewData["ErrorMessage"]</p>
+    } 
+</form>

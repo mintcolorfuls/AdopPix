@@ -53,14 +53,14 @@ namespace AdopPix.Pages.auth
             }
             else
             {
-                if(await userManager.IsEmailConfirmedAsync(user))
+                if(!await userManager.IsEmailConfirmedAsync(user))
                 {
                     ViewData["ErrorMessage"] = "Please confirm your email.";
                     return Page();
                 }
                 if(resultLogin.RequiresTwoFactor)
                 {
-                    return RedirectToPage("/Account/LoginTwoFactorWithAuthenticator", new { RememberMe = loginViewModel.RememberMe });
+                    return RedirectToPage("/auth/AuthenticatorLogin", new { RememberMe = loginViewModel.RememberMe });
                 }
                 return Page();
             }
