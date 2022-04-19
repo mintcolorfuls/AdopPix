@@ -1,6 +1,7 @@
 ﻿using AdopPix.Services.IServices;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -15,6 +16,30 @@ namespace AdopPix.Services
         {
             this.configuration = configuration;
         }
+
+        public string CreateTemplate(string templateType)
+        {
+            string fileName = string.Empty;
+
+            switch (templateType)
+            {
+                case "ConfirmEmail" : fileName = "ConfirmEmail"; break;
+                default: throw new Exception("templateType not found.");
+            }
+
+            string FilePath = $"{Directory.GetCurrentDirectory()}\\Template\\{fileName}.html";
+            StreamReader reader = new StreamReader(FilePath);
+            string content = reader.ReadToEnd();
+            reader.Close();
+
+            return content;
+        }
+
+        public string SetupConfirmEmailTemplate(string template, string url)
+        {
+            return template.Replace("[urlConfirmEmail]", url);
+        }
+
         public async Task SendAsync(string from, string to, string subject, string body)
         {
             var massage = new MailMessage(from, to, subject, body);
