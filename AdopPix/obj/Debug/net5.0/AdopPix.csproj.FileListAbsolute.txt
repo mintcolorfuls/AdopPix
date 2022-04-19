@@ -380,3 +380,10 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\aut
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\Omise.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Payment\Index.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\ConfirmEmail.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\Setting.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\QRCoder.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\System.Drawing.Common.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\MFASetup.cshtml.g.cs

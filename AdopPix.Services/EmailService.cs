@@ -27,7 +27,7 @@ namespace AdopPix.Services
                 default: throw new Exception("templateType not found.");
             }
 
-            string FilePath = $"{Directory.GetCurrentDirectory()}\\Template\\{fileName}.html";
+            string FilePath = $"{Directory.GetCurrentDirectory()}\\Template\\Email\\{fileName}.html";
             StreamReader reader = new StreamReader(FilePath);
             string content = reader.ReadToEnd();
             reader.Close();

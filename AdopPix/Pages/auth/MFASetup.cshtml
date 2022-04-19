@@ -1,0 +1,37 @@
+﻿@page
+@model AdopPix.Pages.auth.MFASetupModel
+@{
+}
+
+@if (Model.Succeeded)
+{
+    <h1>Multi factor authentication is enable.</h1>
+}
+else
+{
+    <div>
+        <h1>Your qr code.</h1>
+        <img src="@string.Format("data:image/png;base64,{0}", @Convert.ToBase64String(Model.mFASetupViewModel.QRCodeBytes))" width="300" height="300" />
+    </div>
+    <div>
+        <p>@Model.mFASetupViewModel.Key</p>
+    </div>
+
+    <form method="post">
+        <div>
+            <label>Security Code</label>
+            <input type="text" asp-for="mFASetupViewModel.SecurityCode" />
+            <span asp-validation-for="mFASetupViewModel.SecurityCode"></span>
+        </div>
+        <input type="submit" value="submit" />
+        <input type="hidden" asp-for="mFASetupViewModel.Key" />
+        <input type="hidden" asp-for="mFASetupViewModel.QRCodeBytes" />
+    </form>
+    @if(ViewData["ErrorMessage"] != null)
+    {
+        <p>@ViewData["ErrorMessage"]</p>
+    }
+}
+
+
+
