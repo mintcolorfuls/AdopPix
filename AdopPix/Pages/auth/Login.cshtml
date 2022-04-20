@@ -21,6 +21,8 @@
         <div class="d-grid gap-2">
             <input type="submit" value="Login" class="btn btn-success w-100 mb-2" />
             <a asp-page="/auth/register" class="btn btn-outline-primary w-100 mb-2">Register</a>
+
+            <a asp-page="/auth/forgetpassword" class="btn btn-outline-danger w-100 mb-2">Forget password ?</a>
         </div>
 
         @if (ViewData["ErrorMessage"] != null)
