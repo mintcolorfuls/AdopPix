@@ -435,3 +435,4 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\runtimes\win-ar
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Shared\_AuthLayout.cshtml.g.cs
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\ChangePassword.cshtml.g.cs
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\ChangeEmail.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\ConfirmChangeEmail.cshtml.g.cs

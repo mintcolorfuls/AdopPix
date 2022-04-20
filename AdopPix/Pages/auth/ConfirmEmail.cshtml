@@ -9,7 +9,14 @@
         </div>
         <h3>@Model.Message</h3>
         <div class="d-grid gap-2 mt-5">
-            <a asp-page="/auth/login" class="btn btn-outline-success w-100">go to login</a>
+            @if(User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-success w-100">let's auction !</a>
+            }
+            else
+            {
+                <a asp-page="/auth/login" class="btn btn-outline-success w-100">go to login</a>
+            }
         </div>
     </div>
 </div>
