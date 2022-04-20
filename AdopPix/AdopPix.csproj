@@ -24,8 +24,4 @@
     <ProjectReference Include="..\AdopPix.Services\AdopPix.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Template\Email\" />
-  </ItemGroup>
-
 </Project>
