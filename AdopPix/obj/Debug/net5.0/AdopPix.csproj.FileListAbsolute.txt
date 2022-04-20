@@ -433,3 +433,4 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\zh-Hant\Microso
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Shared\_AuthLayout.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Pages\auth\ChangePassword.cshtml.g.cs
