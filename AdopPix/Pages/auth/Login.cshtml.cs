@@ -22,8 +22,13 @@ namespace AdopPix.Pages.auth
         [BindProperty]
         public LoginViewModel loginViewModel { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                return Redirect("/");
+            }
+            return Page();
         }
         public async Task<IActionResult> OnPostAsync()
         {

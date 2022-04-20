@@ -1,46 +1,62 @@
 ﻿@model TopUpViewModel
 
-<h1>Top up</h1>
-<h2>Current money: @Model.CurrentMoney</h2>
+<div class="text-center">
+    <h1>Top up</h1>
+    <h2>Current money: @Model.CurrentMoney</h2>
+</div>
+
 <form id="checkoutForm" asp-action="Index" method="post">
     <input type="hidden" name="omiseToken">
     <input type="hidden" name="omiseSource">
-    <div>
-        <label>The amount you want to top up</label>
-        <input type="number" name="money" id="money" asp-for="Money"/>
-        <span asp-validation-for="Money"></span>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="w-25">
+            <label>The amount you want to top up</label>
+            <input type="number" name="money" id="money" asp-for="Money" class="form-control" />
+            <span asp-validation-for="Money"></span>
+        </div>
     </div>
-    <input id="checkoutButton" type="submit" class="btn btn-info" value="Payment with credit card"/>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="w-25">
+            <h4>Payment method</h4>
+            <hr />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="d-grid gap-2 w-25">
+            <input id="checkoutButton" type="submit" class="btn btn-primary w-100" value="Payment with credit card" />
+        </div>
+    </div>
+    
 </form>
 
 <script type="text/javascript" src="https://cdn.omise.co/omise.js">
 </script>
 <script>
-  OmiseCard.configure({
-    publicKey: "pkey_test_5rgqyeyx84l0zn3rbft"
-  });
-
-  var button = document.querySelector("#checkoutButton");
-  var form = document.querySelector("#checkoutForm");
-
-  button.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    OmiseCard.open({
-      amount: document.getElementById("money").value * 100,
-      currency: "THB",
-      frameLabel: "AdopPix",
-      image: "https://adoppix.s3.ap-southeast-1.amazonaws.com/AdopPixLogo.png", 
-      defaultPaymentMethod: "credit_card",
-      onCreateTokenSuccess: (nonce) => {
-          if (nonce.startsWith("tokn_")) {
-              form.omiseToken.value = nonce;
-          } else {
-              form.omiseSource.value = nonce;
-          };
-        form.submit();
-      }
+    OmiseCard.configure({
+      publicKey: "pkey_test_5rgqyeyx84l0zn3rbft"
     });
 
-  });
+    var button = document.querySelector("#checkoutButton");
+    var form = document.querySelector("#checkoutForm");
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      OmiseCard.open({
+        amount: document.getElementById("money").value * 100,
+        currency: "THB",
+        frameLabel: "AdopPix",
+        image: "https://adoppix.s3.ap-southeast-1.amazonaws.com/AdopChan.png",
+        defaultPaymentMethod: "credit_card",
+        onCreateTokenSuccess: (nonce) => {
+            if (nonce.startsWith("tokn_")) {
+                form.omiseToken.value = nonce;
+            } else {
+                form.omiseSource.value = nonce;
+            };
+          form.submit();
+        }
+      });
+
+    });
 </script>
