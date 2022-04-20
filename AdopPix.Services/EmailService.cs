@@ -23,7 +23,8 @@ namespace AdopPix.Services
 
             switch (templateType)
             {
-                case "ConfirmEmail" : fileName = "ConfirmEmail"; break;
+                case "ConfirmEmail" : fileName = templateType; break;
+                case "ChangeEmail": fileName = templateType; break;
                 default: throw new Exception("templateType not found.");
             }
 
@@ -38,6 +39,11 @@ namespace AdopPix.Services
         public string SetupConfirmEmailTemplate(string template, string url)
         {
             return template.Replace("[urlConfirmEmail]", url);
+        }
+
+        public string SetupChangeEmailTemplate(string template, string url)
+        {
+            return template.Replace("[url]", url);
         }
 
         public async Task SendAsync(string from, string to, string subject, string body)

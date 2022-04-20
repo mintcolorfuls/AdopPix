@@ -44,7 +44,6 @@ namespace AdopPix.Pages.auth
             Status = false;
             Message = "user invalid, Please contact customer support at account@adoppix.com";
             return Page();
-
         }
     }
 }
