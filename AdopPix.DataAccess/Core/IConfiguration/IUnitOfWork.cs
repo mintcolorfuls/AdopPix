@@ -11,3 +11,4 @@ namespace AdopPix.DataAccess.Core.IConfiguration
         Task CompleateAsync();
     }
 }
+  

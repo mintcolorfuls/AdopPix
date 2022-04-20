@@ -34,24 +34,42 @@ namespace AdopPix.Pages.auth
         [BindProperty]
         public bool GoConfirmEmail { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             GoConfirmEmail = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                return Redirect("/");
+            }
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if(!ModelState.IsValid) return Page();
+
+            bool stateError = false;
+
             if(!registerViewModel.Agree)
             {
                 ModelState.AddModelError("registerViewModel.Agree", "please accept term of use.");
+                stateError = true;
+            }
+            if(registerViewModel.BirthDay == null)
+            {
+                ModelState.AddModelError("registerViewModel.BirthDay", "please enter your birthday");
+                stateError = true;
+            }
+
+            if(stateError)
+            {
+                return Page();
             }
 
             var existUser = await userManager.FindByEmailAsync(registerViewModel.Email);
 
             if (existUser != null)
             {
-                List<string> errors = new List<string>();
                 if (existUser.Email == registerViewModel.Email)
                 {
                     ModelState.AddModelError("registerViewModel.Email", "Email is aleady to use.");
@@ -60,7 +78,6 @@ namespace AdopPix.Pages.auth
                 {
                     ModelState.AddModelError("registerViewModel.AdopPixId", "AdopPixId is aleady to use.");
                 }
-                ViewData["ErrorMessage"] = errors;
                 return Page();
             }
            
@@ -100,7 +117,7 @@ namespace AdopPix.Pages.auth
                     Fname = "",
                     Lname = "",
                     Money = 0,
-                    BirthDate = registerViewModel.BirthDay,
+                    BirthDate = (DateTime)registerViewModel.BirthDay,
                     Point = 0,
                     Rank = 0,
                     Created = DateTime.Now,
@@ -135,8 +152,7 @@ namespace AdopPix.Pages.auth
         public string AdopPixId { get; set; }
         [Required]
         public Gender Gender { get; set; }
-        [Required]
-        public DateTime BirthDay { get; set; } = DateTime.Now;
+        public DateTime? BirthDay { get; set; } = DateTime.Now;
         public bool Agree { get; set; }
     }
     public enum Gender

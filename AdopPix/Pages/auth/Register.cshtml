@@ -2,60 +2,79 @@
 @model AdopPix.Pages.auth.RegisterModel
 @{
 }
+<div class="d-flex justify-content-center mt-3">
 
-@if(!Model.GoConfirmEmail)
-{
-    <h1>Register</h1>
-    <form method="post">
-
-    <label>Email</label>
-    <input type="email" placeholder="user@example.com" asp-for="registerViewModel.Email"/>
-    <span asp-validation-for="registerViewModel.Email"></span>
-    <br />
-
-    <label>Password</label>
-    <input type="password" asp-for="registerViewModel.Password"/>
-    <span asp-validation-for="registerViewModel.Password"></span>
-    <br />
-
-    <label>Confirm password</label>
-    <input type="password" asp-for="registerViewModel.ConfirmPassword"/>
-    <span asp-validation-for="registerViewModel.ConfirmPassword"></span>
-    <br />
-
-    <label>AdopPixId</label>
-    <input type="text" asp-for="registerViewModel.AdopPixId"/>
-    <span asp-validation-for="registerViewModel.AdopPixId"></span>
-    <br />
-
-    <label asp-for="registerViewModel.Gender">Male
-        <input asp-for="registerViewModel.Gender" type="radio" id="male" value="0"/>
-    </label>
-    <label asp-for="registerViewModel.Gender">Female
-        <input asp-for="registerViewModel.Gender" type="radio" id="female" value="1"/>
-    </label>
-    <span asp-validation-for="registerViewModel.Gender"></span>
-   
-    <input type="datetime-local" asp-for="registerViewModel.BirthDay"/>
-    <span asp-validation-for="registerViewModel.BirthDay"></span>
-
-    <input type="checkbox" asp-for="registerViewModel.Agree"/>
-    <span asp-validation-for="registerViewModel.Agree"></span>
-
-    @if(ViewData["ErrorMessage"] != null)
+    @if (!Model.GoConfirmEmail)
     {
-        <ul>
-            @foreach(string message in (List<string>)ViewData["ErrorMessage"])
-            {
-                <li>@message</li>
-            }
-        </ul>
-    }
+        <div class="w-50">
+            <h1>Register</h1>
+            <form method="post">
+                <div>
+                    <img src="https://adoppix.s3.ap-southeast-1.amazonaws.com/AdopPixLogo.png" class="img-fluid" />
+                </div>
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="text" class="form-control" asp-for="registerViewModel.Email" />
+                    <span asp-validation-for="registerViewModel.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label>Password</label>
+                    <input type="password" class="form-control" asp-for="registerViewModel.Password" />
+                    <span asp-validation-for="registerViewModel.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label>Confirm Password</label>
+                    <input type="password" class="form-control" asp-for="registerViewModel.ConfirmPassword" />
+                    <span asp-validation-for="registerViewModel.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label>AdopPixId</label>
+                    <input type="text" class="form-control" asp-for="registerViewModel.AdopPixId" />
+                    <span asp-validation-for="registerViewModel.AdopPixId" class="text-danger"></span>
+                </div>
 
-    <input type="submit" value="submit"/>
-    </form>
-}
-else
-{
-    <h1>Go to your email to confirm your email.</h1>
-}
+                <div class="mb-3">
+                    <div class="form-check form-check-inline">
+                        <input asp-for="registerViewModel.Gender" type="radio" id="male" value="0" class="form-check-input" />
+                        <label class="form-check-label">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="registerViewModel.Gender" type="radio" id="female" value="1" class="form-check-input" />
+                        <label class="form-check-label">Female</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="datetime-local" asp-for="registerViewModel.BirthDay" />
+                    <span asp-validation-for="registerViewModel.BirthDay" class="text-danger"></span>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="registerViewModel.Agree">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        I agree to the Terms of use and Privacy Policy
+                    </label>
+                    <br />
+                    <span asp-validation-for="registerViewModel.Agree" class="text-danger"></span>
+                </div>
+                <div class="d-grid gap-2 mt-5">
+                    <input type="submit" class="btn btn-success w-100" value="Register">
+                    <a asp-page="/auth/login" class="btn btn-outline-dark mt-3 w-100">back to login</a>
+                </div>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="w-100 d-flex justify-content-center align-items-center mt-3" style="height: 75vh;"> 
+            <div class="h-75">
+                <div class="d-flex justify-content-center">
+                    <img src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/007/873/original/email.png" class="img-fluid w-50" />
+                </div>
+                <h3>Go to your email to confirm your email.</h3>
+                <div class="d-grid gap-2 mt-5">
+                    <a asp-page="/auth/login" class="btn btn-outline-dark w-100">Back to login</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

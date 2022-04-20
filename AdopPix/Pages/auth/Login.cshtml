@@ -3,25 +3,29 @@
 @{
 }
 
-<form method="post">
-    <div>
-        <label>email</label>
-        <input type="email" asp-for="loginViewModel.Email"/>
-        <span asp-validation-for="loginViewModel.Email"></span>
-    </div>
-    <div>
-        <label>password</label>
-        <input type="password" asp-for="loginViewModel.Password"/>
-        <span asp-validation-for="loginViewModel.Password"></span>
-    </div>
-    <div>
-        <label>Remember me</label>
-        <input type="checkbox" asp-for="loginViewModel.RememberMe"/>
-    </div>
-    <input type="submit"/>
-    @if(ViewData["ErrorMessage"] != null)
-    {
-        <p>@ViewData["ErrorMessage"]</p>
-    }
-    <div asp-validation-summary="All"></div>
-</form>
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh">
+    <form method="post" class="w-50">
+        <div>
+            <img src="https://adoppix.s3.ap-southeast-1.amazonaws.com/AdopPixLogo.png" class="img-fluid" />
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="text" class="form-control" asp-for="loginViewModel.Email" />
+            <span asp-validation-for="loginViewModel.Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" class="form-control" asp-for="loginViewModel.Password" />
+            <span asp-validation-for="loginViewModel.Password" class="text-danger"></span>
+        </div>
+        <div class="d-grid gap-2">
+            <input type="submit" value="Login" class="btn btn-success w-100 mb-2" />
+            <a asp-page="/auth/register" class="btn btn-outline-primary w-100 mb-2">Register</a>
+        </div>
+
+        @if (ViewData["ErrorMessage"] != null)
+        {
+            <p>@ViewData["ErrorMessage"]</p>
+        }
+    </form>
+</div>

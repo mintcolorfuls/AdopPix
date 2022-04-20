@@ -5,29 +5,66 @@
 
 @if (Model.Succeeded)
 {
-    <h1>Multi factor authentication is enable.</h1>
+    <div>
+        <div class="d-flex justify-content-center mt-5 mb-3">
+            <img src="https://www.dynamicpeople.nl/wp-content/uploads/2021/03/Authenticator-app-1600x1065.png" class="img-fluid w-25" />
+        </div>
+    </div>
+    <div>
+        <div class="d-flex justify-content-center mb-3">
+            <h1>Multi factor authentication is enable.</h1>
+        </div>
+    </div>
+
 }
 else
 {
-    <div>
-        <h1>Your qr code.</h1>
+    <div class="">
+        <div class="d-flex justify-content-center">
+            <h4>Step 1 Scan qr code to your authenticator app</h4>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
         <img src="@string.Format("data:image/png;base64,{0}", @Convert.ToBase64String(Model.mFASetupViewModel.QRCodeBytes))" width="300" height="300" />
     </div>
-    <div>
-        <p>@Model.mFASetupViewModel.Key</p>
+    <div class="d-flex justify-content-center">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Token</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" asp-for="@Model.mFASetupViewModel.Key" disabled>
+            </div>
+            <div class="col-auto">
+                <span class="form-text">
+                    <button class="btn btn-primary">Copy</button>
+                </span>
+            </div>
+        </div>
     </div>
 
     <form method="post">
-        <div>
-            <label>Security Code</label>
-            <input type="text" asp-for="mFASetupViewModel.SecurityCode" />
-            <span asp-validation-for="mFASetupViewModel.SecurityCode"></span>
+        <div class="mt-5">
+            <div class="d-flex justify-content-center">
+                <h4>Step 2 Enter security code from your authenticator app</h4>
+            </div>
         </div>
-        <input type="submit" value="submit" />
+        <div class="d-flex justify-content-center">
+            <div class="mb-3 w-25">
+                <label>Security Code</label>
+                <input type="text" asp-for="mFASetupViewModel.SecurityCode" class="form-control" />
+                <span asp-validation-for="mFASetupViewModel.SecurityCode" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="d-grid gap-2 w-25">
+                <input type="submit" value="Verify" class="btn btn-success w-100" />
+            </div>
+        </div>
         <input type="hidden" asp-for="mFASetupViewModel.Key" />
         <input type="hidden" asp-for="mFASetupViewModel.QRCodeBytes" />
     </form>
-    @if(ViewData["ErrorMessage"] != null)
+    @if (ViewData["ErrorMessage"] != null)
     {
         <p>@ViewData["ErrorMessage"]</p>
     }
