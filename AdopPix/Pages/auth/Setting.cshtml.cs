@@ -12,9 +12,31 @@ namespace AdopPix.Pages.auth
     [Authorize]
     public class SettingModel : PageModel
     {
-        public void OnGet()
+        private readonly UserManager<User> userManager;
+
+        public SettingModel(UserManager<User> userManager)
         {
+            this.userManager = userManager;
+            this.settingViewModel = new SettingViewModel();
         }
+
+        [BindProperty]
+        public SettingViewModel settingViewModel { get; set; }
+
+        public async Task OnGet()
+        {
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+
+            if(user != null)
+            {
+                settingViewModel.EnableTwoFactor = await userManager.GetTwoFactorEnabledAsync(user);
+            }
+
+        }
+    }
+    public class SettingViewModel
+    {
+        public bool EnableTwoFactor { get; set; }
     }
    
 }
