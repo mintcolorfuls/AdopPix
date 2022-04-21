@@ -4,6 +4,13 @@
 }
 
 <h1>Security Setting</h1>
-<a class="btn btn-success" asp-page="/auth/AuthenticatorSetup">Enable multi factor authentication</a>
+@if(Model.settingViewModel.EnableTwoFactor)
+{
+    <a class="btn btn-danger" asp-page="/auth/AuthenticatorDisable">Disable multi factor authentication</a>
+}
+else
+{
+    <a class="btn btn-success" asp-page="/auth/AuthenticatorSetup">Enable multi factor authentication</a>
+}
 <a class="btn btn-success" asp-page="/auth/ChangePassword">Change password</a>
 <a class="btn btn-success" asp-page="/auth/ChangeEmail">Change Email</a>
