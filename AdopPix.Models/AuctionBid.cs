@@ -13,6 +13,7 @@ namespace AdopPix.Models
         public string UserId { get; set; }
         [ForeignKey("Auction")]
         public string AuctionId { get; set; }
+        [Column(TypeName = "decimal(65, 2)")]
         public decimal Amount { get; set; }
         public DateTime Created { get; set; }
 

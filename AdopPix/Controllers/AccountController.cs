@@ -5,6 +5,9 @@ using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AdopPix.Controllers
@@ -35,6 +38,23 @@ namespace AdopPix.Controllers
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             var userProfile = await unitOfWork.UserProfile.GetByIdAsync(user.Id);
+
+            Dictionary<int, string> socialTypes = new Dictionary<int, string>();
+            socialTypes = unitOfWork.SocialMediaType.GetAllAsync().Result.ToDictionary(f => f.SocialId, f => f.Title);
+            var userSocials = await unitOfWork.SocialMedia.GetAllAsync();
+
+            List<UserSocialViewModel> userSocial = new List<UserSocialViewModel>();
+            foreach (var social in userSocials)
+            {
+                UserSocialViewModel socialMediaResponse = new UserSocialViewModel
+                {
+                    Url = social.Url,
+                    Title = socialTypes[social.SocialId]
+                };
+                userSocial.Add(socialMediaResponse);
+            }
+            ViewData["UserSocials"] = userSocial;
+
             AccountSettingViewModel accountSettingViewModel = new AccountSettingViewModel
             {
                 AvaterName = userProfile.AvaterName,
@@ -44,6 +64,11 @@ namespace AdopPix.Controllers
                 Lname = userProfile.Lname,
                 Gender = userProfile.Gender,
             };
+
+            if (TempData["AddSocialError"] != null)
+            {
+                ViewBag.AddSocialError = TempData["AddSocialError"].ToString();
+            }
 
             return View(accountSettingViewModel);
         }
@@ -97,6 +122,60 @@ namespace AdopPix.Controllers
             await unitOfWork.CompleateAsync();
 
             return Redirect("/Account/Setting");
+        }
+     
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AddSocial(string url)
+        {
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            if(user == null)
+            {
+                return BadRequest();
+            }
+
+            if(!string.IsNullOrEmpty(url))
+            {
+                var userSocial = await unitOfWork.SocialMedia.GetByUrlAsync(url);
+                if(userManager != null)
+                {
+                    TempData["AddSocialError"] = "Url already used.";
+                    return RedirectToAction(nameof(Setting));
+                }
+
+                string[] urlSplit = url.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                if(urlSplit.Length <= 3)
+                {
+                    string[] domainSplit = urlSplit[1].Split(new string[] { "www", ".", "com", "net" }, StringSplitOptions.RemoveEmptyEntries);
+                    
+                    var type = await unitOfWork.SocialMediaType.GetByNameAsync(domainSplit[0]);
+                    if (type != null)
+                    {
+                        SocialMedia socialMedia = new SocialMedia
+                        {
+                            SocialId = type.SocialId,
+                            Url = url,
+                            Created = DateTime.Now,
+                            UserId = user.Id,
+                        };
+
+                        await unitOfWork.SocialMedia.CreateAsync(socialMedia);
+                        await unitOfWork.CompleateAsync();
+                    }
+                    else
+                    {
+                        TempData["AddSocialError"] = "We don't support this social media, we support facebook, instagram, github.";
+                    }
+                }
+                else
+                {
+                    TempData["AddSocialError"] = "Url invalid.";
+                }
+            }
+            else
+            {
+                TempData["AddSocialError"] = "Please enter your social url.";
+            }
+            return RedirectToAction(nameof(Setting));
         }
     }
 }

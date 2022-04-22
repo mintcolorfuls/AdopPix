@@ -32,9 +32,9 @@
                     <p class="alert alert-danger mt-3 text-center">@ViewData["ErrorMessage"]</p>
                 }
                 <input type="hidden" asp-for="authenticatorLoginViewModel.RememberMe" />
-                        <div class="d-grid gap-2 mt-5">
-                <a asp-page="/auth/login" class="btn btn-outline-dark w-100">Back to login</a>
-        </div>
+                <div class="d-grid gap-2 mt-5">
+                    <a asp-page="/auth/login" class="btn btn-outline-dark w-100">Back to login</a>
+                </div>
             </form>
         </div>
 
@@ -43,18 +43,18 @@
 </div>
 
 <style>
-    body{
-       background:url('https://adoppixstorage.s3.ap-southeast-1.amazonaws.com/bg-register.jpg') no-repeat !important;  
-}
+    body {
+        background: url('https://adoppixstorage.s3.ap-southeast-1.amazonaws.com/bg-register.jpg') no-repeat !important;
+    }
 
-.box-auth{
-    height: 48vh;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    width: 34vw;
-margin: 0 auto;
-margin-top: 19%;
-}
+    .box-auth {
+        height: 48vh;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        width: 34vw;
+        margin: 0 auto;
+        margin-top: 19%;
+    }
 
 </style>
 

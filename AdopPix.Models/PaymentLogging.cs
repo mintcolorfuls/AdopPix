@@ -12,6 +12,7 @@ namespace AdopPix.Models
         public string UserId { get; set; }
         public string Charge { get; set; }
         public string Name { get; set; }
+        [Column(TypeName = "decimal(65, 2)")]
         public decimal Amount { get; set; }
         public string Currency { get; set; }
         public string Brand { get; set; }

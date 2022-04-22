@@ -16,7 +16,9 @@ namespace AdopPix.Models
         public int HourId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime StopTime { get; set; }
+        [Column(TypeName = "decimal(65, 2)")]
         public decimal OpeningPrice { get; set; }
+        [Column(TypeName = "decimal(65, 2)")]
         public decimal HotClose { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; set; }

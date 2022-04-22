@@ -11,142 +11,203 @@
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-center">
-            @if (@Model.AvaterName != "")
-            {
-                <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; border:7px solid #EDEDED;position:absolute; top: 24%;background: white;" id="blah"/>
-            }
-        </div>
+                    @if (@Model.AvaterName != "")
+                    {
+                        <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; border:7px solid #EDEDED;position:absolute; top: 24%;background: white;" id="blah" />
+                    }
+                </div>
             </div>
             <div class="col">
-                
+
                 <br />
 
 
-            <div class="" style="margin-bottom: 30px;">
-                <div class="d-grid gap-2" style="display: inline-flex !important;">
-                    <a asp-page="" class="profile-setting">Profile Setting</a>
-                    <a asp-page="/auth/setting" class="security-setting">Security Setting</a>
+                <div class="" style="margin-bottom: 30px;">
+                    <div class="d-grid gap-2" style="display: inline-flex !important;">
+                        <a asp-page="" class="profile-setting">Profile Setting</a>
+                        <a asp-page="/auth/setting" class="security-setting">Security Setting</a>
+                        <a asp-page="/auth/setting" class="security-setting">Social Media</a>
+                    </div>
+                </div>
+
+
+                <div class="w-75">
+
+                    <form asp-action="Setting" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label">Avatar Image</label>
+                            <input type="file" asp-for="@Model.AvatarFile" class="form-control" id="imgInp" />
+                            <input type="hidden" asp-for="@Model.AvaterName" id="formFile" />
+                            <span asp-validation-for="AvatarFile"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cover Image</label>
+                            <input type="file" asp-for="@Model.CoverFile" class="form-control" />
+                            <input type="hidden" asp-for="@Model.CoverName" id="formFile" />
+                            <span asp-validation-for="CoverFile"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label>Description</label>
+                            <input type="text" class="form-control" asp-for="@Model.Description" />
+                            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label>FirstName</label>
+                            <input type="text" class="form-control" asp-for="@Model.Fname" />
+                            <span asp-validation-for="@Model.Fname" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label>LastName</label>
+                            <input type="text" class="form-control" asp-for="@Model.Lname" />
+                            <span asp-validation-for="@Model.Lname" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label>Gender</label>
+                            <input type="text" class="form-control" asp-for="@Model.Gender" disabled />
+                            <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+                        </div>
+                        <div class="gap-2 mt-5" style="display: inline-flex !important;">
+                            <a asp-controller="Home" asp-action="Index" class="backtoindex">back to index</a>
+                            <input type="submit" class="save-btn" value="Save">
+
+                        </div>
+                    </form>
+                    <div>
+                        <hr />
+                        <div>
+                            @if (ViewData["UserSocials"] != null)
+                            {
+                                @foreach (var userSocial in (IEnumerable<UserSocialViewModel>)ViewData["UserSocials"])
+                                {
+                                    <form class="row g-2">
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control" value="@userSocial.Url" disabled>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="@userSocial.Url" class="link-primary">@userSocial.Title</a>
+                                        </div>
+                                    </form>
+                                }
+                            }
+                            else
+                            {
+                                <div>
+                                    <p>You don't have any social media.</p>
+                                </div>
+                            }
+                        </div>
+                        <button onclick="AddSocialFormToggle(event)" class="btn btn-link">Add Social media</button>
+                        <div id="AddSocial" style="display: @(ViewBag.AddSocialError == null ? "none" : "block");">
+                            <form asp-controller="Account" asp-action="AddSocial" method="post">
+                                <div class="mb-3">
+                                    <label>url</label>
+                                    <input type="text" class="form-control" name="url" />
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <input type="submit" class="btn btn-outline-success w-100 mb-2" value="add" />
+                                </div>
+                            </form>
+                            @if (ViewBag.AddSocialError != null)
+                            {
+                                <span class="text-danger">@ViewBag.AddSocialError</span>
+                            }
+                        </div>
+
+                        <hr />
+                    </div>
                 </div>
             </div>
-
-
-            <div class="w-75">
-
-        <form asp-action="Setting" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label class="form-label">Avatar Image</label>
-                <input type="file" asp-for="@Model.AvatarFile" class="form-control" id="imgInp"/>
-                <input type="hidden" asp-for="@Model.AvaterName" id="formFile" />
-                <span asp-validation-for="AvatarFile"></span>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Cover Image</label>
-                <input type="file" asp-for="@Model.CoverFile" class="form-control" />
-                <input type="hidden" asp-for="@Model.CoverName" id="formFile" />
-                <span asp-validation-for="CoverFile"></span>
-                </div>
-            
-            
-            <div class="mb-3">
-                <label>Description</label>
-                <input type="text" class="form-control" asp-for="@Model.Description" />
-                <span asp-validation-for="@Model.Description" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label>FirstName</label>
-                <input type="text" class="form-control" asp-for="@Model.Fname" />
-                <span asp-validation-for="@Model.Fname" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label>LastName</label>
-                <input type="text" class="form-control" asp-for="@Model.Lname" />
-                <span asp-validation-for="@Model.Lname" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label>Gender</label>
-                <input type="text" class="form-control" asp-for="@Model.Gender" disabled />
-                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
-            </div>
-            <div class="gap-2 mt-5" style="display: inline-flex !important;">
-                <a asp-controller="Home" asp-action="Index" class="backtoindex">back to index</a>
-                <input type="submit" class="save-btn" value="Save">
-                
-            </div>
-        </form>
-
         </div>
-            </div>
-
-        </div>
-        
-
-        
     </div>
 </div>
 <script>
-        imgInp.onchange = evt => {
-            const [file] = imgInp.files
-            if (file) {
-                blah.src = URL.createObjectURL(file)
-            }
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            blah.src = URL.createObjectURL(file)
         }
+    }
+
+    function AddSocialFormToggle(event) {
+        event.preventDefault();
+        var x = document.getElementById("AddSocial");
+        if(x.style.display === "none")
+        {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
 </script>
 
 
 <style>
-.profile-setting{
-    border-top: 5px solid #4F9FDA;
-color: #4F9FDA;
-font-weight: 900;
-font-size: 21px;
-text-decoration: none;
-padding: 0 20px;
-}
-.profile-setting:hover{
-    color: #4F9FDA;
-}
-.security-setting{
-    border-top: 5px solid #E2E2E2;
-color: #E2E2E2;
-font-weight: 900;
-font-size: 21px;
-text-decoration: none;
-padding: 0 20px;
-transition: .5s;
-margin-left: -8px;
-}
-.security-setting:hover{
-    border-top: 5px solid #4F9FDA;
-    color: #4F9FDA;
-}
-.backtoindex{
-border: 3px solid #BBB;
-border-radius: 10px;
-padding: 10px 19px;
-text-decoration: none;
-color: #BBB;
-width: 222px !important;
-font-weight: bolder;
-transition: .5s;
-text-align: center;
-}
-.backtoindex:hover{
-    border: 3px solid #FF9898;
-    color: #FF9898;
-}
-.save-btn{
-    border: 3px solid #4F9FDA;
-border-radius: 10px;
-padding: 10px 19px;
-text-decoration: none;
-color: #4F9FDA;
-width: 222px !important;
-font-weight: bolder;
-transition: .5s;
-background:none;
-}
-.save-btn:hover{
-    border: 3px solid #98D3C9;
-    color: #98D3C9;
-}
+    .profile-setting {
+        border-top: 5px solid #4F9FDA;
+        color: #4F9FDA;
+        font-weight: 900;
+        font-size: 21px;
+        text-decoration: none;
+        padding: 0 20px;
+    }
+
+        .profile-setting:hover {
+            color: #4F9FDA;
+        }
+
+    .security-setting {
+        border-top: 5px solid #E2E2E2;
+        color: #E2E2E2;
+        font-weight: 900;
+        font-size: 21px;
+        text-decoration: none;
+        padding: 0 20px;
+        transition: .5s;
+        margin-left: -8px;
+    }
+
+        .security-setting:hover {
+            border-top: 5px solid #4F9FDA;
+            color: #4F9FDA;
+        }
+
+    .backtoindex {
+        border: 3px solid #BBB;
+        border-radius: 10px;
+        padding: 10px 19px;
+        text-decoration: none;
+        color: #BBB;
+        width: 222px !important;
+        font-weight: bolder;
+        transition: .5s;
+        text-align: center;
+    }
+
+        .backtoindex:hover {
+            border: 3px solid #FF9898;
+            color: #FF9898;
+        }
+
+    .save-btn {
+        border: 3px solid #4F9FDA;
+        border-radius: 10px;
+        padding: 10px 19px;
+        text-decoration: none;
+        color: #4F9FDA;
+        width: 222px !important;
+        font-weight: bolder;
+        transition: .5s;
+        background: none;
+    }
+
+        .save-btn:hover {
+            border: 3px solid #98D3C9;
+            color: #98D3C9;
+        }
 </style>

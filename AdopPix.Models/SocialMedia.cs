@@ -9,7 +9,7 @@ namespace AdopPix.Models
         [ForeignKey("User")]
         public string UserId { get; set; }
         [ForeignKey("SocialMedia")]
-        public string SocialId { get; set; }
+        public int SocialId { get; set; }
         public string Url { get; set; }
         public DateTime Created { get; set; }
 
