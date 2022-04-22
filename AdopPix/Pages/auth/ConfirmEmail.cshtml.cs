@@ -35,7 +35,7 @@ namespace AdopPix.Pages.auth
                 {
                     Status = true;
                     Message = "Your email has been verified. Have fun with the auction!";
-                    return Page();
+                    return Page();  
                 }
                 Status = false;
                 Message = "token invalid, Please contact customer support at account@adoppix.com";
@@ -44,7 +44,6 @@ namespace AdopPix.Pages.auth
             Status = false;
             Message = "user invalid, Please contact customer support at account@adoppix.com";
             return Page();
-
         }
     }
 }
