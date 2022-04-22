@@ -10,6 +10,7 @@ namespace AdopPix.Models
         public int rLogId { get; set; }
         [ForeignKey("UserProfile")]
         public string userId { get; set; }
+        [Column(TypeName = "decimal(65, 2)")]
         public decimal amount { get; set; }
         public DateTime created { get; set; }
 

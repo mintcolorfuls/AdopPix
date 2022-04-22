@@ -16,9 +16,12 @@ namespace AdopPix.Models
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string Description { get; set; }
+        [Column(TypeName = "decimal(65, 2)")]
         public decimal Money { get; set; }
         public DateTime BirthDate { get; set; }
+        [Column(TypeName = "decimal(65, 2)")]
         public decimal Point { get; set; }
+        [Column(TypeName = "decimal(65, 2)")]
         public decimal Rank { get; set; }
         public DateTime Created { get; set; }
 

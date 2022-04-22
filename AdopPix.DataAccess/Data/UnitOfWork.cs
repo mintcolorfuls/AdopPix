@@ -14,6 +14,8 @@ namespace AdopPix.DataAccess.Data
 
         public IUserProfileRepository UserProfile { get; private set; }
         public IPaymentLoggingRepository PaymentLogging { get; private set; }
+        public ISocialMediaRepository SocialMedia { get; private set; }
+        public ISocialMediaTypeRepository SocialMediaType { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context,
                           ILoggerFactory logger)
@@ -23,6 +25,8 @@ namespace AdopPix.DataAccess.Data
 
             UserProfile = new UserProfileRepository(context, this.logger);
             PaymentLogging = new PaymentLoggingRepository(context, this.logger);
+            SocialMedia = new SocialMediaRepository(context, this.logger);
+            SocialMediaType = new SocialMediaTypeRepository(context, this.logger);
         }
         public async Task CompleateAsync()
         {

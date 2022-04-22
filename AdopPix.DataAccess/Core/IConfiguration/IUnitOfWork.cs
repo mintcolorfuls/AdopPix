@@ -7,7 +7,8 @@ namespace AdopPix.DataAccess.Core.IConfiguration
     {
         IUserProfileRepository UserProfile { get; }
         IPaymentLoggingRepository PaymentLogging { get; }
-
+        ISocialMediaRepository SocialMedia { get; }
+        ISocialMediaTypeRepository SocialMediaType { get; }
         Task CompleateAsync();
     }
 }
