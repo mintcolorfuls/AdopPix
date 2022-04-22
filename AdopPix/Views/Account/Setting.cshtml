@@ -1,40 +1,52 @@
 ﻿@model AccountSettingViewModel
 
 <div class="d-flex justify-content-center mt-3">
-    <div class="w-25">
-        <div class="d-flex justify-content-center">
+    <div class="">
+        @if (@Model.CoverName != "")
+        {
+            @*<h3>Cover Example</h3>*@
+            <img class="w-100 h-25" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.CoverName}")" style="" />
+        }
+
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
             @if (@Model.AvaterName != "")
             {
-                <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover;" id="blah"/>
+                <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; border:7px solid #EDEDED;position:absolute; top: 24%;background: white;" id="blah"/>
             }
         </div>
+            </div>
+            <div class="col">
+                
+                <br />
 
-        @*@if (@Model.CoverName != "")
-        {
-            <h3>Cover Example</h3>
-            <img width="300" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.CoverName}")" style="border-radius: 50%;" />
-        }*@
+
+            <div class="" style="margin-bottom: 30px;">
+                <div class="d-grid gap-2" style="display: inline-flex !important;">
+                    <a asp-page="" class="profile-setting">Profile Setting</a>
+                    <a asp-page="/auth/setting" class="security-setting">Security Setting</a>
+                </div>
+            </div>
+
+
+            <div class="w-75">
 
         <form asp-action="Setting" method="post" enctype="multipart/form-data">
-            @*<div class="mb-3">
-                <label class="form-label">Cover Image</label>
-                <input type="file" asp-for="@Model.CoverFile" class="form-control" />
-                <input type="hidden" asp-for="@Model.CoverName" id="formFile" />
-                <span asp-validation-for="CoverFile"></span>
-                </div>*@
             <div class="mb-3">
                 <label class="form-label">Avatar Image</label>
                 <input type="file" asp-for="@Model.AvatarFile" class="form-control" id="imgInp"/>
                 <input type="hidden" asp-for="@Model.AvaterName" id="formFile" />
                 <span asp-validation-for="AvatarFile"></span>
             </div>
-            <hr />
-            <div class="">
-                <div class="d-grid gap-2">
-                    <a asp-page="/auth/setting" class="btn btn-outline-dark w-100">Security Setting</a>
+            <div class="mb-3">
+                <label class="form-label">Cover Image</label>
+                <input type="file" asp-for="@Model.CoverFile" class="form-control" />
+                <input type="hidden" asp-for="@Model.CoverName" id="formFile" />
+                <span asp-validation-for="CoverFile"></span>
                 </div>
-            </div>
-            <hr />
+            
+            
             <div class="mb-3">
                 <label>Description</label>
                 <input type="text" class="form-control" asp-for="@Model.Description" />
@@ -55,11 +67,20 @@
                 <input type="text" class="form-control" asp-for="@Model.Gender" disabled />
                 <span asp-validation-for="@Model.Gender" class="text-danger"></span>
             </div>
-            <div class="d-grid gap-2 mt-5">
-                <input type="submit" class="btn btn-success w-100" value="Save">
-                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark mt-3 w-100">back to index</a>
+            <div class="gap-2 mt-5" style="display: inline-flex !important;">
+                <a asp-controller="Home" asp-action="Index" class="backtoindex">back to index</a>
+                <input type="submit" class="save-btn" value="Save">
+                
             </div>
         </form>
+
+        </div>
+            </div>
+
+        </div>
+        
+
+        
     </div>
 </div>
 <script>
@@ -70,3 +91,62 @@
             }
         }
 </script>
+
+
+<style>
+.profile-setting{
+    border-top: 5px solid #4F9FDA;
+color: #4F9FDA;
+font-weight: 900;
+font-size: 21px;
+text-decoration: none;
+padding: 0 20px;
+}
+.profile-setting:hover{
+    color: #4F9FDA;
+}
+.security-setting{
+    border-top: 5px solid #E2E2E2;
+color: #E2E2E2;
+font-weight: 900;
+font-size: 21px;
+text-decoration: none;
+padding: 0 20px;
+transition: .5s;
+margin-left: -8px;
+}
+.security-setting:hover{
+    border-top: 5px solid #4F9FDA;
+    color: #4F9FDA;
+}
+.backtoindex{
+border: 3px solid #BBB;
+border-radius: 10px;
+padding: 10px 19px;
+text-decoration: none;
+color: #BBB;
+width: 222px !important;
+font-weight: bolder;
+transition: .5s;
+text-align: center;
+}
+.backtoindex:hover{
+    border: 3px solid #FF9898;
+    color: #FF9898;
+}
+.save-btn{
+    border: 3px solid #4F9FDA;
+border-radius: 10px;
+padding: 10px 19px;
+text-decoration: none;
+color: #4F9FDA;
+width: 222px !important;
+font-weight: bolder;
+transition: .5s;
+background:none;
+}
+.save-btn:hover{
+    border: 3px solid #98D3C9;
+    color: #98D3C9;
+}
+</style>
