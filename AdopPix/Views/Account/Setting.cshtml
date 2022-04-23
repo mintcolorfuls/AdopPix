@@ -1,12 +1,20 @@
 ﻿@model AccountSettingViewModel
 
 <div class="d-flex justify-content-center mt-3">
-    <div class="">
-        @if (@Model.CoverName != "")
+    <div class="row">
+
+        <div class="row w-100 h-25" style="overflow: hidden; height: 800px; width: 1280px;">
+            @if (@Model.CoverName != "")
         {
             @*<h3>Cover Example</h3>*@
-                <img class="w-100 h-25" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.CoverName}")" style="" />
+            <img class="" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.CoverName}")" style="height: 800px;width: 1280px;" />
         }
+        @if (@Model.CoverName == "")
+        {
+            <img class="" src="@Url.Content($"https://adoppixstorage.s3.ap-southeast-1.amazonaws.com/cover-default.jpg")" style="height: 800px;width: 1280px;" />
+        }
+       
+        </div>
 
         <div class="row">
             <div class="col">
