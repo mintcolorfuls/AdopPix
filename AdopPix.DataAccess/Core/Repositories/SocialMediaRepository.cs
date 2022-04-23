@@ -3,6 +3,7 @@ using AdopPix.DataAccess.Data;
 using AdopPix.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,9 +15,20 @@ namespace AdopPix.DataAccess.Core.Repositories
         {
             
         }
+
+        public async Task<IEnumerable<SocialMedia>> GetAllAsync(string userId)
+        {
+            return await context.SocialMedias.Where(s => s.UserId == userId).ToListAsync();
+        }
+
         public async Task<SocialMedia> GetByUrlAsync(string url)
         {
             return await context.SocialMedias.Where(f => f.Url == url).FirstOrDefaultAsync();
+        }
+
+        public async Task<SocialMedia> GetByUrlAsync(string url, string userId)
+        {
+            return await context.SocialMedias.Where(f => f.Url == url).Where(f => f.UserId == userId).FirstOrDefaultAsync();
         }
     }
 }

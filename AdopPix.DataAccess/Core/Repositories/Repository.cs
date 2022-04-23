@@ -42,7 +42,7 @@ namespace AdopPix.DataAccess.Core.Repositories
             return true;
         }
 
-        public virtual bool DeleteById(T entity)
+        public virtual bool Delete(T entity)
         {
             dbSet.Remove(entity);
             return true;

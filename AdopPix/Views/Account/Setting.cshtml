@@ -5,7 +5,7 @@
         @if (@Model.CoverName != "")
         {
             @*<h3>Cover Example</h3>*@
-            <img class="w-100 h-25" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.CoverName}")" style="" />
+                <img class="w-100 h-25" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.CoverName}")" style="" />
         }
 
         <div class="row">
@@ -13,7 +13,7 @@
                 <div class="d-flex justify-content-center">
                     @if (@Model.AvaterName != "")
                     {
-                        <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; border:7px solid #EDEDED;position:absolute; top: 24%;background: white;" id="blah" />
+                            <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; border:7px solid #EDEDED;position:absolute; top: 24%;background: white;" id="blah" />
                     }
                 </div>
             </div>
@@ -26,7 +26,6 @@
                     <div class="d-grid gap-2" style="display: inline-flex !important;">
                         <a asp-page="" class="profile-setting">Profile Setting</a>
                         <a asp-page="/auth/setting" class="security-setting">Security Setting</a>
-                        <a asp-page="/auth/setting" class="security-setting">Social Media</a>
                     </div>
                 </div>
 
@@ -84,21 +83,27 @@
                             {
                                 @foreach (var userSocial in (IEnumerable<UserSocialViewModel>)ViewData["UserSocials"])
                                 {
-                                    <form class="row g-2">
-                                        <div class="col-auto">
-                                            <input type="text" class="form-control" value="@userSocial.Url" disabled>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a href="@userSocial.Url" class="link-primary">@userSocial.Title</a>
-                                        </div>
-                                    </form>
+                                            <div class="row g-3">
+                                                <div class="col-auto">
+                                                    <input type="text" class="form-control" value="@userSocial.Url" disabled>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="@userSocial.Url" class="link-primary">@userSocial.Title</a>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <form asp-controller="Account" asp-action="DeleteSocial" method="post">
+                                                        <input type="hidden" name="url" value="@userSocial.Url"/>
+                                                        <input type="submit" class="btn btn-danger" value="delete"/>
+                                                    </form>
+                                                </div>
+                                            </div>
                                 }
                             }
                             else
                             {
-                                <div>
-                                    <p>You don't have any social media.</p>
-                                </div>
+                                    <div>
+                                        <p>You don't have any social media.</p>
+                                    </div>
                             }
                         </div>
                         <button onclick="AddSocialFormToggle(event)" class="btn btn-link">Add Social media</button>
@@ -114,7 +119,7 @@
                             </form>
                             @if (ViewBag.AddSocialError != null)
                             {
-                                <span class="text-danger">@ViewBag.AddSocialError</span>
+                                    <span class="text-danger">@ViewBag.AddSocialError</span>
                             }
                         </div>
 
