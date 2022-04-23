@@ -41,7 +41,8 @@ namespace AdopPix.Controllers
 
             Dictionary<int, string> socialTypes = new Dictionary<int, string>();
             socialTypes = unitOfWork.SocialMediaType.GetAllAsync().Result.ToDictionary(f => f.SocialId, f => f.Title);
-            var userSocials = await unitOfWork.SocialMedia.GetAllAsync();
+            
+            var userSocials = await unitOfWork.SocialMedia.GetAllAsync(user.Id);
 
             List<UserSocialViewModel> userSocial = new List<UserSocialViewModel>();
             foreach (var social in userSocials)
@@ -135,8 +136,8 @@ namespace AdopPix.Controllers
 
             if(!string.IsNullOrEmpty(url))
             {
-                var userSocial = await unitOfWork.SocialMedia.GetByUrlAsync(url);
-                if(userManager != null)
+                var userSocial = await unitOfWork.SocialMedia.GetByUrlAsync(url, user.Id);
+                if(userSocial != null)
                 {
                     TempData["AddSocialError"] = "Url already used.";
                     return RedirectToAction(nameof(Setting));
@@ -175,6 +176,20 @@ namespace AdopPix.Controllers
             {
                 TempData["AddSocialError"] = "Please enter your social url.";
             }
+            return RedirectToAction(nameof(Setting));
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> DeleteSocial(string url)
+        {
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            if (user == null) return BadRequest();
+
+            var userSocial = await unitOfWork.SocialMedia.GetByUrlAsync(url, user.Id);
+            if(userSocial == null) return BadRequest();
+
+            unitOfWork.SocialMedia.Delete(userSocial);
+            await unitOfWork.CompleateAsync();
+
             return RedirectToAction(nameof(Setting));
         }
     }

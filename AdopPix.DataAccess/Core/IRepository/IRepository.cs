@@ -9,6 +9,6 @@ namespace AdopPix.DataAccess.Core.IRepository
         Task<T> GetByIdAsync(string id);
         Task<bool> CreateAsync(T entity);
         bool Update(T entity);
-        bool DeleteById(T id);
+        bool Delete(T id);
     }
 }
