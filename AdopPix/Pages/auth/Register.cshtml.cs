@@ -17,19 +17,16 @@ namespace AdopPix.Pages.auth
     {
         private readonly UserManager<User> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly IUnitOfWork unitOfWork;
         private readonly IEmailService emailService;
         private readonly IUserProfileProcedure userProfileProcedure;
 
         public RegisterModel(UserManager<User> userManager,
                              RoleManager<IdentityRole> roleManager,
-                             IUnitOfWork unitOfWork,
                              IEmailService emailService,
                              IUserProfileProcedure userProfileProcedure)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
-            this.unitOfWork = unitOfWork;
             this.emailService = emailService;
             this.userProfileProcedure = userProfileProcedure;
         }

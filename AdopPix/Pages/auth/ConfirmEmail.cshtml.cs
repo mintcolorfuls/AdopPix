@@ -1,4 +1,3 @@
-using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +9,10 @@ namespace AdopPix.Pages.auth
     public class ConfirmEmailModel : PageModel
     {
         private readonly UserManager<User> userManager;
-        private readonly IUnitOfWork unitOfWork;
 
-        public ConfirmEmailModel(UserManager<User> userManager,
-                                 IUnitOfWork unitOfWork)
+        public ConfirmEmailModel(UserManager<User> userManager)
         {
             this.userManager = userManager;
-            this.unitOfWork = unitOfWork;
         }
 
         [BindProperty]
