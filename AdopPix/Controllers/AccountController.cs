@@ -1,6 +1,7 @@
 ﻿using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.Models;
 using AdopPix.Models.ViewModels;
+using AdopPix.Procedure.IProcedure;
 using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,14 +20,17 @@ namespace AdopPix.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly UserManager<User> userManager;
         private readonly IImageService imageService;
+        private readonly IUserProfileProcedure userProfileProcedure;
 
         public AccountController(IUnitOfWork unitOfWork,
                                  UserManager<User> userManager,
-                                 IImageService imageService)
+                                 IImageService imageService,
+                                 IUserProfileProcedure userProfileProcedure)
         {
             this.unitOfWork = unitOfWork;
             this.userManager = userManager;
             this.imageService = imageService;
+            this.userProfileProcedure = userProfileProcedure;
         }
         [HttpGet("{id}")]
         public IActionResult Index(string id)
@@ -37,7 +41,8 @@ namespace AdopPix.Controllers
         public async Task<IActionResult> Setting()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
-            var userProfile = await unitOfWork.UserProfile.GetByIdAsync(user.Id);
+
+            var userProfile = await userProfileProcedure.FindByIdAsync(user.Id);
 
             Dictionary<int, string> socialTypes = new Dictionary<int, string>();
             socialTypes = unitOfWork.SocialMediaType.GetAllAsync().Result.ToDictionary(f => f.SocialId, f => f.Title);
@@ -109,9 +114,7 @@ namespace AdopPix.Controllers
             }
 
             var user = await userManager.FindByNameAsync(User.Identity.Name);
-            var userProfile = await unitOfWork.UserProfile.GetByIdAsync(user.Id);
-
-
+            var userProfile = await userProfileProcedure.FindByIdAsync(user.Id);
 
             userProfile.AvaterName = avatarName;
             userProfile.CoverName = coverName;
@@ -119,8 +122,7 @@ namespace AdopPix.Controllers
             userProfile.Lname = accountSettingViewModel.Lname;
             userProfile.Description = accountSettingViewModel.Description;
 
-            unitOfWork.UserProfile.Update(userProfile);
-            await unitOfWork.CompleateAsync();
+            await userProfileProcedure.UpdateAsync(userProfile);
 
             return Redirect("/Account/Setting");
         }

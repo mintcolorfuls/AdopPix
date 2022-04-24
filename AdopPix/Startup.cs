@@ -1,6 +1,8 @@
 using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.DataAccess.Data;
 using AdopPix.Models;
+using AdopPix.Procedure;
+using AdopPix.Procedure.IProcedure;
 using AdopPix.Services;
 using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Builder;
@@ -62,6 +64,7 @@ namespace AdopPix
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserProfileProcedure, UserProfileProcedure>();
 
             //Register services
             services.AddScoped<IImageService, ImageService>();

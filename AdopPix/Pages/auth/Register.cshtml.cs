@@ -1,6 +1,7 @@
 using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.DataAccess.Core.IRepository;
 using AdopPix.Models;
+using AdopPix.Procedure.IProcedure;
 using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,16 +19,19 @@ namespace AdopPix.Pages.auth
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IUnitOfWork unitOfWork;
         private readonly IEmailService emailService;
+        private readonly IUserProfileProcedure userProfileProcedure;
 
         public RegisterModel(UserManager<User> userManager,
                              RoleManager<IdentityRole> roleManager,
                              IUnitOfWork unitOfWork,
-                             IEmailService emailService)
+                             IEmailService emailService,
+                             IUserProfileProcedure userProfileProcedure)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.unitOfWork = unitOfWork;
             this.emailService = emailService;
+            this.userProfileProcedure = userProfileProcedure;
         }
         [BindProperty]
         public RegisterViewModel registerViewModel { get; set; }
@@ -116,24 +120,19 @@ namespace AdopPix.Pages.auth
                     CoverName = "",
                     Fname = "",
                     Lname = "",
+                    Description = "",
                     Money = 0,
                     BirthDate = (DateTime)registerViewModel.BirthDay,
                     Point = 0,
                     Rank = 0,
                     Created = DateTime.Now,
                 };
-                var profileCreate = await unitOfWork.UserProfile.CreateAsync(profile);
-                await unitOfWork.CompleateAsync();
 
-                if(profileCreate)
-                {
-                    GoConfirmEmail = true;
-                    return Page();
-                }
+                await userProfileProcedure.CreateAsync(profile);
+                GoConfirmEmail = true;
             }
             return Page();
         }
-
     }
     public class RegisterViewModel
     {
