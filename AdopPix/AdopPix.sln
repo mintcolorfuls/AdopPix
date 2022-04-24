@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopPix.Models", "..\AdopPi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopPix.Services", "..\AdopPix.Services\AdopPix.Services.csproj", "{506BBC6D-07EA-4438-96EE-5D306E7A50C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdopPix.Procedure", "..\AdopPix.Procedure\AdopPix.Procedure.csproj", "{489486AE-70A8-4461-90EB-C387897BF128}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{506BBC6D-07EA-4438-96EE-5D306E7A50C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{506BBC6D-07EA-4438-96EE-5D306E7A50C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{506BBC6D-07EA-4438-96EE-5D306E7A50C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{489486AE-70A8-4461-90EB-C387897BF128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{489486AE-70A8-4461-90EB-C387897BF128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{489486AE-70A8-4461-90EB-C387897BF128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{489486AE-70A8-4461-90EB-C387897BF128}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
