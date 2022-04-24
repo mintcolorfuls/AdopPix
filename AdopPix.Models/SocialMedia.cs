@@ -8,7 +8,7 @@ namespace AdopPix.Models
     {
         [ForeignKey("User")]
         public string UserId { get; set; }
-        [ForeignKey("SocialMedia")]
+        [ForeignKey("SocialMediaType")]
         public int SocialId { get; set; }
         [Column(TypeName = "nvarchar(100)")]
         public string Url { get; set; }
