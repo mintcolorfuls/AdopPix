@@ -21,16 +21,19 @@ namespace AdopPix.Controllers
         private readonly UserManager<User> userManager;
         private readonly IImageService imageService;
         private readonly IUserProfileProcedure userProfileProcedure;
+        private readonly ISocialMediaProcedure socialMediaProcedure;
 
         public AccountController(IUnitOfWork unitOfWork,
                                  UserManager<User> userManager,
                                  IImageService imageService,
-                                 IUserProfileProcedure userProfileProcedure)
+                                 IUserProfileProcedure userProfileProcedure,
+                                 ISocialMediaProcedure socialMediaProcedure)
         {
             this.unitOfWork = unitOfWork;
             this.userManager = userManager;
             this.imageService = imageService;
             this.userProfileProcedure = userProfileProcedure;
+            this.socialMediaProcedure = socialMediaProcedure;
         }
         [HttpGet("{id}")]
         public IActionResult Index(string id)
@@ -47,7 +50,7 @@ namespace AdopPix.Controllers
             Dictionary<int, string> socialTypes = new Dictionary<int, string>();
             socialTypes = unitOfWork.SocialMediaType.GetAllAsync().Result.ToDictionary(f => f.SocialId, f => f.Title);
             
-            var userSocials = await unitOfWork.SocialMedia.GetAllAsync(user.Id);
+            var userSocials = await socialMediaProcedure.FindById(user.Id);
 
             List<UserSocialViewModel> userSocial = new List<UserSocialViewModel>();
             foreach (var social in userSocials)
@@ -161,8 +164,7 @@ namespace AdopPix.Controllers
                             UserId = user.Id,
                         };
 
-                        await unitOfWork.SocialMedia.CreateAsync(socialMedia);
-                        await unitOfWork.CompleateAsync();
+                        await socialMediaProcedure.CreateAsync(socialMedia);
                     }
                     else
                     {
@@ -189,8 +191,7 @@ namespace AdopPix.Controllers
             var userSocial = await unitOfWork.SocialMedia.GetByUrlAsync(url, user.Id);
             if(userSocial == null) return BadRequest();
 
-            unitOfWork.SocialMedia.Delete(userSocial);
-            await unitOfWork.CompleateAsync();
+            await socialMediaProcedure.DeleteAsync(userSocial);
 
             return RedirectToAction(nameof(Setting));
         }
