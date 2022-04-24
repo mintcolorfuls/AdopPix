@@ -7,7 +7,8 @@ namespace AdopPix.Models
     public class AuctionImage
     {
         [Key]
-        public int ImageId { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
+        public string ImageId { get; set; }
         [ForeignKey("Auction")]
         public string AuctionId { get; set; }
         [ForeignKey("ImageType")]

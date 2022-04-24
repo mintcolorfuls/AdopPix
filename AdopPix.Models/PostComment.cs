@@ -12,6 +12,7 @@ namespace AdopPix.Models
         public string UserId { get; set; }
         [ForeignKey("Post")]
         public string PostId { get; set; }
+        [Column(TypeName = "nvarchar(150)")]
         public string Description { get; set; }
         public DateTime Created { get; set; }
 

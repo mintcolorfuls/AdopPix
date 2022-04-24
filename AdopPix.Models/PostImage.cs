@@ -7,7 +7,8 @@ namespace AdopPix.Models
     public class PostImage
     {
         [Key]
-        public int ImageId { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
+        public string ImageId { get; set; }
         [ForeignKey("Post")]
         public string PostId { get; set; }
         public DateTime Created { get; set; }

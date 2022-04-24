@@ -116,7 +116,7 @@ namespace AdopPix.Pages.auth
                 {
                     UserId = user.Id,
                     Gender = registerViewModel.Gender.ToString(),
-                    AvaterName = "AvatarNopic.png",
+                    AvatarName = "AvatarNopic.png",
                     CoverName = "",
                     Fname = "",
                     Lname = "",

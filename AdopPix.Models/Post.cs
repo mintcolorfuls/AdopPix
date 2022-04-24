@@ -8,8 +8,11 @@ namespace AdopPix.Models
     public class Post
     {
         [Key]
+        [Column(TypeName = "nvarchar(100)")]
         public string PostId { get; set; }
+        [Column(TypeName = "nvarchar(160)")]
         public string Title { get; set; }
+        [Column(TypeName = "nvarchar(160)")]
         public string Description { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }

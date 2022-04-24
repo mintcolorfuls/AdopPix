@@ -63,7 +63,7 @@ namespace AdopPix.Controllers
 
             AccountSettingViewModel accountSettingViewModel = new AccountSettingViewModel
             {
-                AvaterName = userProfile.AvaterName,
+                AvaterName = userProfile.AvatarName,
                 CoverName = userProfile.CoverName,
                 Description = userProfile.Description,
                 Fname = userProfile.Fname,
@@ -116,7 +116,7 @@ namespace AdopPix.Controllers
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             var userProfile = await userProfileProcedure.FindByIdAsync(user.Id);
 
-            userProfile.AvaterName = avatarName;
+            userProfile.AvatarName = avatarName;
             userProfile.CoverName = coverName;
             userProfile.Fname = accountSettingViewModel.Fname;
             userProfile.Lname = accountSettingViewModel.Lname;

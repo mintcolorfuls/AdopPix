@@ -26,7 +26,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<decimal>("HotClose")
                         .HasColumnType("decimal(65,2)");
@@ -44,7 +44,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -87,9 +87,8 @@ namespace AdopPix.DataAccess.Migrations
 
             modelBuilder.Entity("AdopPix.Models.AuctionImage", b =>
                 {
-                    b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("ImageId")
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("AuctionId")
                         .HasColumnType("varchar(255)");
@@ -122,7 +121,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -178,7 +177,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ImageTypeId");
 
@@ -195,10 +194,10 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("RedirectToUrl")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -223,19 +222,19 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("decimal(65,2)");
 
                     b.Property<string>("Brand")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Charge")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Currency")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Financing")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
@@ -275,16 +274,16 @@ namespace AdopPix.DataAccess.Migrations
             modelBuilder.Entity("AdopPix.Models.Post", b =>
                 {
                     b.Property<string>("PostId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(160)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(160)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -306,10 +305,10 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("PostId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -325,15 +324,14 @@ namespace AdopPix.DataAccess.Migrations
 
             modelBuilder.Entity("AdopPix.Models.PostImage", b =>
                 {
-                    b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("ImageId")
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("PostId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ImageId");
 
@@ -348,7 +346,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("PostId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
@@ -366,7 +364,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PostId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
@@ -388,7 +386,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("PostId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -439,7 +437,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Url")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("UserId", "SocialId");
 
@@ -455,7 +453,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("SocialId");
 
@@ -472,7 +470,7 @@ namespace AdopPix.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("TagId");
 
@@ -564,29 +562,29 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("AvaterName")
-                        .HasColumnType("longtext");
+                    b.Property<string>("AvatarName")
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CoverName")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Fname")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Lname")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Money")
                         .HasColumnType("decimal(65,2)");

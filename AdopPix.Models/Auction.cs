@@ -11,6 +11,7 @@ namespace AdopPix.Models
         public string AuctionId { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
+        [Column(TypeName = "nvarchar(150)")]
         public string Title { get; set; }
         [ForeignKey("HourType")]
         public int HourId { get; set; }
@@ -20,6 +21,7 @@ namespace AdopPix.Models
         public decimal OpeningPrice { get; set; }
         [Column(TypeName = "decimal(65, 2)")]
         public decimal HotClose { get; set; }
+        [Column(TypeName = "nvarchar(150)")]
         public string Description { get; set; }
         public DateTime Created { get; set; }
 

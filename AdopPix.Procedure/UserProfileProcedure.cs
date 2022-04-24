@@ -33,7 +33,7 @@ namespace AdopPix.Procedure
 
                     command.Parameters.Add("@UserId", MySqlDbType.VarChar).Value = entity.UserId;
                     command.Parameters.Add("@Gender", MySqlDbType.LongText).Value = entity.Gender;
-                    command.Parameters.Add("@AvatarName", MySqlDbType.LongText).Value = entity.AvaterName;
+                    command.Parameters.Add("@AvatarName", MySqlDbType.LongText).Value = entity.AvatarName;
                     command.Parameters.Add("@CoverName", MySqlDbType.LongText).Value = entity.CoverName;
                     command.Parameters.Add("@Fname", MySqlDbType.LongText).Value = entity.Fname;
                     command.Parameters.Add("@Lname", MySqlDbType.LongText).Value = entity.Lname;
@@ -70,7 +70,7 @@ namespace AdopPix.Procedure
                         {
                             UserId = reader["UserId"].ToString(),
                             Gender = reader["Gender"].ToString(),
-                            AvaterName = reader["AvaterName"].ToString(),
+                            AvatarName = reader["AvaterName"].ToString(),
                             CoverName = reader["CoverName"].ToString(),
                             Fname = reader["Fname"].ToString(),
                             Lname = reader["Lname"].ToString(),
@@ -96,7 +96,7 @@ namespace AdopPix.Procedure
                     command.CommandText = "UserProfile_Update";
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@UserId", MySqlDbType.VarChar).Value = entity.UserId;
-                    command.Parameters.Add("@AvatarName", MySqlDbType.LongText).Value = entity.AvaterName;
+                    command.Parameters.Add("@AvatarName", MySqlDbType.LongText).Value = entity.AvatarName;
                     command.Parameters.Add("@CoverName", MySqlDbType.LongText).Value = entity.CoverName;
                     command.Parameters.Add("@Fname", MySqlDbType.LongText).Value = entity.Fname;
                     command.Parameters.Add("@Lname", MySqlDbType.LongText).Value = entity.Lname;

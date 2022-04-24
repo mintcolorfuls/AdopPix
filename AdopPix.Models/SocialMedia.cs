@@ -10,6 +10,7 @@ namespace AdopPix.Models
         public string UserId { get; set; }
         [ForeignKey("SocialMedia")]
         public int SocialId { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
         public string Url { get; set; }
         public DateTime Created { get; set; }
 

@@ -12,6 +12,7 @@ namespace AdopPix.Models
         public string UserId { get; set; }
         [ForeignKey("Auction")]
         public string AuctionId { get; set; }
+        [Column(TypeName = "nvarchar(150)")]
         public string Description { get; set; }
         public bool isOpen { get; set; }
         public DateTime Created { get; set; }
