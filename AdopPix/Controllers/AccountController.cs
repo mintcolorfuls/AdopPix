@@ -17,23 +17,23 @@ namespace AdopPix.Controllers
     [Route("[controller]")]
     public class AccountController : Controller
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly UserManager<User> userManager;
         private readonly IImageService imageService;
         private readonly IUserProfileProcedure userProfileProcedure;
         private readonly ISocialMediaProcedure socialMediaProcedure;
+        private readonly ISocialMediaTypeProcedure socialMediaTypeProcedure;
 
-        public AccountController(IUnitOfWork unitOfWork,
-                                 UserManager<User> userManager,
+        public AccountController(UserManager<User> userManager,
                                  IImageService imageService,
                                  IUserProfileProcedure userProfileProcedure,
-                                 ISocialMediaProcedure socialMediaProcedure)
+                                 ISocialMediaProcedure socialMediaProcedure,
+                                 ISocialMediaTypeProcedure socialMediaTypeProcedure)
         {
-            this.unitOfWork = unitOfWork;
             this.userManager = userManager;
             this.imageService = imageService;
             this.userProfileProcedure = userProfileProcedure;
             this.socialMediaProcedure = socialMediaProcedure;
+            this.socialMediaTypeProcedure = socialMediaTypeProcedure;
         }
         [HttpGet("{id}")]
         public IActionResult Index(string id)
@@ -44,14 +44,20 @@ namespace AdopPix.Controllers
         public async Task<IActionResult> Setting()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
-
             var userProfile = await userProfileProcedure.FindByIdAsync(user.Id);
 
-            Dictionary<int, string> socialTypes = new Dictionary<int, string>();
-            socialTypes = unitOfWork.SocialMediaType.GetAllAsync().Result.ToDictionary(f => f.SocialId, f => f.Title);
-            
-            var userSocials = await socialMediaProcedure.FindById(user.Id);
+            AccountSettingViewModel accountSettingViewModel = new AccountSettingViewModel
+            {
+                AvaterName = userProfile.AvatarName,
+                CoverName = userProfile.CoverName,
+                Description = userProfile.Description,
+                Fname = userProfile.Fname,
+                Lname = userProfile.Lname,
+                Gender = userProfile.Gender,
+            };
 
+            Dictionary<int, string> socialTypes = await socialMediaTypeProcedure.FindAsync();
+            var userSocials = await socialMediaProcedure.FindByIdAsync(user.Id);
             List<UserSocialViewModel> userSocial = new List<UserSocialViewModel>();
             foreach (var social in userSocials)
             {
@@ -63,16 +69,6 @@ namespace AdopPix.Controllers
                 userSocial.Add(socialMediaResponse);
             }
             ViewData["UserSocials"] = userSocial;
-
-            AccountSettingViewModel accountSettingViewModel = new AccountSettingViewModel
-            {
-                AvaterName = userProfile.AvatarName,
-                CoverName = userProfile.CoverName,
-                Description = userProfile.Description,
-                Fname = userProfile.Fname,
-                Lname = userProfile.Lname,
-                Gender = userProfile.Gender,
-            };
 
             if (TempData["AddSocialError"] != null)
             {
@@ -141,7 +137,7 @@ namespace AdopPix.Controllers
 
             if(!string.IsNullOrEmpty(url))
             {
-                var userSocial = await unitOfWork.SocialMedia.GetByUrlAsync(url, user.Id);
+                var userSocial = await socialMediaProcedure.FindByUrlAsync(user.Id, url);
                 if(userSocial != null)
                 {
                     TempData["AddSocialError"] = "Url already used.";
@@ -153,7 +149,7 @@ namespace AdopPix.Controllers
                 {
                     string[] domainSplit = urlSplit[1].Split(new string[] { "www", ".", "com", "net" }, StringSplitOptions.RemoveEmptyEntries);
                     
-                    var type = await unitOfWork.SocialMediaType.GetByNameAsync(domainSplit[0]);
+                    var type = await socialMediaTypeProcedure.FindByNameAsync(domainSplit[0]);
                     if (type != null)
                     {
                         SocialMedia socialMedia = new SocialMedia
@@ -163,7 +159,6 @@ namespace AdopPix.Controllers
                             Created = DateTime.Now,
                             UserId = user.Id,
                         };
-
                         await socialMediaProcedure.CreateAsync(socialMedia);
                     }
                     else
@@ -188,8 +183,8 @@ namespace AdopPix.Controllers
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             if (user == null) return BadRequest();
 
-            var userSocial = await unitOfWork.SocialMedia.GetByUrlAsync(url, user.Id);
-            if(userSocial == null) return BadRequest();
+            var userSocial = await socialMediaProcedure.FindByUrlAsync(user.Id, url);
+            if (userSocial == null) return BadRequest();
 
             await socialMediaProcedure.DeleteAsync(userSocial);
 
