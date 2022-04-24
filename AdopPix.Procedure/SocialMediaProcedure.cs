@@ -59,7 +59,7 @@ namespace AdopPix.Procedure
             }
         }
 
-        public async Task<List<SocialMedia>> FindById(string userId)
+        public async Task<List<SocialMedia>> FindByIdAsync(string userId)
         {
             List<SocialMedia> result = new List<SocialMedia>();
             using (MySqlConnection connection = new MySqlConnection(this.connectionString))
@@ -83,6 +83,37 @@ namespace AdopPix.Procedure
                             Created = Convert.ToDateTime(reader["Created"])
                         };
                         result.Add(socialMedia);
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return result;
+        }
+
+        public async Task<SocialMedia> FindByUrlAsync(string userId, string url)
+        {
+            SocialMedia result = null;
+            using (MySqlConnection connection = new MySqlConnection(this.connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SocialMedia_FindByUrl";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@UserId", MySqlDbType.VarChar).Value = userId;
+                    command.Parameters.Add("@Url", MySqlDbType.VarChar).Value = url;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        result = new SocialMedia
+                        {
+                            UserId = reader["UserId"].ToString(),
+                            SocialId = Convert.ToInt32(reader["SocialId"]),
+                            Url = reader["Url"].ToString(),
+                            Created = Convert.ToDateTime(reader["Created"])
+                        };
                     }
                     await connection.CloseAsync();
                 }

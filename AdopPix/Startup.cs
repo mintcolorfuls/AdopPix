@@ -64,9 +64,11 @@ namespace AdopPix
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddScoped<IUserProfileProcedure, UserProfileProcedure>();
             services.AddScoped<IPaymentLoggingProcedure, PaymentLoggingProcedure>();
             services.AddScoped<ISocialMediaProcedure, SocialMediaProcedure>();
+            services.AddScoped<ISocialMediaTypeProcedure, SocialMediaTypeProcedure>();
 
             //Register services
             services.AddScoped<IImageService, ImageService>();
