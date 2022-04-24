@@ -1,6 +1,7 @@
 ﻿using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.Models;
 using AdopPix.Models.ViewModels;
+using AdopPix.Procedure.IProcedure;
 using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -17,14 +18,20 @@ namespace AdopPix.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly UserManager<User> userManager;
         private readonly ITokenPaymentService tokenPaymentService;
+        private readonly IPaymentLoggingProcedure paymentLoggingProcedure;
+        private readonly IUserProfileProcedure userProfileProcedure;
 
         public PaymentController(IUnitOfWork unitOfWork,
                                UserManager<User> userManager,
-                               ITokenPaymentService tokenPaymentService)
+                               ITokenPaymentService tokenPaymentService,
+                               IPaymentLoggingProcedure paymentLoggingProcedure,
+                               IUserProfileProcedure userProfileProcedure)
         {
             this.unitOfWork = unitOfWork;
             this.userManager = userManager;
             this.tokenPaymentService = tokenPaymentService;
+            this.paymentLoggingProcedure = paymentLoggingProcedure;
+            this.userProfileProcedure = userProfileProcedure;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -66,13 +73,12 @@ namespace AdopPix.Controllers
                 Financing = chargeDetail.Financing,
                 Created = DateTime.Now
             };
-            await unitOfWork.PaymentLogging.CreateAsync(paymentLogging);
 
-            var userProfile = await unitOfWork.UserProfile.GetByIdAsync(user.Id);
+            await paymentLoggingProcedure.CreateAsync(paymentLogging);
+
+            var userProfile = await userProfileProcedure.FindByIdAsync(user.Id);
             userProfile.Money += chargeDetail.Amount;
-            unitOfWork.UserProfile.Update(userProfile);
-
-            await unitOfWork.CompleateAsync();
+            await userProfileProcedure.UpdateAsync(userProfile);
 
             return Redirect("/Payment");
         }

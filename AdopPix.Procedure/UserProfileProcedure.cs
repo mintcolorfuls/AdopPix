@@ -32,16 +32,16 @@ namespace AdopPix.Procedure
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@UserId", MySqlDbType.VarChar).Value = entity.UserId;
-                    command.Parameters.Add("@Gender", MySqlDbType.LongText).Value = entity.Gender;
-                    command.Parameters.Add("@AvatarName", MySqlDbType.LongText).Value = entity.AvatarName;
-                    command.Parameters.Add("@CoverName", MySqlDbType.LongText).Value = entity.CoverName;
-                    command.Parameters.Add("@Fname", MySqlDbType.LongText).Value = entity.Fname;
-                    command.Parameters.Add("@Lname", MySqlDbType.LongText).Value = entity.Lname;
+                    command.Parameters.Add("@Gender", MySqlDbType.VarChar).Value = entity.Gender;
+                    command.Parameters.Add("@AvatarName", MySqlDbType.VarChar).Value = entity.AvatarName;
+                    command.Parameters.Add("@CoverName", MySqlDbType.VarChar).Value = entity.CoverName;
+                    command.Parameters.Add("@Fname", MySqlDbType.VarChar).Value = entity.Fname;
+                    command.Parameters.Add("@Lname", MySqlDbType.VarChar).Value = entity.Lname;
                     command.Parameters.Add("@Money", MySqlDbType.Decimal).Value = entity.Money;
                     command.Parameters.Add("@BirthDate", MySqlDbType.DateTime).Value = entity.BirthDate;
                     command.Parameters.Add("@Poin", MySqlDbType.Decimal).Value = entity.Point;
                     command.Parameters.Add("@Ran", MySqlDbType.Decimal).Value = entity.Rank;
-                    command.Parameters.Add("@Descr", MySqlDbType.LongText).Value = entity.Description;
+                    command.Parameters.Add("@Descr", MySqlDbType.VarChar).Value = entity.Description;
                     command.Parameters.Add("@Created", MySqlDbType.DateTime).Value = entity.Created;
 
                     await connection.OpenAsync();
@@ -70,7 +70,7 @@ namespace AdopPix.Procedure
                         {
                             UserId = reader["UserId"].ToString(),
                             Gender = reader["Gender"].ToString(),
-                            AvatarName = reader["AvaterName"].ToString(),
+                            AvatarName = reader["AvatarName"].ToString(),
                             CoverName = reader["CoverName"].ToString(),
                             Fname = reader["Fname"].ToString(),
                             Lname = reader["Lname"].ToString(),
@@ -96,11 +96,14 @@ namespace AdopPix.Procedure
                     command.CommandText = "UserProfile_Update";
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@UserId", MySqlDbType.VarChar).Value = entity.UserId;
-                    command.Parameters.Add("@AvatarName", MySqlDbType.LongText).Value = entity.AvatarName;
-                    command.Parameters.Add("@CoverName", MySqlDbType.LongText).Value = entity.CoverName;
-                    command.Parameters.Add("@Fname", MySqlDbType.LongText).Value = entity.Fname;
-                    command.Parameters.Add("@Lname", MySqlDbType.LongText).Value = entity.Lname;
-                    command.Parameters.Add("@Descr", MySqlDbType.LongText).Value = entity.Description;
+                    command.Parameters.Add("@AvatarName", MySqlDbType.VarChar).Value = entity.AvatarName;
+                    command.Parameters.Add("@CoverName", MySqlDbType.VarChar).Value = entity.CoverName;
+                    command.Parameters.Add("@Fname", MySqlDbType.VarChar).Value = entity.Fname;
+                    command.Parameters.Add("@Lname", MySqlDbType.VarChar).Value = entity.Lname;
+                    command.Parameters.Add("@Descr", MySqlDbType.VarChar).Value = entity.Description;
+                    command.Parameters.Add("@Money", MySqlDbType.Decimal).Value = entity.Money;
+                    command.Parameters.Add("@Poin", MySqlDbType.Decimal).Value = entity.Point;
+                    command.Parameters.Add("@Ran", MySqlDbType.Decimal).Value = entity.Rank;
 
                     await connection.OpenAsync();
                     await command.ExecuteNonQueryAsync();
