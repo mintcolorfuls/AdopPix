@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdopPix.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220424125458_UpdateSocialMediaAtSocialId")]
-    partial class UpdateSocialMediaAtSocialId
+    [Migration("20220504172845_UpdateTableNotificationAddFieldFromAndTo")]
+    partial class UpdateTableNotificationAddFieldFromAndTo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -198,10 +198,13 @@ namespace AdopPix.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<string>("FromId")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("RedirectToUrl")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("ToId")
                         .HasColumnType("varchar(255)");
 
                     b.Property<bool>("isOpen")
@@ -209,9 +212,9 @@ namespace AdopPix.DataAccess.Migrations
 
                     b.HasKey("NotiId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ToId");
 
-                    b.ToTable("Notification");
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("AdopPix.Models.PaymentLogging", b =>
@@ -836,7 +839,7 @@ namespace AdopPix.DataAccess.Migrations
                 {
                     b.HasOne("AdopPix.Models.User", "User")
                         .WithMany("Notifications")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ToId");
 
                     b.Navigation("User");
                 });

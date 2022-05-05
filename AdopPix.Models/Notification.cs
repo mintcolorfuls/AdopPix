@@ -8,8 +8,8 @@ namespace AdopPix.Models
     {
         [Key]
         public int NotiId { get; set; }
-        [ForeignKey("User")]
-        public string UserId { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
         [Column(TypeName = "nvarchar(150)")]
         public string Description { get; set; }
         [Column(TypeName = "nvarchar(450)")]

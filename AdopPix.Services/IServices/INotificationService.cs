@@ -8,6 +8,6 @@ namespace AdopPix.Services.IServices
 {
     public interface INotificationService
     {
-        Task NotificationByUserId(string userId);
+        Task NotificationByUserIdAsync(string from, string to, string description, string redirectToUrl);
     }
 }

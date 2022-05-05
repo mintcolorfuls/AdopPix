@@ -10,3 +10,10 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPi
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\refint\AdopPix.Services.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.pdb
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\ref\AdopPix.Services.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Hubs.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Hubs.pdb
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\obj\Debug\net5.0\AdopPix.Services.csproj.CopyComplete
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Models.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Models.pdb
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Procedure.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Services\bin\Debug\net5.0\AdopPix.Procedure.pdb

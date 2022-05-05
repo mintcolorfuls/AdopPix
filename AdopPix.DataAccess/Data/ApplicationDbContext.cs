@@ -55,6 +55,11 @@ namespace AdopPix.DataAccess.Data
             builder.Entity<WinningBidder>().HasKey(f => new { f.UserId, f.AuctionId });
             builder.Entity<PostLike>().HasKey(f => new { f.UserId, f.PostId });
             builder.Entity<PostTag>().HasKey(f => new { f.TagId, f.PostId });
+
+            builder.Entity<Notification>().HasOne(f => f.User).WithMany(f => f.Notifications)
+                    .HasForeignKey(f => f.From);
+            builder.Entity<Notification>().HasOne(f => f.User).WithMany(f => f.Notifications)
+                    .HasForeignKey(f => f.To);
         }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<SocialMediaType> SocialMediaTypes { get; set; }
@@ -76,5 +81,6 @@ namespace AdopPix.DataAccess.Data
         public DbSet<PointLogging> PointLoggings { get; set; }
         public DbSet<RankLogging> RankLoggings { get; set; }
         public DbSet<PaymentLogging> PaymentLoggings { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }
