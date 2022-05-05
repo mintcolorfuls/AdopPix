@@ -1,5 +1,6 @@
 using AdopPix.DataAccess.Core.IConfiguration;
 using AdopPix.DataAccess.Data;
+using AdopPix.Hubs;
 using AdopPix.Models;
 using AdopPix.Procedure;
 using AdopPix.Procedure.IProcedure;
@@ -69,11 +70,15 @@ namespace AdopPix
             services.AddScoped<IPaymentLoggingProcedure, PaymentLoggingProcedure>();
             services.AddScoped<ISocialMediaProcedure, SocialMediaProcedure>();
             services.AddScoped<ISocialMediaTypeProcedure, SocialMediaTypeProcedure>();
+            services.AddScoped<INotificationProcedure, NotificationProcedure>();
 
             //Register services
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<ITokenPaymentService, TokenPaymentService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<INotificationService, NotificationService>();
+
+            services.AddSignalR();
 
             services.AddRazorPages();
             services.AddControllersWithViews();
@@ -106,6 +111,7 @@ namespace AdopPix
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<NotificationHub>("/hubs/notification");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
