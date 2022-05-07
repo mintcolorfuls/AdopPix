@@ -1,4 +1,6 @@
 ﻿using AdopPix.Models;
+using AdopPix.Models.ViewModels;
+using AdopPix.Procedure.IProcedure;
 using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,47 +18,36 @@ namespace AdopPix.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IImageService imageService;
         private readonly INotificationService notificationService;
         private readonly UserManager<User> userManager;
+        private readonly INavbarService navbarService;
 
-        public HomeController(ILogger<HomeController> logger, 
-                              IImageService imageService, 
-                              INotificationService notificationService,
-                              UserManager<User> userManager)
+        public HomeController(INotificationService notificationService,
+                              UserManager<User> userManager,
+                              INavbarService navbarService)
         {
-            _logger = logger;
-            this.imageService = imageService;
             this.notificationService = notificationService;
             this.userManager = userManager;
+            this.navbarService = navbarService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Index(string UserId, string Description, string RedirectToUrl)
         {
-            //string[] extension = { ".png", ".jpg" };
-            //if(imageService.ValidateExtension(extension, file))
-            //{
-            //    ViewBag.Name = await imageService.UploadImageAsync(file);
-            //    ViewBag.Succeeded = imageService.Succeeded;
-            //}
-            //else
-            //{
-            //    ViewBag.Succeeded = false;
-            //}
-
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             await notificationService.NotificationByUserIdAsync(user.Id, UserId, Description, RedirectToUrl);
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             return View();
         }
 

@@ -2,6 +2,7 @@
 using AdopPix.Models;
 using AdopPix.Procedure.IProcedure;
 using AdopPix.Services.IServices;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,18 @@ namespace AdopPix.Services
     {
         private readonly IHubContext<NotificationHub> hubContext;
         private readonly INotificationProcedure notificationProcedure;
+        private readonly UserManager<User> userManager;
+        private readonly IUserProfileProcedure userProfileProcedure;
 
         public NotificationService(IHubContext<NotificationHub> hubContext,
-                                   INotificationProcedure notificationProcedure)
+                                   INotificationProcedure notificationProcedure,
+                                   UserManager<User> userManager,
+                                   IUserProfileProcedure userProfileProcedure)
         {
             this.hubContext = hubContext;
             this.notificationProcedure = notificationProcedure;
+            this.userManager = userManager;
+            this.userProfileProcedure = userProfileProcedure;
         }
         public async Task NotificationByUserIdAsync(string from, string to, string description, string redirectToUrl)
         {
@@ -34,7 +41,9 @@ namespace AdopPix.Services
                 Created = DateTime.Now
             };
             await notificationProcedure.CreateAsync(notification);
-            await hubContext.Clients.User(to).SendAsync("notification", new { description, redirectToUrl });
+            var user = await userManager.FindByIdAsync(from);
+            var profile = await userProfileProcedure.FindByIdAsync(user.Id);
+            await hubContext.Clients.User(to).SendAsync("notification", new { avatarName = profile.AvatarName, username = user.UserName, description, redirectToUrl });
         }
     }
 }

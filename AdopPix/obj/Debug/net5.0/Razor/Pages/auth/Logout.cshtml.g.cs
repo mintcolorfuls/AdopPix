@@ -26,8 +26,15 @@ using AdopPix.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\Pages\_ViewImports.cshtml"
+using AdopPix.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"47b8a29a1d6e32d883ca82b0925cf7e03291fc61", @"/Pages/auth/Logout.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"411a95cf21e770185ca1b7a1f2d3ff03986dc49b", @"/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"96e1173bd5cd85c40e7b8f78b0845b64ab18dd8d", @"/Pages/_ViewImports.cshtml")]
     #nullable restore
     public class Pages_auth_Logout : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     #nullable disable

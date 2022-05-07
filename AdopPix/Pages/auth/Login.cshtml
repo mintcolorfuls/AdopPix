@@ -1,6 +1,7 @@
 ﻿@page
 @model AdopPix.Pages.auth.LoginModel
 @{
+    ViewBag.NavbarIsShow = true;
 }
 
 <div class="d-flex justify-content-center align-items-center bg-login" style="height: 80vh; margin-top: 5%;">
@@ -25,12 +26,12 @@ color: #ADADAD;">
             </h4>
         </div>
         <div class="mb-3">
-            <label>Email</label>
+            <label class="mb-1">Email</label>
             <input type="text" class="form-control text-input input-rework" asp-for="loginViewModel.Email" />
             <span asp-validation-for="loginViewModel.Email" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label>Password</label>
+            <label class="mb-1">Password</label>
             <input type="password" class="form-control input-rework" asp-for="loginViewModel.Password" />
             <span asp-validation-for="loginViewModel.Password" class="text-danger"></span>
         </div>
@@ -69,7 +70,7 @@ border-radius: 10px;
     border-radius: 50px;
 border: none;
 background: #EEEEEE;
-padding: 28px 30px;
+padding: 10px 10px;
     font-size: 20px;
 }
    .login {

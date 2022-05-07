@@ -455,3 +455,4 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AdopPix.Procedu
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AdopPix.Hubs.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\AdopPix.Hubs.pdb
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\bin\Debug\net5.0\libman.json
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Shared\_Navbar2.cshtml.g.cs

@@ -1,4 +1,5 @@
 using AdopPix.Models;
+using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@ namespace AdopPix.Pages.auth
     public class AuthenticatorDisableModel : PageModel
     {
         private readonly UserManager<User> userManager;
+        private readonly INavbarService navbarService;
 
-        public AuthenticatorDisableModel(UserManager<User> userManager)
+        public AuthenticatorDisableModel(UserManager<User> userManager, INavbarService navbarService)
         {
             this.userManager = userManager;
+            this.navbarService = navbarService;
         }
 
         [BindProperty]
@@ -23,8 +26,9 @@ namespace AdopPix.Pages.auth
         [BindProperty]
         public bool Succeeded { get; set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
         }
         public async Task<IActionResult> OnPostAsync()
         {

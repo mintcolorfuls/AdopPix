@@ -20,24 +20,29 @@ namespace AdopPix.Controllers
         private readonly ITokenPaymentService tokenPaymentService;
         private readonly IPaymentLoggingProcedure paymentLoggingProcedure;
         private readonly IUserProfileProcedure userProfileProcedure;
+        private readonly INavbarService navbarService;
 
         public PaymentController(IUnitOfWork unitOfWork,
                                UserManager<User> userManager,
                                ITokenPaymentService tokenPaymentService,
                                IPaymentLoggingProcedure paymentLoggingProcedure,
-                               IUserProfileProcedure userProfileProcedure)
+                               IUserProfileProcedure userProfileProcedure,
+                               INavbarService navbarService)
         {
             this.unitOfWork = unitOfWork;
             this.userManager = userManager;
             this.tokenPaymentService = tokenPaymentService;
             this.paymentLoggingProcedure = paymentLoggingProcedure;
             this.userProfileProcedure = userProfileProcedure;
+            this.navbarService = navbarService;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             var userProfile = await unitOfWork.UserProfile.GetByIdAsync(user.Id);
+
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(user.UserName);
 
             TopUpViewModel topUpViewModel = new TopUpViewModel
             {
@@ -50,14 +55,16 @@ namespace AdopPix.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(TopUpViewModel model, string omiseToken, string omiseSource)
         {
-            if(!ModelState.IsValid) return View(model);
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(user.UserName);
+
+            if (!ModelState.IsValid) return View(model);
             if(string.IsNullOrEmpty(omiseToken)) return BadRequest();
             if(model.Money < 20)
             {
                 ModelState.AddModelError("Money", "The amount must be greater than 20 thb.");
                 return View(model);
             }
-            var user = await userManager.FindByNameAsync(User.Identity.Name);
 
             var chargeId = await tokenPaymentService.CreateCharge(model.Money, "THB", omiseToken);
             var chargeDetail = await tokenPaymentService.GetChargeById(chargeId);

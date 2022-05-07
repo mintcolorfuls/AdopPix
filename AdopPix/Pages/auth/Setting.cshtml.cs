@@ -13,17 +13,19 @@ namespace AdopPix.Pages.auth
     public class SettingModel : PageModel
     {
         private readonly UserManager<User> userManager;
+        private readonly INavbarService navbarService;
 
-        public SettingModel(UserManager<User> userManager)
+        public SettingModel(UserManager<User> userManager, INavbarService navbarService)
         {
             this.userManager = userManager;
+            this.navbarService = navbarService;
             this.settingViewModel = new SettingViewModel();
         }
 
         [BindProperty]
         public SettingViewModel settingViewModel { get; set; }
 
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
 
@@ -31,7 +33,7 @@ namespace AdopPix.Pages.auth
             {
                 settingViewModel.EnableTwoFactor = await userManager.GetTwoFactorEnabledAsync(user);
             }
-
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
         }
     }
     public class SettingViewModel

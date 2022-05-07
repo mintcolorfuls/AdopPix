@@ -1,4 +1,5 @@
 using AdopPix.Models;
+using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,10 +14,12 @@ namespace AdopPix.Pages.auth
     public class MFASetupModel : PageModel
     {
         private readonly UserManager<User> userManager;
+        private readonly INavbarService navbarService;
 
-        public MFASetupModel(UserManager<User> userManager)
+        public MFASetupModel(UserManager<User> userManager, INavbarService navbarService)
         {
             this.userManager = userManager;
+            this.navbarService = navbarService;
             mFASetupViewModel = new MFASetupViewModel();
         }
 
@@ -27,6 +30,7 @@ namespace AdopPix.Pages.auth
 
         public async Task OnGetAsync()
         {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             var user = await userManager.FindByNameAsync(User.Identity.Name);
       
             if (user != null)
@@ -48,6 +52,7 @@ namespace AdopPix.Pages.auth
         }
         public async Task<IActionResult> OnPostAsync()
         {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             if (!ModelState.IsValid) return Page();
 
             var user = await userManager.FindByNameAsync(User.Identity.Name);

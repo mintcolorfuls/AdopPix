@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopPix.Services", "..\Adop
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopPix.Procedure", "..\AdopPix.Procedure\AdopPix.Procedure.csproj", "{489486AE-70A8-4461-90EB-C387897BF128}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdopPix.Hubs", "..\AdopPix.Hubs\AdopPix.Hubs.csproj", "{EA54B0A5-B021-4312-B9BA-F0F544CA5667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopPix.Hubs", "..\AdopPix.Hubs\AdopPix.Hubs.csproj", "{EA54B0A5-B021-4312-B9BA-F0F544CA5667}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

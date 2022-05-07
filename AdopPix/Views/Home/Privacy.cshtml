@@ -5,23 +5,3 @@
 <div id="notification">
      
 </div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
-    let server = new signalR.HubConnectionBuilder().withUrl("/hubs/notification").build();
-
-    server.on("notification", (response) => {
-        $("#notification").append(
-            `<p>${response.description}<p/>` +
-            `<a href="${response.redirectToUrl}">Go to link</a>`
-        );
-    });
-
-    function onConnected() {
-        console.log("Connected.");
-    }
-    function onFailed(err) {
-        console.log("Failed.");
-    }
-    server.start().then(onConnected, onFailed);
-</script>
