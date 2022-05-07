@@ -1,0 +1,104 @@
+﻿@model NavbarViewModel
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">AdopPix</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            </div>
+        </div>
+        <div class="navbar-nav">
+            <div class="dropdown">
+                <button class="btn bg-transparent dropdown-toggle" type="button" id="Notification" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-regular fa-bell fa-2x"></i>
+                </button>
+                <ul class="dropdown-menu m-3 dropdown-menu-end notification-menu overflow-auto" aria-labelledby="Notification" id="NotificationPush">
+
+                    @if (Model.Notifications.Count == 0 || Model.Notifications == null)
+                    {
+                        <li>
+                            <p>No notification.</p>
+                        </li>
+                    }
+                    else
+                    {
+                        @foreach (var notification in Model.Notifications)
+                        {
+                            <li>
+                                <a href="@notification.RedirectToUrl" class="notification-a dropdown-item">
+                                    <div class="notification-item">
+                                        <div>
+                                            <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{notification.AvatarName}")" width="50" style="border-radius:50%" />
+                                        </div>
+                                        <div class="ms-3">
+                                            <h5 class="notification-username">@notification.UserName</h5>
+                                            <p class="notification-description">@notification.Description</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn bg-transparent dropdown-toggle" type="button" id="Menu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{Model.AvatarName}")" width="30" style="border-radius:50%" />
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="Menu">
+                    <li>
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Setting">Setting</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Payment" asp-action="Index">Top up</a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form asp-page="/auth/logout">
+                            <input type="submit" class="btn text-danger dropdown-item" value="logout" />
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<ul id="test">
+</ul>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    let server = new signalR.HubConnectionBuilder().withUrl("/hubs/notification").build();
+
+    server.on("notification", (response) => {
+        console.log(`${response.avatarName}`);
+        $('#NotificationPush').prepend(
+            `<li>
+                <a href="${response.redirectToUrl}" class="notification-a dropdown-item">
+                    <div class="notification-item">
+                        <div>
+                            <img src="https://adoppix.s3.ap-southeast-1.amazonaws.com/${response.avatarName}" width="50" style="border-radius:50%" />
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="notification-username">${response.username}</h5>
+                            <p class="notification-description">${response.description}</p>
+                        </div>
+                   </div>
+                </a>
+            </li>`
+        );
+    });
+
+    function onConnected() {
+        console.log("Connected.");
+    }
+    function onFailed(err) {
+        console.log("Failed.");
+    }
+    server.start().then(onConnected, onFailed);
+</script>

@@ -22,18 +22,21 @@ namespace AdopPix.Controllers
         private readonly IUserProfileProcedure userProfileProcedure;
         private readonly ISocialMediaProcedure socialMediaProcedure;
         private readonly ISocialMediaTypeProcedure socialMediaTypeProcedure;
+        private readonly INavbarService navbarService;
 
         public AccountController(UserManager<User> userManager,
                                  IImageService imageService,
                                  IUserProfileProcedure userProfileProcedure,
                                  ISocialMediaProcedure socialMediaProcedure,
-                                 ISocialMediaTypeProcedure socialMediaTypeProcedure)
+                                 ISocialMediaTypeProcedure socialMediaTypeProcedure,
+                                 INavbarService navbarService)
         {
             this.userManager = userManager;
             this.imageService = imageService;
             this.userProfileProcedure = userProfileProcedure;
             this.socialMediaProcedure = socialMediaProcedure;
             this.socialMediaTypeProcedure = socialMediaTypeProcedure;
+            this.navbarService = navbarService;
         }
         [HttpGet("{id}")]
         public IActionResult Index(string id)
@@ -43,9 +46,10 @@ namespace AdopPix.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> Setting()
         {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             var userProfile = await userProfileProcedure.FindByIdAsync(user.Id);
-
             AccountSettingViewModel accountSettingViewModel = new AccountSettingViewModel
             {
                 AvaterName = userProfile.AvatarName,
@@ -80,7 +84,10 @@ namespace AdopPix.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Setting(AccountSettingViewModel accountSettingViewModel)
         {
-            if(!ModelState.IsValid) return View(accountSettingViewModel);
+            
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+
+            if (!ModelState.IsValid) return View(accountSettingViewModel);
 
             string avatarName = accountSettingViewModel.AvaterName;
             string coverName = accountSettingViewModel.CoverName;

@@ -12,24 +12,29 @@ namespace AdopPix.Pages.auth
     {
         private readonly UserManager<User> userManager;
         private readonly IEmailService emailService;
+        private readonly INavbarService navbarService;
 
         public ChangeEmailModel(UserManager<User> userManager,
-                                IEmailService emailService)
+                                IEmailService emailService,
+                                INavbarService navbarService)
         {
             this.userManager = userManager;
             this.emailService = emailService;
+            this.navbarService = navbarService;
         }
 
         [BindProperty]
         public ChangeEmailViewModel changeEmailViewModel { get; set; }
         [BindProperty]
         public bool isSend { get; set; }
-        public void OnGet()
+        public async Task OnGet()
         {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            if(!ModelState.IsValid) return Page();
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+            if (!ModelState.IsValid) return Page();
 
             var user = await userManager.FindByEmailAsync(changeEmailViewModel.Email);
             if(user != null)

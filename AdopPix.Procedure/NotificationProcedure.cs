@@ -27,7 +27,7 @@ namespace AdopPix.Procedure
             {
                 using(MySqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "Notification_Create";
+                    command.CommandText = "Notifications_Create";
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@FromId", MySqlDbType.VarChar).Value = entity.From;
@@ -42,6 +42,42 @@ namespace AdopPix.Procedure
                     await connection.CloseAsync();
                 }
             }
+        }
+
+        public async Task<List<Notification>> FindByUserIdAsync(string userId)
+        {
+            List<Notification> notifications = new List<Notification>();
+            Notification notification = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Notifications_FindByUserId";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@UserId", MySqlDbType.VarChar).Value = userId;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        notification = new Notification
+                        {
+                            NotiId = Convert.ToInt32(reader["NotiId"].ToString()),
+                            From = reader["From"].ToString(),
+                            To = reader["From"].ToString(),
+                            Description = reader["Description"].ToString(),
+                            RedirectToUrl = reader["RedirectToUrl"].ToString(),
+                            isOpen = Convert.ToBoolean(reader["isOpen"]),
+                            Created = Convert.ToDateTime(reader["Created"])
+                        };
+                        notifications.Add(notification);
+                        notification = null;
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return notifications;
         }
     }
 }

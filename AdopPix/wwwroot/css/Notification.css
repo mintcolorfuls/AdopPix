@@ -1,0 +1,28 @@
+﻿
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+.notification-item {
+    display: flex;
+}
+
+.notification-menu {
+    width: 300px;
+    height: 500px;
+}
+
+.notification-a {
+    text-decoration: none;
+    color: black;
+    transition: .3s;
+}
+
+    .notification-a:hover {
+        color: black;
+    }
+
+.notification-description {
+    color: rgb(147, 147, 147);
+}
+

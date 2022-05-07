@@ -1,4 +1,5 @@
 using AdopPix.Models;
+using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,22 +13,26 @@ namespace AdopPix.Pages.auth
     public class ChangePasswordModel : PageModel
     {
         private readonly UserManager<User> userManager;
+        private readonly INavbarService navbarService;
 
-        public ChangePasswordModel(UserManager<User> userManager)
+        public ChangePasswordModel(UserManager<User> userManager, INavbarService navbarService)
         {
             this.userManager = userManager;
+            this.navbarService = navbarService;
         }
         [BindProperty]
         public ChangePasswordViewModel changePasswordViewModel { get; set; }
         [BindProperty]
         public bool isSucceeded { get; set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
         }
         public async Task<IActionResult> OnPost()
         {
-            if(!ModelState.IsValid) return Page();
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+            if (!ModelState.IsValid) return Page();
 
             var user = await userManager.FindByNameAsync(User.Identity.Name);
 
