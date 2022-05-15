@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AdopPix.Procedure
 {
-    internal class AuctionProcedure : IAuctionProcedure
+    public class AuctionProcedure : IAuctionProcedure
     {
         private readonly IConfiguration configuration;
         private string connectionString;

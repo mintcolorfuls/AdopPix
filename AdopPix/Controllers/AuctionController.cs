@@ -16,10 +16,11 @@ namespace AdopPix.Controllers
         private readonly UserManager<User> userManager;
 
 
-        public AuctionController( INavbarService navbarService, UserManager<User> userManager)
+        public AuctionController( INavbarService navbarService, UserManager<User> userManager , IAuctionProcedure auctionProcedure)
         {
             this.navbarService = navbarService;
             this.userManager = userManager;
+            this.auctionProcedure = auctionProcedure;
         }
 
         public async Task<IActionResult> Index()
