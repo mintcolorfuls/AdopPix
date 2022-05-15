@@ -10,3 +10,15 @@ C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hu
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\refint\AdopPix.Hubs.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hubs.pdb
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\ref\AdopPix.Hubs.dll
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\bin\Debug\net5.0\AdopPix.Hubs.deps.json
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\bin\Debug\net5.0\AdopPix.Hubs.dll
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\bin\Debug\net5.0\AdopPix.Hubs.pdb
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hubs.csproj.AssemblyReference.cache
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hubs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hubs.AssemblyInfoInputs.cache
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hubs.AssemblyInfo.cs
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hubs.csproj.CoreCompileInputs.cache
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hubs.dll
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\refint\AdopPix.Hubs.dll
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\AdopPix.Hubs.pdb
+C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix.Hubs\obj\Debug\net5.0\ref\AdopPix.Hubs.dll
