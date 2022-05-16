@@ -78,6 +78,7 @@ namespace AdopPix
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<INavbarService, NavbarService>();
+            services.AddScoped<IAuctionHubService, AuctionHubService>();
 
             services.AddSignalR();
 
