@@ -25,4 +25,6 @@ namespace AdopPix.Models
         public List<PostImage> PostImages { get; set; }
         public List<PostTag> PostTags { get; set; }
     }
+
+    
 }

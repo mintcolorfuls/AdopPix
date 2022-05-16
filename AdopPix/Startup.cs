@@ -71,6 +71,7 @@ namespace AdopPix
             services.AddScoped<ISocialMediaProcedure, SocialMediaProcedure>();
             services.AddScoped<ISocialMediaTypeProcedure, SocialMediaTypeProcedure>();
             services.AddScoped<INotificationProcedure, NotificationProcedure>();
+            services.AddScoped<IPostProcedure, PostProcedure>();
 
             //Register services
             services.AddScoped<IImageService, ImageService>();
@@ -78,6 +79,7 @@ namespace AdopPix
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<INavbarService, NavbarService>();
+            
 
             services.AddSignalR();
 
