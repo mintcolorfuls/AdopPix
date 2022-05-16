@@ -17,7 +17,7 @@ namespace AdopPix.Controllers
     public class PostController : Controller
     {
         private readonly INavbarService navbarService;
-        private readonly IPostProcedure post;
+        private readonly IPostProcedure postProcedure;
         private readonly UserManager<User> userManager;
         private readonly IImageService imageService;
 
@@ -26,7 +26,7 @@ namespace AdopPix.Controllers
                               UserManager<User> userManager, 
                               IImageService imageService)
         {
-            this.post = post;
+            this.postProcedure = post;
             this.navbarService = navbarService;
             this.userManager = userManager;
             this.imageService = imageService;
@@ -55,7 +55,7 @@ namespace AdopPix.Controllers
                 UserId = user.Id,
                 Created = time
             };
-            await post.CreateAsync(postDetail);
+            await postProcedure.CreateAsync(postDetail);
 
             PostImage postImageDetail = new PostImage
             {
@@ -63,7 +63,7 @@ namespace AdopPix.Controllers
                 Created = time,
                 ImageId = fileName
             };
-            await post.CreateImageAsync(postImageDetail);
+            await postProcedure.CreateImageAsync(postImageDetail);
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             
             return Redirect("/");
@@ -74,62 +74,55 @@ namespace AdopPix.Controllers
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             return View();
         }
-        public async Task<IActionResult> Finds()
-        {
-            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-
-            List<PostViewModel> postViewModels = new List<PostViewModel>();
-            var posts = await post.FindAllAsync();
-
-            foreach (var item in posts)
-            {
-                var image = await post.FindImageByPostIdAsync(item.PostId);
-                PostViewModel postViewModel = new PostViewModel
-                {
-                    Title = item.Title,
-                    ImageName = image.ImageId
-                };
-                postViewModels.Add(postViewModel);
-            }
-
-            return View(postViewModels);
-        }
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-            
+
             List<PostViewModel> postViewModels = new List<PostViewModel>();
-            var posts = await post.FindAllAsync();
+            var posts = await postProcedure.FindAllAsync();
 
             foreach (var item in posts)
             {
-                var image = await post.FindImageByPostIdAsync(item.PostId);
+                var image = await postProcedure.FindImageByPostIdAsync(item.PostId);
                 PostViewModel postViewModel = new PostViewModel
                 {
                     Title = item.Title,
-                    Description = item.Description,
                     ImageName = image.ImageId,
-                    PostId = item.PostId
+                    PostId = item.PostId 
                 };
                 postViewModels.Add(postViewModel);
             }
+
             return View(postViewModels);
         }
-        public async Task<IActionResult> ShowDirectPost(string postId)
-        {
-            PostViewModel postViewModel = null;
-            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-            
-            postViewModel = new PostViewModel
-            {
-                ImageName = postViewModel.ImageName,
-                Title = postViewModel.Title,
-                Description = postViewModel.Description,
-                UserId = postViewModel.UserId,
-            };
-            return View(postViewModel);
-        }
 
+        [HttpGet("Post/{id}")]
+        public async Task<IActionResult> FindById(string id = "")
+        {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+
+            var post = await postProcedure.FindByPostId(id);
+            if(post == null)
+            {
+                return null;
+            }
+            
+            var user = await userManager.FindByIdAsync(post.UserId);
+            var image = await postProcedure.FindImageByPostIdAsync(id);
+
+            ShowDirectPostViewModel showDirectPostViewModel = new ShowDirectPostViewModel
+            {
+                PostId = post.PostId,
+                Title = post.Title,
+                Description = post.Description,
+                UserName = user.UserName,
+                ImageName = image.ImageId
+            };
+
+            ViewData["Post"] = showDirectPostViewModel;
+
+            return View();
+        }
     }
 }

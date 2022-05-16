@@ -144,14 +144,14 @@ namespace AdopPix.Procedure
             return image;
         }
 
-        public async Task<PostViewModel> FindByPostId(string postId)
+        public async Task<Post> FindByPostId(string postId)
         {
-            PostViewModel postViewModel = null;
+            Post post = null;
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 using (MySqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "Find_Post_By_Id";
+                    command.CommandText = "Post_FindById";
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = postId;
@@ -160,20 +160,19 @@ namespace AdopPix.Procedure
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-
-                        postViewModel = new PostViewModel
+                        post = new Post
                         {
                             UserId = reader["UserId"].ToString(),
                             Title = reader["Title"].ToString(),
                             Description = reader["Description"].ToString(),
-                            ImageName = reader["ImageId"].ToString()
+                            PostId = reader["PostId"].ToString(),
+                            Created = Convert.ToDateTime(reader["Created"]),
                         };
-                        
                     }
                     await connection.CloseAsync();
                 }
             }
-            return postViewModel;
+            return post;
         }
 
         public Task UpdateAsync(Post entity)

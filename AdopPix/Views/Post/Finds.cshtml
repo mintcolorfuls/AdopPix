@@ -1,9 +1,0 @@
-﻿@model List<PostViewModel>
-@foreach (var item in Model){
-    <a asp-controller="Post" asp-action="Index" asp-route-id="@item.PostId">
-        <div>
-        <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@item.ImageName}")" style="width:100px; height: 100px;" id="blah" />
-        <h3>@item.Title</h3>
-    </div>
-    </a>
-}

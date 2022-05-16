@@ -916,6 +916,7 @@ C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\AdopPix.pdb
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\AdopPix.genruntimeconfig.cache
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\ref\AdopPix.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\Create.cshtml.g.cs
-C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\Finds.cshtml.g.cs
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\Finds.cshtml.g.cs
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\Index.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\FindById.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\Index.cshtml.g.cs
