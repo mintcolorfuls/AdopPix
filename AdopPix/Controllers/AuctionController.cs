@@ -21,7 +21,7 @@ namespace AdopPix.Controllers
             string[] dateTime = DateTime.Now.ToString().Split(' ');
             string[] ddmmyyyy = dateTime[0].Split('/');
             string[] hhmmss = dateTime[1].Split(':');
-            return $"post-{string.Join("", ddmmyyyy)}{string.Join("", hhmmss)}";
+            return $"auction-{string.Join("", ddmmyyyy)}{string.Join("", hhmmss)}";
         }
 
         public AuctionController( INavbarService navbarService, UserManager<User> userManager , IAuctionProcedure auctionProcedure, IImageService imageService)
@@ -42,19 +42,18 @@ namespace AdopPix.Controllers
             return View();
         }
         [HttpPost("Auction/Create")]
-
         public async Task<IActionResult> Create(AuctionViewModel auctionViewModel)
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-            string imageAuction = auctionViewModel.AuctionImage;
+            string imageAuctionName = auctionViewModel.AuctionImage;
 
             if (auctionViewModel.AuctionFile != null)
             {
                 string[] extension = { ".png", ".jpg" };
                 if (imageService.ValidateExtension(extension, auctionViewModel.AuctionFile))
                 {
-                    imageAuction = await imageService.UploadImageAsync(auctionViewModel.AuctionFile);
+                    imageAuctionName = await imageService.UploadAuctionImageAsync(auctionViewModel.AuctionFile);
                 }
                 else
                 {
@@ -81,13 +80,40 @@ namespace AdopPix.Controllers
             AuctionImage auctionImage = new AuctionImage
             {
                 AuctionId = generateAuctionId,
-                ImageId = auctionViewModel.ImageId,
+                ImageId = imageAuctionName,
                 ImageTypeId = auctionViewModel.ImageTypeId,
                 Created = auctionViewModel.Created,
             };
             await auctionProcedure.CreateImageAsync(auctionImage);
 
             return Redirect("/Auction");
+        }
+
+
+
+
+
+        [HttpGet("Auction/Post/{auctionpost.AuctionId}")]
+        public async Task<IActionResult> AuctionPost(AuctionViewModel auctionViewModel)
+        {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+            //var user = await userManager.FindByNameAsync(auctionViewModel.AuctionId);
+            var auctionpost = await auctionProcedure.FindByIdAsync(auctionViewModel.AuctionId);
+            AuctionViewModel auction = new AuctionViewModel
+            {
+                AuctionId = auctionpost.AuctionId,
+                UserId = auctionpost.UserId,
+                Title = auctionpost.Title,
+                HourId = auctionpost.HourId,
+                OpeningPrice = auctionpost.OpeningPrice,
+                HotClose = auctionpost.HotClose,
+                Description = auctionpost.Description,
+                Created = auctionpost.Created,
+            };
+
+
+
+            return View(auction);
         }
     }
 }

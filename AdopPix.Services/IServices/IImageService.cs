@@ -8,5 +8,6 @@ namespace AdopPix.Services.IServices
         public bool Succeeded { get; }
         bool ValidateExtension(string[] extension, IFormFile file);
         Task<string> UploadImageAsync(IFormFile file);
+        Task<string> UploadAuctionImageAsync(IFormFile file);
     }
 }

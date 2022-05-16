@@ -76,5 +76,54 @@ namespace AdopPix.Services
             string[] hhmmss = dateTime[1].Split(':');
             return $"adoppix-{string.Join("", ddmmyyyy)}{string.Join("", hhmmss)}";
         }
+
+        private string GenerateAuctionFileName()
+        {
+            string[] dateTime = DateTime.Now.ToString().Split(' ');
+            string[] ddmmyyyy = dateTime[0].Split('/');
+            string[] hhmmss = dateTime[1].Split(':');
+            return $"adoppix-auc-{string.Join("", ddmmyyyy)}{string.Join("", hhmmss)}";
+        }
+
+
+
+        public async Task<string> UploadAuctionImageAsync(IFormFile file)
+        {
+            string name = string.Empty;
+            string fileName = Path.GetFileName(file.FileName);
+            string fileExt = Path.GetExtension(fileName);
+
+            try
+            {
+                name = $"{GenerateAuctionFileName()}{fileExt}";
+                using (var client = new AmazonS3Client(configuration["AWSS3_PublicKey"],
+                                                       configuration["AWSS3_SecretKey"],
+                                                       Amazon.RegionEndpoint.APSoutheast1))
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        file.CopyTo(memoryStream);
+
+                        var uploadRequest = new TransferUtilityUploadRequest
+                        {
+                            InputStream = memoryStream,
+                            Key = name,
+                            BucketName = configuration["AWSS3_BucketKey"]
+                        };
+
+                        var fileTransferUtility = new TransferUtility(client);
+                        await fileTransferUtility.UploadAsync(uploadRequest);
+                    }
+                }
+                Succeeded = true;
+            }
+            catch
+            {
+                Succeeded = false;
+            }
+            return name;
+        }
     }
+
+
 }

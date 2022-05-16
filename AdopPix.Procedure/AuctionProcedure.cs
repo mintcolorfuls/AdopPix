@@ -25,7 +25,7 @@ namespace AdopPix.Procedure
             string[] dateTime = DateTime.Now.ToString().Split(' ');
             string[] ddmmyyyy = dateTime[0].Split('/');
             string[] hhmmss = dateTime[1].Split(':');
-            return $"post-{string.Join("", ddmmyyyy)}{string.Join("", hhmmss)}";
+            return $"auction-{string.Join("", ddmmyyyy)}{string.Join("", hhmmss)}";
         }
         public async Task CreateAsync(Auction auction)
         {
@@ -115,7 +115,7 @@ namespace AdopPix.Procedure
                     command.CommandText = "AuctionImage_Create";
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@ImageId", MySqlDbType.VarChar).Value = GenerateAuctionId();
+                    command.Parameters.Add("@ImageId", MySqlDbType.VarChar).Value = auctionImage.ImageId;
                     command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = auctionImage.AuctionId;
                     command.Parameters.Add("@ImageTypeId", MySqlDbType.Int32).Value = 1;
                     command.Parameters.Add("@Created", MySqlDbType.DateTime).Value = auctionImage.Created;
