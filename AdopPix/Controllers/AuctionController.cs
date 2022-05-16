@@ -5,6 +5,7 @@ using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AdopPix.Controllers
@@ -15,7 +16,7 @@ namespace AdopPix.Controllers
         private readonly IAuctionProcedure auctionProcedure;
         private readonly UserManager<User> userManager;
         private readonly IImageService imageService;
-
+        private readonly IUserProfileProcedure userProfileProcedure;
         private string GenerateAuctionId()
         {
             string[] dateTime = DateTime.Now.ToString().Split(' ');
@@ -24,17 +25,26 @@ namespace AdopPix.Controllers
             return $"auction-{string.Join("", ddmmyyyy)}{string.Join("", hhmmss)}";
         }
 
-        public AuctionController( INavbarService navbarService, UserManager<User> userManager , IAuctionProcedure auctionProcedure, IImageService imageService)
+        public AuctionController( INavbarService navbarService, IUserProfileProcedure userProfileProcedure, UserManager<User> userManager , IAuctionProcedure auctionProcedure, IImageService imageService)
         {
             this.navbarService = navbarService;
             this.userManager = userManager;
+            this.userProfileProcedure = userProfileProcedure;
             this.auctionProcedure = auctionProcedure;
-            this.imageService = imageService;    
-        }
+            this.imageService = imageService;
+            
+    }
         public async Task<IActionResult> Index()
         {
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-            return View();
+
+
+            var allAuctions = await auctionProcedure.GetAllAsync();
+            var allAuctionImages = await auctionProcedure.GetAllImageAsync();
+            ViewData["imageAuctions"] = allAuctionImages;
+
+
+            return View(allAuctions);
         }
         public async Task<IActionResult> Create()
         {
@@ -93,14 +103,19 @@ namespace AdopPix.Controllers
 
 
 
-        [HttpGet("Auction/Post/{auctionpost.AuctionId}")]
-        public async Task<IActionResult> AuctionPost(AuctionViewModel auctionViewModel)
+        [HttpGet("Auction/Post/{aucId}")]
+        public async Task<IActionResult> AuctionPost(string aucId)
         {
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             //var user = await userManager.FindByNameAsync(auctionViewModel.AuctionId);
-            var auctionpost = await auctionProcedure.FindByIdAsync(auctionViewModel.AuctionId);
+            var auctionpost = await auctionProcedure.FindByIdAsync(aucId);
+            var auctionimage = await auctionProcedure.FindImageByIdAsync(aucId);
+            var userProfiles = await userProfileProcedure.FindByIdAsync(auctionpost.UserId);
+            var userName = await auctionProcedure.FindByIdAsync(auctionpost.UserId);
             AuctionViewModel auction = new AuctionViewModel
             {
+                AvaterName = userProfiles.AvatarName,
+                //UserName = userName.UserName,
                 AuctionId = auctionpost.AuctionId,
                 UserId = auctionpost.UserId,
                 Title = auctionpost.Title,
@@ -109,7 +124,9 @@ namespace AdopPix.Controllers
                 HotClose = auctionpost.HotClose,
                 Description = auctionpost.Description,
                 Created = auctionpost.Created,
+                ImageId = auctionimage.ImageId
             };
+
 
 
 

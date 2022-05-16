@@ -3,15 +3,39 @@
 @{ ViewData["Title"] = "Courses details"; }
 
 <div class="row" style="padding-top: 88px">
-    <div class="col-md-8 offset-2" style="padding-top: 40px;">
+    <div class="" style="padding-top: 40px;">
        
 
+
+        <img class="" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.ImageId}")" style="width: 956px;height: 540px; border-radius: 20px;" />
                             <p class="card-text">
                                 <h5 class="card-title" style="font-size: 2.3rem; padding-top: 34%; border-bottom: 1px solid lightgray; padding-bottom: 5%; ">
+                                    <img oncontextmenu="return false;" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; border:7px solid #EDEDED;position:absolute; top: 24%;background: white;" id="blah" />
+                                    @Model.UserName
                                     @Model.UserId
                                 </h5>
                             </p>
                       
     </div>
 </div>
+
+
+<style>
+img {
+  -webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-o-user-select: none;
+-ms-user-select: none;
+user-select: none;
+
+-webkit-user-drag: none;
+-khtml-user-drag: none;
+-moz-user-drag: none;
+-o-user-drag: none;
+-ms-user-drag: none;
+user-drag: none;
+  pointer-events: none;
+}
+</style>
 

@@ -1,4 +1,5 @@
 ﻿using AdopPix.Models;
+using AdopPix.Models.ViewModels;
 using AdopPix.Procedure.IProcedure;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
@@ -100,6 +101,35 @@ namespace AdopPix.Procedure
             }
             return auction;
         }
+        public async Task<AuctionImage> FindImageByIdAsync(string auctionId)
+        {
+            AuctionImage auctionImage = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "AuctionId_FindImageById";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = auctionId;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        auctionImage = new AuctionImage
+                        {
+                            ImageId = reader["ImageId"].ToString(),
+
+                        };
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return auctionImage;
+        }
+
+
+
 
         public Task UpdateAsync(Auction auction)
         {
@@ -126,5 +156,101 @@ namespace AdopPix.Procedure
                 }
             }
         }
+
+
+        public async Task<List<Auction>> GetAllAsync()
+        {
+            List<Auction> auctions = new List<Auction>();
+            Auction auction = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Auction_GetAll";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        auction = new Auction
+                        {
+                            AuctionId = reader["AuctionId"].ToString(),
+                            UserId = reader["UserId"].ToString(),
+                            Title = reader["Title"].ToString(),
+                            HourId = Convert.ToInt32(reader["HourId"].ToString()),
+                            Created = Convert.ToDateTime(reader["Created"]),
+                            OpeningPrice = Convert.ToDecimal(reader["OpeningPrice"].ToString()),
+                            HotClose = Convert.ToDecimal(reader["HotClose"].ToString()),
+                            Description = reader["Description"].ToString(),
+
+                        };
+                        auctions.Add(auction);
+                        auction = null;
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return auctions;
+        }
+        public async Task<List<AuctionImage>> GetAllImageAsync()
+        {
+            List<AuctionImage> auctionImages = new List<AuctionImage>();
+            AuctionImage auctionimage = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Auction_GetAllImage";
+                    command.CommandType = CommandType.StoredProcedure;
+
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        auctionimage = new AuctionImage
+                        {
+                            ImageId = reader["ImageId"].ToString(),
+                            AuctionId = reader["AuctionId"].ToString(),
+                        };
+                        auctionImages.Add(auctionimage);
+                        auctionimage = null;
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return auctionImages;
+        }
+
+        public async Task<AuctionViewModel> FindByUserIdAsync(string userId)
+        {
+            AuctionViewModel userProfile = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UserName_FindById";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@UserId", MySqlDbType.VarChar).Value = userId;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        userProfile = new AuctionViewModel
+                        {
+                            UserName = reader["UserName"].ToString(),
+                        };
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return userProfile;
+        }
+
+
     }
 }

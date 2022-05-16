@@ -31,5 +31,6 @@ namespace AdopPix.Models
         public List<AuctionTag> AuctionTags { get; set; }
         public WinningBidder WinningBidder { get; set; }
         public List<AuctionNotification> AuctionNotifications { get; set; }
+        public string UserName { get; set; }
     }
 }

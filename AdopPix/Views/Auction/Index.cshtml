@@ -1,5 +1,60 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model List<Auction>
+
+<div class="grid-container">
+
+
+        @foreach (var std in ViewData["imageAuctions"] as IList<AuctionImage>)
+        {
+            @foreach(var item in Model)
+            {
+                @if (std.AuctionId == item.AuctionId)
+                {  <a class="text-dark float-right" style="float: right;" asp-controller="Auction"   asp-action="Post" asp-route-id="@item.AuctionId">
+                            <div style="border-radius: 20px;width: 289px;height: 360px;box-shadow: 1px 1px 1px lightgray; margin:10px">
+
+                            <div>
+                                 <img class="" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@std.ImageId}")" style=" object-fit: cover; padding: 10px;border-radius: 25px;width: 280px;height: 280px;" />
+                            </div>
+                      
+                      
+                            <p class="text" style="padding-left: 20px;text-align: left;" >
+
+                                @item.Title
+                            </p>
+                            </div>
+
+                    </a>    
+                };
+            
+            };
+        };
+
+</div>
+
+<style>
+
+    .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+  /*background-color: #2196F3; */
+  padding: 10px;
 }
+
+.grid-container > div {
+ /* background-color: rgba(255, 255, 255, 0.8); */
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+
+.text {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 40px;     /* fallback */
+   max-height: 32px;      /* fallback */
+   -webkit-line-clamp: 1; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+</style>

@@ -21,6 +21,10 @@ namespace AdopPix.Models.ViewModels
         public string AuctionId { get; set; }
         public int ImageTypeId { get; set; }
 
+        public string AvaterName { get; set; }
+        public string UserName { get; set; }
+
+
 
     }
 }
