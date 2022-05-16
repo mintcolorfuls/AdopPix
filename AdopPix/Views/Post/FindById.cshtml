@@ -1,0 +1,11 @@
+﻿@{
+    var data = (ShowDirectPostViewModel)ViewData["Post"];
+}
+
+<div>
+    <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@data.ImageName}")" style="width:100px; height: 100px;" id="blah" />
+    <p>@data.PostId</p>
+    <p>@data.Title</p>
+    <p>@data.UserName</p>
+    <p>@data.Description</p>
+</div>

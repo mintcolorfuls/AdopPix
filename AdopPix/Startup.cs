@@ -72,6 +72,7 @@ namespace AdopPix
             services.AddScoped<ISocialMediaTypeProcedure, SocialMediaTypeProcedure>();
             services.AddScoped<INotificationProcedure, NotificationProcedure>();
             services.AddScoped<IAuctionProcedure, AuctionProcedure>();
+            services.AddScoped<IPostProcedure, PostProcedure>();
 
             //Register services
             services.AddScoped<IImageService, ImageService>();
