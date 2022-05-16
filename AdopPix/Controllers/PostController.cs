@@ -31,7 +31,14 @@ namespace AdopPix.Controllers
             this.userManager = userManager;
             this.imageService = imageService;
         }
-        
+
+        [HttpGet("Post/Create")]
+        public async Task<IActionResult> Create()
+        {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(string Title, string Description,IFormFile Image)
         {
@@ -68,12 +75,7 @@ namespace AdopPix.Controllers
             
             return Redirect("/");
         }
-        [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-            return View();
-        }
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
