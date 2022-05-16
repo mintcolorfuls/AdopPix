@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AdopPix.Controllers
@@ -55,11 +56,29 @@ namespace AdopPix.Controllers
         [HttpGet]
         public async Task<IActionResult> Show()
         {
-            var allImage = await post.FindImageByPostIdAsync();
-            var allDetail = await post.FindByPostIdAsync();
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-            ViewData["ImageId"] = allImage;
-            return View(allDetail);
+
+            List<PostViewModel> postViewModels = new List<PostViewModel>();
+            var posts = await post.FindAllAsync();
+
+            foreach (var item in posts)
+            {
+                var image = await post.FindImageByPostIdAsync(item.PostId);
+                PostViewModel postViewModel = new PostViewModel
+                {
+                    Title = item.Title,
+                    ImageName = image.ImageId
+                };
+                postViewModels.Add(postViewModel);
+            }
+
+            ViewData["Posts"] = postViewModels;
+            return View(postViewModels);
         }
+    }
+    public class PostViewModel
+    {
+        public string Title { get; set; }
+        public string ImageName { get; set; }
     }
 }

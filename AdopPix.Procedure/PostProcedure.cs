@@ -3,6 +3,7 @@ using AdopPix.Procedure.IProcedure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,7 +24,7 @@ namespace AdopPix.Procedure
         public PostProcedure(IConfiguration configuration,UserManager<User> userManager)
         {
             this.configuration = configuration;
-            this.connectionString = $"Server={this.configuration["AWSMySQL_Server"]};Database={this.configuration["AWSMySQL_Database"]};user={this.configuration["AWSMySQL_Username"]};password={this.configuration["AWSMySQL_Password"]}";
+            this.connectionString = $"Server={this.configuration["AWSMySQL_Server"]};Database={this.configuration["AWSMySQL_Database"]};user={this.configuration["AWSMySQL_Username"]};password={this.configuration["AWSMySQL_Password"]};";
             this.userManager = userManager;
         }
 
@@ -43,7 +44,6 @@ namespace AdopPix.Procedure
                 using (MySqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "Post_Create";
-                    command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = GeneratePostId();
                     command.Parameters.Add("@Title", MySqlDbType.VarChar).Value = entity.Title;
@@ -77,7 +77,7 @@ namespace AdopPix.Procedure
             }
         }
 
-        public async Task<List<Post>> FindByPostIdAsync()
+        public async Task<List<Post>> FindAllAsync()
         {
             List<Post> posts = new List<Post>();
             Post post = null;
@@ -100,7 +100,7 @@ namespace AdopPix.Procedure
                             Description = reader["Description"].ToString(),
                             UserId = reader["UserId"].ToString(),
                             // ตัวแปร เวลา จะต้อง Convert เป็น datetime ก่อนแล้วเอามาแปลงเป็น string
-                            // Created = Convert.ToDateTime(reader["Created"])
+                            Created = Convert.ToDateTime(reader["Created"])
                         };
                         posts.Add(post);
                         post = null;
@@ -111,7 +111,7 @@ namespace AdopPix.Procedure
             return posts;
         }
 
-        public async Task<PostImage> FindImageByPostIdAsync(string ImageId)
+        public async Task<PostImage> FindImageByPostIdAsync(string postId)
         {
             // List<Post> images = new List<Post>();
             PostImage image = null;
@@ -121,6 +121,8 @@ namespace AdopPix.Procedure
                 {
                     command.CommandText = "Post_Index_Image";
                     command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = postId;
 
                     await connection.OpenAsync();
                     MySqlDataReader reader = command.ExecuteReader();

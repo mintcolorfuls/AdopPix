@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj": {}
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
+        "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
         "projectName": "AdopPix.Hubs",
-        "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
-        "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\obj\\",
+        "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
+        "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,21 +60,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
+        "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
         "projectName": "AdopPix.Models",
-        "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
-        "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\obj\\",
+        "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
+        "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,7 +87,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
+                "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -124,21 +128,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj": {
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj",
+        "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj",
         "projectName": "AdopPix.Procedure",
-        "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj",
-        "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\obj\\",
+        "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj",
+        "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -152,8 +156,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
-                "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
+              "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
+                "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
               }
             }
           }
@@ -171,6 +175,10 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.28, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[1.3.13, )"
             }
           },
           "imports": [
@@ -188,21 +196,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj": {
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
+        "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
         "projectName": "AdopPix.Services",
-        "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
-        "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\obj\\",
+        "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
+        "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -216,14 +224,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
-                "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj"
+              "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
+                "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj"
               },
-              "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
-                "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
+              "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
+                "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
               },
-              "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj": {
-                "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj"
+              "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj": {
+                "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj"
               }
             }
           }
@@ -274,7 +282,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

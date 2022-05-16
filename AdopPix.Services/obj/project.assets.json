@@ -543,6 +543,15 @@
           "lib/net5.0/ZstdNet.dll": {}
         }
       },
+      "MySqlConnector/1.3.13": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/MySqlConnector.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/MySqlConnector.dll": {}
+        }
+      },
       "Newtonsoft.Json/12.0.2": {
         "type": "package",
         "compile": {
@@ -889,6 +898,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "AdopPix.Hubs": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.15",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.15"
         },
@@ -904,7 +914,8 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "AdopPix.Models": "1.0.0",
-          "MySql.Data": "8.0.28"
+          "MySql.Data": "8.0.28",
+          "MySqlConnector": "1.3.13"
         },
         "compile": {
           "bin/placeholder/AdopPix.Procedure.dll": {}
@@ -1735,6 +1746,37 @@
         "lib/netstandard2.1/ZstdNet.dll",
         "mysql.data.8.0.28.nupkg.sha512",
         "mysql.data.nuspec"
+      ]
+    },
+    "MySqlConnector/1.3.13": {
+      "sha512": "o1qsijkFGvTslpuQdcJwG6IvdNOiVL7fRqvFZ0LTg04kfz+IzzwSWj4YwgTe0q0C3p0WqgaDXui5OEx6qgwebg==",
+      "type": "package",
+      "path": "mysqlconnector/1.3.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net45/MySqlConnector.dll",
+        "lib/net45/MySqlConnector.xml",
+        "lib/net461/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.xml",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
+        "lib/net5.0/MySqlConnector.dll",
+        "lib/net5.0/MySqlConnector.xml",
+        "lib/netcoreapp2.1/MySqlConnector.dll",
+        "lib/netcoreapp2.1/MySqlConnector.xml",
+        "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.xml",
+        "lib/netstandard1.3/MySqlConnector.dll",
+        "lib/netstandard1.3/MySqlConnector.xml",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
+        "logo.png",
+        "mysqlconnector.1.3.13.nupkg.sha512",
+        "mysqlconnector.nuspec"
       ]
     },
     "Newtonsoft.Json/12.0.2": {
@@ -2910,19 +2952,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Son\\.nuget\\packages\\": {}
+    "C:\\Users\\mintc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
+      "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
       "projectName": "AdopPix.Services",
-      "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
-      "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\obj\\",
+      "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\AdopPix.Services.csproj",
+      "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2936,14 +2978,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
-              "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj"
+            "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
+              "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj"
             },
-            "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
-              "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
+            "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
+              "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
             },
-            "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj": {
-              "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj"
+            "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj": {
+              "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj"
             }
           }
         }
@@ -2994,7 +3036,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

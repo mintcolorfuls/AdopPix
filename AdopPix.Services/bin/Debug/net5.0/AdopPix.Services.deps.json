@@ -501,6 +501,14 @@
           }
         }
       },
+      "MySqlConnector/1.3.13": {
+        "runtime": {
+          "lib/net5.0/MySqlConnector.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.3.13.0"
+          }
+        }
+      },
       "Newtonsoft.Json/12.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -719,7 +727,8 @@
       "AdopPix.Procedure/1.0.0": {
         "dependencies": {
           "AdopPix.Models": "1.0.0",
-          "MySql.Data": "8.0.28"
+          "MySql.Data": "8.0.28",
+          "MySqlConnector": "1.3.13"
         },
         "runtime": {
           "AdopPix.Procedure.dll": {}
@@ -1026,6 +1035,13 @@
       "sha512": "sha512-7b699tU9ba0r7SBK7K9snGJB9ulnOdwEXG28kpVvaQSN0hHenfoJ/ADOtdfhcvcn1KStBX8pFK5qIl8scdBL2g==",
       "path": "mysql.data/8.0.28",
       "hashPath": "mysql.data.8.0.28.nupkg.sha512"
+    },
+    "MySqlConnector/1.3.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-o1qsijkFGvTslpuQdcJwG6IvdNOiVL7fRqvFZ0LTg04kfz+IzzwSWj4YwgTe0q0C3p0WqgaDXui5OEx6qgwebg==",
+      "path": "mysqlconnector/1.3.13",
+      "hashPath": "mysqlconnector.1.3.13.nupkg.sha512"
     },
     "Newtonsoft.Json/12.0.2": {
       "type": "package",

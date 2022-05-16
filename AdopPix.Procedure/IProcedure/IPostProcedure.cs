@@ -11,8 +11,8 @@ namespace AdopPix.Procedure.IProcedure
     {
         Task CreateAsync(Post entity);
         Task CreateImageAsync(PostImage entity);
-        Task<List<Post>> FindByPostIdAsync();
-        Task<PostImage> FindImageByPostIdAsync(string ImageId);
+        Task<List<Post>> FindAllAsync();
+        Task<PostImage> FindImageByPostIdAsync(string postId);
         Task UpdateAsync(Post entity);
         Task DeleteAsync(Post entity);
     }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {}
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
-        "projectName": "AdopPix.Models",
-        "projectPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
-        "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Son\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\obj\\",
+        "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
+        "projectName": "AdopPix.Hubs",
+        "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
+        "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,6 +28,70 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.SignalR.Core": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
+        "projectName": "AdopPix.Models",
+        "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
+        "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
+                "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -64,7 +128,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
