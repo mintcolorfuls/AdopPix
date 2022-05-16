@@ -1,19 +1,43 @@
 ﻿@model NavbarViewModel
 
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<nav class="navbar navbar-controll navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background:white;">
     <div class="container">
-        <a class="navbar-brand" asp-controller="Home" asp-action="Index">AdopPix</a>
+        <a class="navbar-brand navbar-logo" asp-controller="Home" asp-action="Index">AdopPix</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+            <div class="navbar-nav" style="margin-left:30px;">
+                <form>
+                    <div style="  border-radius: 30px;background: #ECECEC; padding: 4px 20px;width: 450px;">
+                        <i class="fa-solid fa-magnifying-glass" style="color:#B7B7B7;"></i>
+                        <input class="" style="border: none;background: none; width: 90%;"/>
+                        <input type="submit" value="" style="border: none;background: none;"/>
+
+                    </div>
+                </form>
+
+
+
             </div>
         </div>
-        <div class="navbar-nav">
+        <div style="display: flex; margin-right: 20px;"> 
+            <a class="menu-list" asp-controller="Auction" asp-action="Index">
+                Auction
+            </a>
+            <a  class="menu-list" asp-action="Index">
+               illustration
+            </a>
+            <a class="post-btn" asp-action="Index">
+                Post
+
+            </a>
+        </div>
+
+        <div class="navbar-nav" style="align-items: center;">
             <div class="dropdown">
-                <button class="btn bg-transparent dropdown-toggle" type="button" id="Notification" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-regular fa-bell fa-2x"></i>
+                <button class="notification btn bg-transparent dropdown-toggle" type="button" id="Notification" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-regular fa-bell fa-xl" style="color: #B7B7B7;"></i>
                 </button>
                 <ul class="dropdown-menu m-3 dropdown-menu-end notification-menu overflow-auto" aria-labelledby="Notification" id="NotificationPush">
 
@@ -28,14 +52,14 @@
                         @foreach (var notification in Model.Notifications)
                         {
                             <li>
-                                <a href="@notification.RedirectToUrl" class="notification-a dropdown-item">
+                                <a href="@notification.RedirectToUrl" class="notification-a dropdown-item" style="overflow:hidden;">
                                     <div class="notification-item">
                                         <div>
                                             <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{notification.AvatarName}")" width="50" style="border-radius:50%" />
                                         </div>
                                         <div class="ms-3">
                                             <h5 class="notification-username">@notification.UserName</h5>
-                                            <p class="notification-description">@notification.Description</p>
+                                            <p class="notification-description cut-text">@notification.Description</p>
                                         </div>
                                     </div>
                                 </a>
@@ -46,7 +70,7 @@
                 </ul>
             </div>
             <div class="dropdown">
-                <button class="btn bg-transparent dropdown-toggle" type="button" id="Menu" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="profileIco btn bg-transparent dropdown-toggle" type="button" id="Menu" data-bs-toggle="dropdown" aria-expanded="false" >
                     <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{Model.AvatarName}")" width="30" style="border-radius:50%" />
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="Menu">
@@ -63,6 +87,7 @@
                         </form>
                     </li>
                 </ul>
+
             </div>
         </div>
     </div>
@@ -102,3 +127,96 @@
     }
     server.start().then(onConnected, onFailed);
 </script>
+
+
+<style>
+
+
+    .navbar-logo{
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #4F9FDA !important;
+    }
+    .post-btn{
+        border: 2px solid #D5D5D5;
+padding: 5px 15px;
+border-radius: 10px;
+text-align: center;
+margin: 0 !important;
+color: #B7B7B7;
+font-size: 1rem;
+font-weight: 700;
+  text-decoration: none;
+}
+    
+
+    .menu-list{
+          text-decoration: none;
+
+margin: 0;
+margin-right: 0px;
+font-size: 1.3rem;
+font-weight: 600;
+color: #BBB;
+margin-right: 30px;
+margin-top: 2px;
+    }
+    .text {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 40px;     /* fallback */
+   max-height: 32px;      /* fallback */
+   -webkit-line-clamp: 1; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
+.cut-text { 
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  width: 190px; 
+  height: 1.4em; 
+  white-space: nowrap;
+}
+
+.notification{
+    border-radius: 50px;height: 50px;width: 50px;
+}
+
+.profileIco{
+    border-radius: 50px;height: 55px;width: 55px;
+}
+.navbar-logo{
+
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+input.middle:focus {
+    outline-width: 0;
+}
+*:focus {
+    outline: none;
+}
+.form-control:focus{
+    box-shadow: none;
+}
+
+</style>
