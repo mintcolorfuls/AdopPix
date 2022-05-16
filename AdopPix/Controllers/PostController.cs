@@ -51,5 +51,13 @@ namespace AdopPix.Controllers
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Show()
+        {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+            await post.FindByPostIdAsync();
+            return View();
+        }
     }
 }

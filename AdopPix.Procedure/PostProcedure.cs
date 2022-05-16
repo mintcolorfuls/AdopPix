@@ -77,17 +77,47 @@ namespace AdopPix.Procedure
             }
         }
 
-        public Task DeleteAsync(Post entity)
+        public async Task<Post> FindByPostIdAsync(string postId)
         {
-            throw new NotImplementedException();
+            Post post = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Post_Index";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        post = new Post
+                        {
+                            PostId = reader["PostId"].ToString(),
+                            Description = reader["UserName"].ToString(),
+                            UserId = reader["UserId"].ToString(),
+                            // ตัวแปร เวลา จะต้อง Convert เป็น datetime ก่อนแล้วเอามาแปลงเป็น string
+                            Created = Convert.ToDateTime(reader["Created"].ToString())
+                        };
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return post;
         }
 
-        public Task<Post> FindByPostIdAsync(string postId)
+        public Task<PostImage> FindImageByPostIdAsync(string postId)
         {
             throw new NotImplementedException();
         }
 
         public Task UpdateAsync(Post entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(Post entity)
         {
             throw new NotImplementedException();
         }
