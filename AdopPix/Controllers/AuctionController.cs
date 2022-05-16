@@ -24,6 +24,7 @@ namespace AdopPix.Controllers
             string[] hhmmss = dateTime[1].Split(':');
             return $"auction-{string.Join("", ddmmyyyy)}{string.Join("", hhmmss)}";
         }
+
         public AuctionController( INavbarService navbarService, IUserProfileProcedure userProfileProcedure, UserManager<User> userManager , IAuctionProcedure auctionProcedure, IImageService imageService)
         {
             this.navbarService = navbarService;
@@ -32,11 +33,7 @@ namespace AdopPix.Controllers
             this.auctionProcedure = auctionProcedure;
             this.imageService = imageService;
             
-        }
-
-
-
-        //-----------------------------------------------------------------------------------------------------------
+    }
         public async Task<IActionResult> Index()
         {
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
@@ -54,10 +51,6 @@ namespace AdopPix.Controllers
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             return View();
         }
-
-
-        //-----------------------------------------------------------------------------------------------------------
-
         [HttpPost("Auction/Create")]
         public async Task<IActionResult> Create(AuctionViewModel auctionViewModel)
         {
@@ -106,7 +99,9 @@ namespace AdopPix.Controllers
             return Redirect("/Auction");
         }
 
-        //-----------------------------------------------------------------------------------------------------------
+
+
+
 
         [HttpGet("Auction/Post/{aucId}")]
         public async Task<IActionResult> AuctionPost(string aucId)
@@ -116,12 +111,11 @@ namespace AdopPix.Controllers
             var auctionpost = await auctionProcedure.FindByIdAsync(aucId);
             var auctionimage = await auctionProcedure.FindImageByIdAsync(aucId);
             var userProfiles = await userProfileProcedure.FindByIdAsync(auctionpost.UserId);
-            var users = await userManager.FindByIdAsync(auctionpost.UserId);
-            var user = users.UserName;
+            var userName = await auctionProcedure.FindByIdAsync(auctionpost.UserId);
             AuctionViewModel auction = new AuctionViewModel
             {
                 AvaterName = userProfiles.AvatarName,
-                UserName = user,
+                //UserName = userName.UserName,
                 AuctionId = auctionpost.AuctionId,
                 UserId = auctionpost.UserId,
                 Title = auctionpost.Title,
@@ -137,29 +131,6 @@ namespace AdopPix.Controllers
 
 
             return View(auction);
-        }
-
-
-
-        [HttpPost("Auction/Edit/{aucID}")]
-        public async Task<IActionResult> Edit(string aucID,AuctionViewModel auctionViewModel)
-        {
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
-            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-
-
-            var auctionInfos = await auctionProcedure.FindByIdAsync(aucID);
-
-            auctionInfos.AuctionId = auctionViewModel.AuctionId;
-            auctionInfos.Title = auctionViewModel.Title;
-            auctionInfos.Description = auctionViewModel.Description;
-
-
-            await auctionProcedure.UpdateAsync(auctionInfos);
-
-
-
-            return Redirect("/Auction/Post/{AuctionID}");
         }
     }
 }

@@ -17,8 +17,7 @@ namespace AdopPix.Procedure.IProcedure
         Task <AuctionImage> FindImageByIdAsync(string auctionId);
         Task FindAll(Auction auction);
         Task DeleteAsync(Auction auction);
-        Task UpdateAsync(Auction entity);
-
+        Task UpdateAsync(Auction auction);
 
     }
 }
