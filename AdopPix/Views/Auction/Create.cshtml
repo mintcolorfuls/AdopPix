@@ -1,7 +1,34 @@
 ﻿@model AuctionViewModel
 <div class="d-flex justify-content-center mt-3">
     <div>
+
+         @*  <div class="row w-100 h-25" style="overflow: hidden; height: 800px; width: 1280px;">
+            @if (@Model.ImageId != "")
+        {
+            <h3>Cover Example</h3>
+            <img class="" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.ImageId}")" style="height: 800px;width: 1280px;" />
+        }
+        @if (@Model.ImageId == "")
+        {
+            <img class="" src="@Url.Content($"https://adoppixstorage.s3.ap-southeast-1.amazonaws.com/cover-default.jpg")" style="height: 800px;width: 1280px;" />
+        }
+       
+        </div>>*@
+
+
+
         <form asp-action="Create">
+                 
+                    <div class="mb-3">
+                            <label class="form-label">Image</label>
+                            <input type="file" asp-for="@Model.AuctionFile" class="form-control" id="imgInp" />
+                            <input type="hidden" asp-for="@Model.ImageId" id="formFile" />
+                            <span asp-validation-for="AuctionFile"></span>
+                    </div>
+
+
+
+
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
                         <div class="col-md-6">
@@ -50,3 +77,91 @@
                 </form>
     </div>
 </div>
+
+<script>
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            blah.src = URL.createObjectURL(file)
+        }
+    }
+
+    function AddSocialFormToggle(event) {
+        event.preventDefault();
+        var x = document.getElementById("AddSocial");
+        if(x.style.display === "none")
+        {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+</script>
+
+
+
+<style>
+    .profile-setting {
+        border-top: 5px solid #4F9FDA;
+        color: #4F9FDA;
+        font-weight: 900;
+        font-size: 21px;
+        text-decoration: none;
+        padding: 0 20px;
+    }
+
+        .profile-setting:hover {
+            color: #4F9FDA;
+        }
+
+    .security-setting {
+        border-top: 5px solid #E2E2E2;
+        color: #E2E2E2;
+        font-weight: 900;
+        font-size: 21px;
+        text-decoration: none;
+        padding: 0 20px;
+        transition: .5s;
+        margin-left: -8px;
+    }
+
+        .security-setting:hover {
+            border-top: 5px solid #4F9FDA;
+            color: #4F9FDA;
+        }
+
+    .backtoindex {
+        border: 3px solid #BBB;
+        border-radius: 10px;
+        padding: 10px 19px;
+        text-decoration: none;
+        color: #BBB;
+        width: 222px !important;
+        font-weight: bolder;
+        transition: .5s;
+        text-align: center;
+    }
+
+        .backtoindex:hover {
+            border: 3px solid #FF9898;
+            color: #FF9898;
+        }
+
+    .save-btn {
+        border: 3px solid #4F9FDA;
+        border-radius: 10px;
+        padding: 10px 19px;
+        text-decoration: none;
+        color: #4F9FDA;
+        width: 222px !important;
+        font-weight: bolder;
+        transition: .5s;
+        background: none;
+    }
+
+        .save-btn:hover {
+            border: 3px solid #98D3C9;
+            color: #98D3C9;
+        }
+</style>

@@ -31,12 +31,14 @@ namespace AdopPix.Procedure
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
+                var generateAuctionId = GenerateAuctionId();
                 using (MySqlCommand command = connection.CreateCommand())
                 {
+                    
                     command.CommandText = "Auction_Create";
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = GenerateAuctionId();
+                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = auction.AuctionId;
                     command.Parameters.Add("@UserId", MySqlDbType.VarChar).Value = auction.UserId;
                     command.Parameters.Add("@Title", MySqlDbType.VarChar).Value = auction.Title;
                     command.Parameters.Add("@HourId", MySqlDbType.Int32).Value = auction.HourId;
@@ -48,7 +50,10 @@ namespace AdopPix.Procedure
                     await connection.OpenAsync();
                     await command.ExecuteNonQueryAsync();
                     await connection.CloseAsync();
+
+                    
                 }
+
             }
         }
 
@@ -62,14 +67,64 @@ namespace AdopPix.Procedure
             throw new NotImplementedException();
         }
 
-        public Task FindByIdAsync(Auction auction)
+        public async Task<Auction> FindByIdAsync(string auctionId)
         {
-            throw new NotImplementedException();
+            Auction auction = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "AuctionId_FindById";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = auctionId;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        auction = new Auction
+                        {
+                            AuctionId = reader["AuctionId"].ToString(),
+                            UserId = reader["UserId"].ToString(),
+                            Title = reader["Title"].ToString(),
+                            HourId = Convert.ToInt32(reader["HourId"].ToString()),
+                            Created = Convert.ToDateTime(reader["Created"].ToString()),
+                            OpeningPrice = Convert.ToDecimal(reader["OpeningPrice"].ToString()),
+                            HotClose = Convert.ToDecimal(reader["HotClose"].ToString()),
+                            Description = reader["Description"].ToString()
+
+                    };
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return auction;
         }
 
         public Task UpdateAsync(Auction auction)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task CreateImageAsync(AuctionImage auctionImage)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "AuctionImage_Create";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@ImageId", MySqlDbType.VarChar).Value = GenerateAuctionId();
+                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = auctionImage.AuctionId;
+                    command.Parameters.Add("@ImageTypeId", MySqlDbType.Int32).Value = 1;
+                    command.Parameters.Add("@Created", MySqlDbType.DateTime).Value = auctionImage.Created;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
         }
     }
 }
