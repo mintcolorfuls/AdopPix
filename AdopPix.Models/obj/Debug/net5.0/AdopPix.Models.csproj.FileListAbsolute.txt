@@ -22,3 +22,6 @@ C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.Models\obj\Debug\net5.0\AdopPix.Mo
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.Models\obj\Debug\net5.0\refint\AdopPix.Models.dll
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.Models\obj\Debug\net5.0\AdopPix.Models.pdb
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.Models\obj\Debug\net5.0\ref\AdopPix.Models.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Models\bin\Debug\net5.0\AdopPix.Hubs.dll
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Models\bin\Debug\net5.0\AdopPix.Hubs.pdb
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Models\obj\Debug\net5.0\AdopPix.Models.csproj.CopyComplete

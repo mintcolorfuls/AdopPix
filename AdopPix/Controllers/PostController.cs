@@ -1,4 +1,5 @@
 ﻿using AdopPix.Models;
+using AdopPix.Models.ViewModels;
 using AdopPix.Procedure;
 using AdopPix.Procedure.IProcedure;
 using AdopPix.Services.IServices;
@@ -52,9 +53,7 @@ namespace AdopPix.Controllers
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             return View();
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Show()
+        public async Task<IActionResult> Finds()
         {
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
 
@@ -72,13 +71,7 @@ namespace AdopPix.Controllers
                 postViewModels.Add(postViewModel);
             }
 
-            ViewData["Posts"] = postViewModels;
             return View(postViewModels);
         }
-    }
-    public class PostViewModel
-    {
-        public string Title { get; set; }
-        public string ImageName { get; set; }
     }
 }
