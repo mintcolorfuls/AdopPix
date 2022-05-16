@@ -129,13 +129,6 @@ namespace AdopPix.Procedure
         }
 
 
-
-
-        public Task UpdateAsync(Auction auction)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task CreateImageAsync(AuctionImage auctionImage)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -250,6 +243,32 @@ namespace AdopPix.Procedure
             }
             return userProfile;
         }
+
+
+
+        public async Task UpdateAsync(Auction entity)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "AuctionPost_Update";
+                    command.CommandType = CommandType.StoredProcedure;
+
+
+                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = entity.AuctionId;
+                    command.Parameters.Add("@Title", MySqlDbType.VarChar).Value = entity.Title;
+                    command.Parameters.Add("@Description", MySqlDbType.VarChar).Value = entity.Description;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
+        }
+
+
+
 
 
     }
