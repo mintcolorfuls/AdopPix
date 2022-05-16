@@ -1,0 +1,24 @@
+﻿@model List<Post>
+@* <div class="mb-3">
+    <p>
+        @foreach (var item in Model){
+            @item.PostId
+            @item.Title
+            @item.Description
+            @item.UserId
+            @item.Created
+        }
+    </p><br />
+</div> *@
+
+@foreach (var item in Model){
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="...">
+        <div class="card-body">
+             <h5 class="card-title">@item.Title</h5>
+             <h6 class="card-subtitle mb-2 text-muted">@item.UserId </h6>
+             <p class="card-text">@item.Description</p>
+             <p class="card-text">@item.PostId</p>
+         </div>
+    </div>
+}

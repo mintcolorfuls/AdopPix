@@ -77,14 +77,15 @@ namespace AdopPix.Procedure
             }
         }
 
-        public async Task<Post> FindByPostIdAsync(string postId)
+        public async Task<List<Post>> FindByPostIdAsync()
         {
+            List<Post> posts = new List<Post>();
             Post post = null;
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 using (MySqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "Post_Index";
+                    command.CommandText = "Post_Index_PostDetail";
                     command.CommandType = CommandType.StoredProcedure;
 
                     await connection.OpenAsync();
@@ -95,21 +96,48 @@ namespace AdopPix.Procedure
                         post = new Post
                         {
                             PostId = reader["PostId"].ToString(),
-                            Description = reader["UserName"].ToString(),
+                            Title = reader["Title"].ToString(),
+                            Description = reader["Description"].ToString(),
                             UserId = reader["UserId"].ToString(),
                             // ตัวแปร เวลา จะต้อง Convert เป็น datetime ก่อนแล้วเอามาแปลงเป็น string
-                            Created = Convert.ToDateTime(reader["Created"].ToString())
+                            // Created = Convert.ToDateTime(reader["Created"])
                         };
+                        posts.Add(post);
+                        post = null;
                     }
                     await connection.CloseAsync();
                 }
             }
-            return post;
+            return posts;
         }
 
-        public Task<PostImage> FindImageByPostIdAsync(string postId)
+        public async Task<PostImage> FindImageByPostIdAsync(string ImageId)
         {
-            throw new NotImplementedException();
+            // List<Post> images = new List<Post>();
+            PostImage image = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Post_Index_Image";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        image = new PostImage
+                        {
+                            ImageId = reader["ImageId"].ToString()
+                        };
+                        // images.Add(image);
+                        // image = null;
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return image;
         }
 
         public Task UpdateAsync(Post entity)

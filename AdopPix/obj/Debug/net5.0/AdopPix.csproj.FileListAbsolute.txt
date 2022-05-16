@@ -915,3 +915,4 @@ C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\refint\AdopPix.dl
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\AdopPix.pdb
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\AdopPix.genruntimeconfig.cache
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\ref\AdopPix.dll
+C:\Users\Son\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\Show.cshtml.g.cs
