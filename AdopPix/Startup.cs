@@ -113,6 +113,7 @@ namespace AdopPix
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<NotificationHub>("/hubs/notification");
+                endpoints.MapHub<AuctionHub>("/hubs/auction");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
