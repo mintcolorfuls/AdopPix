@@ -2,7 +2,7 @@
 using AdopPix.Procedure.IProcedure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using MySql.Data.MySqlClient;
+
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -44,6 +44,7 @@ namespace AdopPix.Procedure
                 using (MySqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "Post_Create";
+                    command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = GeneratePostId();
                     command.Parameters.Add("@Title", MySqlDbType.VarChar).Value = entity.Title;

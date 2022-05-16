@@ -4,10 +4,10 @@
 @{
 }
 <h1>Create Post</h1>
-<form asp-controller="Post" asp-action="Create" method="post">
+<form asp-controller="Post" asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="image">Select image :</label>
-        <input type="file" id="image" name="ImageId" accept="image/*" class="form-control" required>
+        <input type="file" id="image" name="Image" accept="image/*" class="form-control" required>
     </div>
     <div class="mb-3">
         <label for="title">Title</label>

@@ -4,6 +4,7 @@ using AdopPix.Procedure;
 using AdopPix.Procedure.IProcedure;
 using AdopPix.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,16 +19,34 @@ namespace AdopPix.Controllers
         private readonly INavbarService navbarService;
         private readonly IPostProcedure post;
         private readonly UserManager<User> userManager;
-        public PostController(IPostProcedure post,INavbarService navbarService,UserManager<User> userManager)
+        private readonly IImageService imageService;
+
+        public PostController(IPostProcedure post,
+                              INavbarService navbarService,
+                              UserManager<User> userManager, 
+                              IImageService imageService)
         {
             this.post = post;
             this.navbarService = navbarService;
             this.userManager = userManager;
+            this.imageService = imageService;
         }
-        DateTime time = DateTime.Now;
+        
         [HttpPost]
-        public async Task<IActionResult> Create(string Title, string Description,string ImageId)
+        public async Task<IActionResult> Create(string Title, string Description,IFormFile Image)
         {
+            string[] extension = { ".png", ".jpg" };
+            string fileName = string.Empty;
+            if (imageService.ValidateExtension(extension, Image))
+            {
+                fileName = await imageService.UploadImageAsync(Image);
+            }
+            else
+            {
+                ModelState.AddModelError("AvatarFile", "We support .png, .jpg");
+                return View();
+            }
+            DateTime time = DateTime.Now;
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             Post postDetail = new Post
             {
@@ -36,15 +55,17 @@ namespace AdopPix.Controllers
                 UserId = user.Id,
                 Created = time
             };
+            await post.CreateAsync(postDetail);
+
             PostImage postImageDetail = new PostImage
             {
                 PostId = postDetail.PostId,
                 Created = time,
-                ImageId = ImageId
+                ImageId = fileName
             };
-            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-            await post.CreateAsync(postDetail);
             await post.CreateImageAsync(postImageDetail);
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+            
             return Redirect("/");
         }
         [HttpGet]
