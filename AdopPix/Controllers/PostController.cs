@@ -94,5 +94,42 @@ namespace AdopPix.Controllers
 
             return View(postViewModels);
         }
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+            
+            List<PostViewModel> postViewModels = new List<PostViewModel>();
+            var posts = await post.FindAllAsync();
+
+            foreach (var item in posts)
+            {
+                var image = await post.FindImageByPostIdAsync(item.PostId);
+                PostViewModel postViewModel = new PostViewModel
+                {
+                    Title = item.Title,
+                    Description = item.Description,
+                    ImageName = image.ImageId,
+                    PostId = item.PostId
+                };
+                postViewModels.Add(postViewModel);
+            }
+            return View(postViewModels);
+        }
+        public async Task<IActionResult> ShowDirectPost(string postId)
+        {
+            PostViewModel postViewModel = null;
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+            
+            postViewModel = new PostViewModel
+            {
+                ImageName = postViewModel.ImageName,
+                Title = postViewModel.Title,
+                Description = postViewModel.Description,
+                UserId = postViewModel.UserId,
+            };
+            return View(postViewModel);
+        }
+
     }
 }

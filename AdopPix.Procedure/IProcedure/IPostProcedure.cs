@@ -1,4 +1,5 @@
 ﻿using AdopPix.Models;
+using AdopPix.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace AdopPix.Procedure.IProcedure
         Task CreateAsync(Post entity);
         Task CreateImageAsync(PostImage entity);
         Task<List<Post>> FindAllAsync();
+        Task<PostViewModel> FindByPostId(string postId);
         Task<PostImage> FindImageByPostIdAsync(string postId);
         Task UpdateAsync(Post entity);
         Task DeleteAsync(Post entity);

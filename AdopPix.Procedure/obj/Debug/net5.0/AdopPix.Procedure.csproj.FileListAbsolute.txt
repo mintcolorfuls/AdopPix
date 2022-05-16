@@ -30,3 +30,5 @@ C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.Procedure\obj\Debug\net5.0\AdopPix
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.Procedure\obj\Debug\net5.0\ref\AdopPix.Procedure.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Procedure\bin\Debug\net5.0\AdopPix.Hubs.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.Procedure\bin\Debug\net5.0\AdopPix.Hubs.pdb
+C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.Procedure\bin\Debug\net5.0\AdopPix.Hubs.dll
+C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.Procedure\bin\Debug\net5.0\AdopPix.Hubs.pdb

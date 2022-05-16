@@ -36,3 +36,5 @@ C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.DataAccess\obj\Debug\net5.0\AdopPi
 C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.DataAccess\obj\Debug\net5.0\ref\AdopPix.DataAccess.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.DataAccess\bin\Debug\net5.0\AdopPix.Hubs.dll
 C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix.DataAccess\bin\Debug\net5.0\AdopPix.Hubs.pdb
+C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.DataAccess\bin\Debug\net5.0\AdopPix.Hubs.dll
+C:\Users\Son\Documents\GitHub\AdopPix\AdopPix.DataAccess\bin\Debug\net5.0\AdopPix.Hubs.pdb

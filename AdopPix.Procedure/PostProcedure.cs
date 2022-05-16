@@ -1,4 +1,5 @@
 ﻿using AdopPix.Models;
+using AdopPix.Models.ViewModels;
 using AdopPix.Procedure.IProcedure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -141,6 +142,38 @@ namespace AdopPix.Procedure
                 }
             }
             return image;
+        }
+
+        public async Task<PostViewModel> FindByPostId(string postId)
+        {
+            PostViewModel postViewModel = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Find_Post_By_Id";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = postId;
+
+                    await connection.OpenAsync();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        postViewModel = new PostViewModel
+                        {
+                            UserId = reader["UserId"].ToString(),
+                            Title = reader["Title"].ToString(),
+                            Description = reader["Description"].ToString(),
+                            ImageName = reader["ImageId"].ToString()
+                        };
+                        
+                    }
+                    await connection.CloseAsync();
+                }
+            }
+            return postViewModel;
         }
 
         public Task UpdateAsync(Post entity)
