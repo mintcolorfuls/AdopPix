@@ -58,10 +58,42 @@ namespace AdopPix.Procedure
             }
         }
 
-        public Task DeleteAsync(Auction auction)
+        public async Task DeleteAuctionAsync(Auction auction)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Auction_Delete";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = auction.AuctionId;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
         }
+
+        public async Task DeleteImageAsync(AuctionImage auctionImage)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Auction_DeleteImage";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = auctionImage.AuctionId;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
+        }
+
 
         public Task FindAll(Auction auction)
         {

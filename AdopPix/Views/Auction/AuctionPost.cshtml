@@ -4,8 +4,91 @@
     ViewData["Title"] = "Courses details";
 }
 
-<div class="row" style="padding-top: 88px">
-    <div class="" style="padding-top: 40px;">
+<div class="row" style="padding-top: 20px">
+    <div class="">
+        @if (@Model.UserName == User.Identity.Name)
+        {
+
+
+
+            <div style="display: flex;flex-direction: row;">
+                <div style="margin-left: 100%;margin-bottom: 50px;">
+
+                <div class="dropdown">
+                    <button class="more-btn btn bg-transparent dropdown-toggle" type="button" id="Notification" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical fa-xl" style="color: #B7B7B7;"></i>
+                    </button>
+                    <ul class="dropdown-menu m-3 dropdown-menu-end more-menu overflow-auto" aria-labelledby="Notification" id="NotificationPush">
+
+
+                        <li class="li-more" style="  padding: 5px 10px;height: 50px;}">
+                            <a style="padding: 5px 10px;font-size: 1.4rem;">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Edit Auction
+                            </a>
+                        </li>
+                        <li class="li-more" style="  padding: 5px 10px;height: 50px;}">
+                            <a style="padding: 5px 10px;font-size: 1.4rem;" href="#popup1">
+                                <i class="fa-solid fa-trash-can"></i>
+                                Delete Auction
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+}
+
+        <div id="popup1" class="overlay">
+
+
+                        <div class="">
+            <div class="alert-delete">
+                <form asp-controller="Auction" asp-action="Delete" asp-route-returnurl="@Model.AuctionId" method="post">
+                    <div style="  display: flex;flex-direction: column;}">
+                        <div>
+                            <p style="text-align: center;margin-top: 40px;">
+
+                                <i class="fa-solid fa-trash-can fa-6x"></i>
+                            </p>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <h1 style="text-align: center;">
+                                Do you really want to delete this auction?
+                            </h1>
+
+                        </div>
+                    </div>
+
+                    <div style="display: flex;flex-direction: row; margin-top: 40px;">
+                        <div class=""  style="margin: 0 auto;">
+                            <a href="/Auction/Delete/@Model.AuctionId" class="delete-btn" value="Delete" />
+                        </div>
+                        <div class="" style="margin: 0 auto;">
+                            <a class="close cancel-btn" href="#">Cancel</a>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+          
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div style="display: flex;flex-direction: row;">
 
@@ -104,11 +187,175 @@
 </div>
 
 
-    </div>
-</div>
 
+<script>
+        $(function(){
+      $("button").click(function(){
+        $(".cover").fadeIn("300");
+      })
+      $(".cover,.close").click(function(){
+        $(".cover").fadeOut("300");
+      })
+      $(".contents").click(function(e){
+        e.stopPropagation();
+      })
+    })
+
+</script>
 
 <style>
+/*    ==================================================================================================*/
+
+
+
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup .close {
+  transition: all 200ms;
+
+  text-decoration: none;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+/*    ==================================================================================================*/
+
+
+
+
+
+    .cancel-btn{
+background: lightcoral;
+color: white;
+padding: 11px 21px;
+width: 200px !important;
+border-radius: 20px;
+border: none;
+font-size: 1.5rem;
+height: 55px !important;
+display: grid;
+text-decoration: none;
+text-align: center;
+
+    }
+    .cancel-btn:hover{
+        color:white;
+
+    }
+    .delete-btn{
+        background: lightgreen;
+color: white;
+padding: 11px 21px;
+width: 200px;
+border-radius: 20px;
+border: none;
+font-size: 1.5rem;
+height: 56px;
+text-decoration: none;
+
+    }
+    a{
+        text-decoration: none;
+color: black;
+    }
+    .alert-delete{
+        display: flex;
+position: absolute;
+border: 1px solid lightcyan;
+border-radius: 20px;
+width: 700px;
+height: 400px;
+background: white;
+box-shadow: 3px 3px 5px lightgray;
+left: 28%;
+top: 26%;
+    }
+    .more-menu {
+        transition: all 0.5s ease 0s;
+        position: absolute;
+        inset: 0px auto auto 0px;
+        margin: 0px;
+        transform: translate(-168px, 52px);
+        width: 218px;
+        height: 150px;
+    }
+
+        .more-menu:before {
+            transform: translate(-168px, 12px);
+        }
+
+        .more-menu:after {
+            transform: translate(-168px, 52px);
+        }
+
+    .more-btn {
+        border-radius: 10px;
+        height: 50px;
+        width: 50px;
+    }
+
+    .li-more:hover {
+        background-color: lightcyan;
+        color: white;
+        cursor: pointer;
+        transition: .5s all;
+    }
+
     img {
         -webkit-user-select: none;
         -khtml-user-select: none;

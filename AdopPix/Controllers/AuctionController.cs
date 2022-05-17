@@ -165,5 +165,33 @@ namespace AdopPix.Controllers
             return Redirect("/Auction/Post/{AuctionID}");
         }
 
+        [HttpGet("Auction/Delete/{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            // หาว่าต้องลบโพสไหน
+            var post = await auctionProcedure.FindByIdAsync(id);
+            // หาว่าต้องลบภาพจากโพสไหน
+            var postImage = await auctionProcedure.FindImageByIdAsync(id);
+            // เช็คว่าเป็น null ไหม
+            if (post == null)
+            {
+                return null;
+            }
+            // เช็คว่าเป็น null ไหม
+            if (postImage == null)
+            {
+                return null;
+            }
+
+            // ลบภาพของโพสตามที่ตรวจเจอ
+            await auctionProcedure.DeleteImageAsync(postImage);
+            // ลบโพสตามที่ตรวจเจอ
+            await auctionProcedure.DeleteAuctionAsync(post);
+
+
+            return Redirect("/Auction");
+        }
+
+
     }
 }
