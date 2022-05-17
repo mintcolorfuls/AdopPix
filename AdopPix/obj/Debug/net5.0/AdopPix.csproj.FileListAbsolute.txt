@@ -1389,3 +1389,4 @@ C:\Users\BestO\Documents\GitHub\AdopPix\obj\Debug\net5.0\AdopPix.pdb
 C:\Users\BestO\Documents\GitHub\AdopPix\obj\Debug\net5.0\AdopPix.genruntimeconfig.cache
 C:\Users\BestO\Documents\GitHub\AdopPix\obj\Debug\net5.0\ref\AdopPix.dll
 C:\Users\BestO\Documents\GitHub\AdopPix\obj\Debug\net5.0\Razor\Views\Auction\Edit.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Auction\Edit.cshtml.g.cs

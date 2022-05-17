@@ -151,7 +151,7 @@ namespace AdopPix.Procedure
                         auctionImage = new AuctionImage
                         {
                             ImageId = reader["ImageId"].ToString(),
-
+                            AuctionId = reader["AuctionId"].ToString()
                         };
                     }
                     await connection.CloseAsync();
