@@ -22,7 +22,7 @@
 
 
                         <li class="li-more" style="  padding: 5px 10px;height: 50px;}">
-                            <a style="padding: 5px 10px;font-size: 1.4rem;">
+                            <a style="padding: 5px 10px;font-size: 1.4rem;"href="/Auction/Edit/@Model.AuctionId">
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 Edit Auction
                             </a>
@@ -40,11 +40,8 @@
 }
 
         <div id="popup1" class="overlay">
-
-
-                        <div class="">
-            <div class="alert-delete">
-                <form asp-controller="Auction" asp-action="Delete" asp-route-returnurl="@Model.AuctionId" method="post">
+            <div class="">
+                <div class="alert-delete">
                     <div style="  display: flex;flex-direction: column;}">
                         <div>
                             <p style="text-align: center;margin-top: 40px;">
@@ -61,22 +58,19 @@
                     </div>
 
                     <div style="display: flex;flex-direction: row; margin-top: 40px;">
-                        <div class=""  style="margin: 0 auto;">
-                            <a href="/Auction/Delete/@Model.AuctionId" class="delete-btn" value="Delete" />
+                        <div class="" style="margin: 0 auto; display: grid;text-align: center;">
+                            <a href="/Auction/Delete/@Model.AuctionId" class="delete-btn" value="Delete">Delete</a>
                         </div>
+
                         <div class="" style="margin: 0 auto;">
                             <a class="close cancel-btn" href="#">Cancel</a>
-
                         </div>
                     </div>
-
-                </form>
+                </div>
             </div>
-        </div>
+        </div>        
 
-
-          
-        </div>
+     
 
 
 
@@ -156,7 +150,7 @@
         </div>
         <div>
             <div>
-                <div style="font-weight: 600;font-size: 45px;margin-left: 30px;">
+                <div style="font-weight: 600;font-size: 2rem;margin-left: 30px;">
 
                     @Model.Title
                 </div>
@@ -324,6 +318,7 @@ background: white;
 box-shadow: 3px 3px 5px lightgray;
 left: 28%;
 top: 26%;
+flex-direction: column;
     }
     .more-menu {
         transition: all 0.5s ease 0s;

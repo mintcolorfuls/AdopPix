@@ -809,19 +809,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mintc\\.nuget\\packages\\": {}
+    "C:\\Users\\BestO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
+      "projectUniqueName": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix.Models\\AdopPix.Models.csproj",
       "projectName": "AdopPix.Models",
-      "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj",
-      "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\obj\\",
+      "projectPath": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix.Models\\AdopPix.Models.csproj",
+      "packagesPath": "C:\\Users\\BestO\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\BestO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -871,7 +871,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

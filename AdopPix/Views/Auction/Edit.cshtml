@@ -1,5 +1,373 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model AuctionViewModel
+
 @{
+    ViewData["Title"] = "Courses details";
 }
+
+
+
+
+
+
+<div class="row" style="padding-top: 20px">
+
+
+
+
+
+
+
+
+
+
+
+    <div class="">
+@*        @if (@Model.UserName == User.Identity.Name)
+        {
+
+        }*@
+
+        <div style="display: flex;flex-direction: row;">
+
+
+            <div>
+                <img class="" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.ImageId}")" style="object-fit: cover;width: 956px;height: 540px; border-radius: 20px;" />
+
+            </div>
+
+            <div style="display: flex;flex-direction: column; margin-left: 30px; ">
+             
+                </div>
+               
+            </div>
+        </div>
+
+
+          <form asp-controller="Auction" asp-action="Edit" method="post">
+              <input type="hidden" asp-for="@Model.AuctionId"/>
+        <div>
+            <div>
+                <div style="font-weight: 600;font-size: 2rem;margin-left: 30px;">
+
+
+                    <div>
+                        <label>Title :</label>
+                        <input class="input-title" type="text" asp-for="@Model.Title" />
+                    </div>
+
+                </div>
+            </div>
+            <div style="display: flex;flex-direction: row;">
+                <div>
+                    <img oncontextmenu="return false;" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; border:4px solid #EDEDED;top: 24%;background: white;" id="blah" />
+
+                </div>
+                <div style="margin-left: 20px;padding-top: 15px;">
+                    <div style="font-weight: 700;font-size: 28px;line-height: 36px;">
+                        @Model.UserName
+                    </div>
+                    <div style="font-weight: 900;font-size: 15px;line-height: 18px;color: #8C8C8C; padding-top: 10px;">
+
+                            <label>Description :</label>
+                        <div>
+                            <textarea class="input-description" cols="20" id="Description" name="Description" rows="2">@Model.Description</textarea>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <div style="display: flex;margin-top: 40px;width: auto;margin-left: 60%;">
+                <a class="cancel-btn" style="padding: 5px 10px;font-size: 1.4rem;border-radius: 10px;width: 106px !important;margin-right: 30px; display: grid;text-align: center;align-content: center;" href="/Auction/Post/@Model.AuctionId">Cancel</a>
+                <input type="submit" class="btn save-btn " value="Save" />
+
+            </div>
+
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+        <div style="margin-top: 50px">
+
+            <h2 style="font-weight: 700;font-size: 24px;line-height: 30px;color: #CECECE;">History</h2>
+        </div>
+
+        
+        @*@if (@Model.UserName != User.Identity.Name)
+        {
+           <p>
+               You Don't Have Access To Edit this Auction
+           </p> 
+        }*@
+
+    </div>
+</div>
+
+
+
+<script>
+        $(function(){
+      $("button").click(function(){
+        $(".cover").fadeIn("300");
+      })
+      $(".cover,.close").click(function(){
+        $(".cover").fadeOut("300");
+      })
+      $(".contents").click(function(e){
+        e.stopPropagation();
+      })
+    })
+
+</script>
+
+<style>
+/*    ==================================================================================================*/
+
+
+.save-btn{
+      float: right;
+  padding: 5px 20px;
+  font-size: 1.4rem;
+  background: lightgreen;
+  border: none;
+  box-shadow: 2px 2px 4px lightgray;
+  margin-right: 350px;
+  color:white;
+}
+
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup .close {
+  transition: all 200ms;
+
+  text-decoration: none;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+/*    ==================================================================================================*/
+
+
+
+
+
+    .cancel-btn{
+background: lightcoral;
+color: white;
+padding: 11px 21px;
+width: 200px !important;
+border-radius: 20px;
+border: none;
+font-size: 1.5rem;
+height: 55px !important;
+display: grid;
+text-decoration: none;
+text-align: center;
+
+    }
+    .cancel-btn:hover{
+        color:white;
+
+    }
+    .delete-btn{
+        background: lightgreen;
+color: white;
+padding: 11px 21px;
+width: 200px;
+border-radius: 20px;
+border: none;
+font-size: 1.5rem;
+height: 56px;
+text-decoration: none;
+
+    }
+    a{
+        text-decoration: none;
+color: black;
+    }
+    .alert-delete{
+        display: flex;
+position: absolute;
+border: 1px solid lightcyan;
+border-radius: 20px;
+width: 700px;
+height: 400px;
+background: white;
+box-shadow: 3px 3px 5px lightgray;
+left: 28%;
+top: 26%;
+flex-direction: column;
+    }
+    .more-menu {
+        transition: all 0.5s ease 0s;
+        position: absolute;
+        inset: 0px auto auto 0px;
+        margin: 0px;
+        transform: translate(-168px, 52px);
+        width: 218px;
+        height: 150px;
+    }
+
+        .more-menu:before {
+            transform: translate(-168px, 12px);
+        }
+
+        .more-menu:after {
+            transform: translate(-168px, 52px);
+        }
+
+    .more-btn {
+        border-radius: 10px;
+        height: 50px;
+        width: 50px;
+    }
+
+    .li-more:hover {
+        background-color: lightcyan;
+        color: white;
+        cursor: pointer;
+        transition: .5s all;
+    }
+
+    img {
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        -ms-user-drag: none;
+        user-drag: none;
+        pointer-events: none;
+    }
+
+    .Time-bg {
+        background: #ECECEC;
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+
+    input.middle:focus {
+        outline-width: 0;
+    }
+
+    *:focus {
+        outline: none;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+    }
+
+    .btn-outline-success:focus {
+        box-shadow: none;
+    }
+
+    .input-title {
+        border: none;
+        border-bottom-color: currentcolor;
+        border-bottom-style: none;
+        border-bottom-width: medium;
+        border-bottom: 6px solid lightblue;
+        margin-top: 20px;
+        background: lightcyan;
+        width: 65%;
+        border-radius: 10px;
+padding: 0px 20px;
+    }
+    .input-description{
+        border: none;
+background: lightcyan;
+padding: 5px 20px;
+width: 600px;
+    }
+</style>

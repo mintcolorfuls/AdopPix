@@ -144,26 +144,58 @@ namespace AdopPix.Controllers
             return View(auction);
         }
 
-        [HttpPost("Auction/Edit/{aucID}")]
-        public async Task<IActionResult> Edit(string aucID, AuctionViewModel auctionViewModel)
+        //-----------------------------------------------------------------------------------------------------------
+       
+        
+        [HttpGet("/Auction/Edit/{postId}")]
+        public async Task<IActionResult> Edit(string postId = "")
         {
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
 
+            var post = await auctionProcedure.FindByIdAsync(postId);
+            if (post == null)
+            {
+                return null;
+            }
 
-            var auctionInfos = await auctionProcedure.FindByIdAsync(aucID);
+            var image = await auctionProcedure.FindImageByIdAsync(postId);
+            var userProfiles = await userProfileProcedure.FindByIdAsync(post.UserId);
+            var users = await userManager.FindByIdAsync(post.UserId);
+            AuctionViewModel edit = new AuctionViewModel
+            {
+                AvaterName = userProfiles.AvatarName,
+                UserName = users.UserName,
+                AuctionId = post.AuctionId,
+                Title = post.Title,
+                Description = post.Description,
+                ImageId = image.ImageId
+            };
 
-            auctionInfos.AuctionId = auctionViewModel.AuctionId;
-            auctionInfos.Title = auctionViewModel.Title;
-            auctionInfos.Description = auctionViewModel.Description;
-
-
-            await auctionProcedure.UpdateAsync(auctionInfos);
-
-
-
-            return Redirect("/Auction/Post/{AuctionID}");
+            return View(edit);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(AuctionViewModel model)
+        {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+
+            var auctiondetail = await auctionProcedure.FindByIdAsync(model.AuctionId);
+            if (auctiondetail != null)
+            {
+                Auction auctionModel = new Auction()
+                {
+                    AuctionId = auctiondetail.AuctionId,
+                    Title = model.Title,
+                    Description = model.Description
+                };
+                await auctionProcedure.UpdateAuctionAsync(auctionModel);
+                return RedirectToAction("Post", "Auction", new { id = auctiondetail.AuctionId });
+            }
+            return View(model);
+        }
+
+
+        //-----------------------------------------------------------------------------------------------------------
 
         [HttpGet("Auction/Delete/{id}")]
         public async Task<IActionResult> Delete(string id)

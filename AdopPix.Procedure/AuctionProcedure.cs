@@ -161,12 +161,48 @@ namespace AdopPix.Procedure
         }
 
 
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-        public Task UpdateAsync(Auction auction)
+        public async Task UpdateAuctionAsync(Auction entity)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Auction_Update";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@AuctionId", MySqlDbType.VarChar).Value = entity.AuctionId;
+                    command.Parameters.Add("@Title", MySqlDbType.VarChar).Value = entity.Title;
+                    command.Parameters.Add("@Description", MySqlDbType.VarChar).Value = entity.Description;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
         }
+        //public async Task UpdateImageAsync(AuctionImage imageId)
+        //{
+        //    using (MySqlConnection connection = new MySqlConnection(connectionString))
+        //    {
+        //        using (MySqlCommand command = connection.CreateCommand())
+        //        {
+        //            command.CommandText = "Auction_UpdateImage";
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = imageId.AuctionId;
+        //            command.Parameters.Add("@ImageId", MySqlDbType.VarChar).Value = imageId.ImageId;
+
+        //            await connection.OpenAsync();
+        //            await command.ExecuteNonQueryAsync();
+        //            await connection.CloseAsync();
+        //        }
+        //    }
+        //}
+
+
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public async Task CreateImageAsync(AuctionImage auctionImage)
         {
