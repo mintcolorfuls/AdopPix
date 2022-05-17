@@ -1,0 +1,17 @@
+﻿@model EditViewModel
+
+<div>
+    <img src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.ImageName}")" style="width:100px; height: 100px;" id="blah" />
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="@Model.PostId"/>
+        <div>
+            <label>title :</label>
+            <input type="text" asp-for="@Model.Title" />
+        </div>
+        <div>
+            <label>Description :</label>
+            <input type="text" asp-for="@Model.Description" />
+        </div>
+        <input type="submit" class="btn btn-primary" value="Edit"/>
+    </form>
+</div>

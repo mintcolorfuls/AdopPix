@@ -148,11 +148,53 @@ namespace AdopPix.Controllers
             await postProcedure.DeleteImageAsync(postImage);
             // ลบโพสตามที่ตรวจเจอ
             await postProcedure.DeletePostAsync(post);
-            
+
 
             return Redirect("/Post");
         }
 
+        [HttpGet("/post/[action]/{postId}")]
+        public async Task<IActionResult> Edit(string postId = "")
+        {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
 
+            var post = await postProcedure.FindByPostId(postId);
+            if (post == null)
+            {
+                return null;
+            }
+
+            var image = await postProcedure.FindImageByPostIdAsync(postId);
+
+            EditViewModel edit = new EditViewModel
+            {
+                PostId = post.PostId,
+                Title = post.Title,
+                Description = post.Description,
+                ImageName = image.ImageId
+            };
+
+            return View(edit);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditViewModel model)
+        {
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+
+            var post = await postProcedure.FindByPostId(model.PostId);
+            if (post != null)
+            {
+                Post postModel = new Post()
+                {
+                    PostId = post.PostId,
+                    Title = model.Title,
+                    Description = model.Description
+                };
+                await postProcedure.UpdatePostAsync(postModel);
+                return Redirect("/Post");
+            }
+            return View(model);
+        }
     }
 }
