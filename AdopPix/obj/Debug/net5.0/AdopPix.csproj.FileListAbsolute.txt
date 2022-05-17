@@ -918,3 +918,9 @@ C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Auc
 C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Auction\Index.cshtml.g.cs
 C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Auction\AuctionPost.cshtml.g.cs
 C:\Users\BestO\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Auction\Edit.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Auction\AuctionPost.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Auction\Create.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Auction\Index.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\Create.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\FindById.cshtml.g.cs
+C:\Users\mintc\Documents\GitHub\AdopPix\AdopPix\obj\Debug\net5.0\Razor\Views\Post\Index.cshtml.g.cs

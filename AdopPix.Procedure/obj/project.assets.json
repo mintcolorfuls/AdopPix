@@ -1669,19 +1669,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BestO\\.nuget\\packages\\": {}
+    "C:\\Users\\mintc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj",
+      "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj",
       "projectName": "AdopPix.Procedure",
-      "projectPath": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj",
-      "packagesPath": "C:\\Users\\BestO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\obj\\",
+      "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\AdopPix.Procedure.csproj",
+      "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Procedure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\BestO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1695,8 +1695,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
-              "projectPath": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
+            "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj": {
+              "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Models\\AdopPix.Models.csproj"
             }
           }
         }
@@ -1731,7 +1731,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

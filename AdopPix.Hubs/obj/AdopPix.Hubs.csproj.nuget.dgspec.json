@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {}
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
+    "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
+        "projectUniqueName": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
         "projectName": "AdopPix.Hubs",
-        "projectPath": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
-        "packagesPath": "C:\\Users\\BestO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BestO\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\obj\\",
+        "projectPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\AdopPix.Hubs.csproj",
+        "packagesPath": "C:\\Users\\mintc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mintc\\Documents\\GitHub\\AdopPix\\AdopPix.Hubs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\BestO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mintc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

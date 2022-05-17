@@ -115,6 +115,10 @@ namespace AdopPix.Controllers
             ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
             //var user = await userManager.FindByNameAsync(auctionViewModel.AuctionId);
             var auctionpost = await auctionProcedure.FindByIdAsync(aucId);
+            if(auctionpost == null)
+            {
+                return null;
+            }
             var auctionimage = await auctionProcedure.FindImageByIdAsync(aucId);
             var userProfiles = await userProfileProcedure.FindByIdAsync(auctionpost.UserId);
             var users = await userManager.FindByIdAsync(auctionpost.UserId);
