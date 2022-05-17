@@ -150,7 +150,9 @@ namespace AdopPix.Controllers
             await postProcedure.DeletePostAsync(post);
             
 
-            return Redirect("/");
+            return Redirect("/Post");
         }
+
+
     }
 }

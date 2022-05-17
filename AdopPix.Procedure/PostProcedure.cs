@@ -212,9 +212,43 @@ namespace AdopPix.Procedure
             }
         }
 
-        public Task UpdateAsync(Post entity)
+        public async Task UpdatePostAsync(Post entity)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Post_UpdatePost";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = entity.PostId;
+                    command.Parameters.Add("@Title", MySqlDbType.VarChar).Value = entity.Title;
+                    command.Parameters.Add("@Description", MySqlDbType.VarChar).Value = entity.Description;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
+        }
+
+        public async Task UpdateImageAsync(PostImage imageId)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Post_UpdateImage";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = imageId.PostId;
+                    command.Parameters.Add("@ImageId", MySqlDbType.VarChar).Value = imageId.ImageId;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
         }
     }
 }
