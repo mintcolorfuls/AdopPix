@@ -9,3 +9,7 @@
     <p>@data.UserName</p>
     <p>@data.Description</p>
 </div>
+
+@if (@data.UserName == User.Identity.Name){
+    <a asp-action="DeleteById" asp-route-postId="@data.PostId" >Delete</a>
+}

@@ -126,5 +126,32 @@ namespace AdopPix.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> DeleteById(string id)
+        {
+            // หาว่าเป็นใครที่กำลังจะลบโพส
+            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
+
+            // หาว่าต้องลบโพสไหน
+            var post = await postProcedure.FindByPostId(id);
+            // หาว่าต้องลบภาพจากโพสไหน
+            var postImage = await postProcedure.FindImageByPostIdAsync(id);
+            // เช็คว่าเป็น null ไหม
+            if (post == null)
+            {
+                return null;
+            }
+            // เช็คว่าเป็น null ไหม
+            if (postImage == null)
+            {
+                return null;
+            }
+            // ลบโพสตามที่ตรวจเจอ
+            await postProcedure.DeletePostAsync(post);
+            // ลบภาพของโพสตามที่ตรวจเจอ
+            await postProcedure.DeleteImageAsync(postImage);
+
+            return Redirect("/");
+        }
     }
 }

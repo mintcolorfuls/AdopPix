@@ -174,12 +174,43 @@ namespace AdopPix.Procedure
             return post;
         }
 
-        public Task UpdateAsync(Post entity)
+        public async Task DeletePostAsync(Post postId)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Post_DeletePost";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = postId.PostId;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
         }
 
-        public Task DeleteAsync(Post entity)
+        public async Task DeleteImageAsync(PostImage postId)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "Post_DeleteImage";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = postId.PostId;
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+                    await connection.CloseAsync();
+                }
+            }
+        }
+
+        public Task UpdateAsync(Post entity)
         {
             throw new NotImplementedException();
         }
