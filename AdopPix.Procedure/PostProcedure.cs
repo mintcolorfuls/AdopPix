@@ -133,6 +133,7 @@ namespace AdopPix.Procedure
                         image = new PostImage
                         {
                             ImageId = reader["ImageId"].ToString(),
+                            PostId = reader["PostId"].ToString(),
 
                         };
                         // images.Add(image);
