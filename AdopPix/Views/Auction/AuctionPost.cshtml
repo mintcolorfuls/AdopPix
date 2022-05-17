@@ -1,102 +1,105 @@
 ﻿@model AuctionViewModel
 
-@{ ViewData["Title"] = "Courses details"; }
+@{
+    ViewData["Title"] = "Courses details";
+}
 
 <div class="row" style="padding-top: 88px">
     <div class="" style="padding-top: 40px;">
 
-            <div style="display: flex;flex-direction: row;">
+        <div style="display: flex;flex-direction: row;">
 
-                
-                 <div>
+
+            <div>
                 <img class="" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.ImageId}")" style="object-fit: cover;width: 956px;height: 540px; border-radius: 20px;" />
 
-                 </div>
-                
-                <div style="display: flex;flex-direction: column; margin-left: 30px; ">
-                    <div style="display: flex;">    @*ส่วนของเวลา*@
-                        <h1 class="Time-bg">24</h1>
-                        <div style="padding-top: 16px;margin: 0 10px;">
-                            <h1>:</h1>
-                        </div>
-                        <h1 class="Time-bg">00</h1>
-                        <div style="padding-top: 16px;margin: 0 10px;">
-                            <h1>:</h1>
-                        </div>
-                        <h1 class="Time-bg">00</h1>
-                    </div>
-                    <div>
-                        <div>
-                            <div style="text-align: right;font-family: 'Roboto';font-style: normal;font-weight: 900;font-size: 48px;line-height: 56px;color: #A0D1BA;">
-                                
-                            @if(@Model.OpeningPrice == @Model.OpeningPrice)
-                            {
-                                <p style="font-size: 33px;">การประมูลยังไม่เริ่ม</p>
-                            }
-                            @if(@Model.OpeningPrice != @Model.OpeningPrice)
-                            {
-                                @Model.OpeningPrice 
-                            }
+            </div>
 
-                            </div>
-                            <hr style="margin-top: 0px;margin-bottom: 0px;" />
-                            <div style="display: flex;flex-direction: row; float: right;margin-bottom: 30px;" >
-                                <div style="font-weight: 900;font-size: 18px;line-height: 21px;color: #8D8D8D;">
-                                    By   
-                                </div>
-                                <div style="margin-left:15px; font-weight: 900;font-size: 18px;line-height: 21px;color: #000000;">
-                                    ยังไม่มีคนเริ่มประมูล   @*คนประมูล*@
-                                </div>
-
-                            </div>
-                        </div>
+            <div style="display: flex;flex-direction: column; margin-left: 30px; ">
+                <div style="display: flex;">
+                    @*ส่วนของเวลา*@
+                    <h1 class="Time-bg">24</h1>
+                    <div style="padding-top: 16px;margin: 0 10px;">
+                        <h1>:</h1>
                     </div>
-                     <form >
-                            <div class="form-group" style="display: flex;flex-direction: row;">
-                                 <div style="display: flex;flex-direction: row;background: #E3E3E3;border-radius: 50px;">
-                                    <div>
-                                        <input asp-for="OpeningPrice" type="number" class="form-control" style="background: none;border: none;text-align: right;"/>
-                                        <span asp-validation-for="OpeningPrice" class="text-danger"></span>
-                                    </div>
-                                    <div>
-                                        <input type="submit" value="Bids" class="btn btn-outline-success float-right" style="border: none;border-radius: 50px;background: #4F9FDA;width: 82px;color: white;font-weight: 800;"/>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                     </form>
-                </div>
+                    <h1 class="Time-bg">00</h1>
+                    <div style="padding-top: 16px;margin: 0 10px;">
+                        <h1>:</h1>
+                    </div>
+                    <h1 class="Time-bg">00</h1>
                 </div>
                 <div>
                     <div>
-                        <div style="font-weight: 600;font-size: 45px;margin-left: 30px;">
+                        <div style="text-align: right;font-family: 'Roboto';font-style: normal;font-weight: 900;font-size: 48px;line-height: 56px;color: #A0D1BA;">
 
-                            @Model.Title
+                            @if (@Model.OpeningPrice == @Model.OpeningPrice)
+                            {
+                                <p style="font-size: 33px;">การประมูลยังไม่เริ่ม</p>
+                            }
+                            @if (@Model.OpeningPrice != @Model.OpeningPrice)
+                            {
+                                @Model.OpeningPrice
+                            }
+
+                        </div>
+                        <hr style="margin-top: 0px;margin-bottom: 0px;" />
+                        <div style="display: flex;flex-direction: row; float: right;margin-bottom: 30px;">
+                            <div style="font-weight: 900;font-size: 18px;line-height: 21px;color: #8D8D8D;">
+                                By
+                            </div>
+                            <div style="margin-left:15px; font-weight: 900;font-size: 18px;line-height: 21px;color: #000000;">
+                                ยังไม่มีคนเริ่มประมูล   @*คนประมูล*@
+                            </div>
+
                         </div>
                     </div>
-                    <div style="display: flex;flex-direction: row;">
-                        <div>
-                                <img oncontextmenu="return false;" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; border:4px solid #EDEDED;top: 24%;background: white;" id="blah" />
-                        
-                        </div>
-                        <div style="margin-left: 20px;padding-top: 15px;">
-                            <div style="font-weight: 700;font-size: 28px;line-height: 36px;">
-                                @Model.UserName
+                </div>
+                <form>
+                    <div class="form-group" style="display: flex;flex-direction: row;">
+                        <div style="display: flex;flex-direction: row;background: #E3E3E3;border-radius: 50px;">
+                            <div>
+                                <input asp-for="OpeningPrice" type="number" class="form-control" style="background: none;border: none;text-align: right;" />
+                                <span asp-validation-for="OpeningPrice" class="text-danger"></span>
                             </div>
-                            <div style="font-weight: 900;font-size: 15px;line-height: 18px;color: #8C8C8C; padding-top: 10px;">
-                                @Model.Description
-                            </div>
-                        </div>
+                            <div>
+                                <input type="submit" value="Bids" class="btn btn-outline-success float-right" style="border: none;border-radius: 50px;background: #4F9FDA;width: 82px;color: white;font-weight: 800;" />
 
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div style="font-weight: 600;font-size: 45px;margin-left: 30px;">
+
+                    @Model.Title
+                </div>
+            </div>
+            <div style="display: flex;flex-direction: row;">
+                <div>
+                    <img oncontextmenu="return false;" src="@Url.Content($"https://adoppix.s3.ap-southeast-1.amazonaws.com/{@Model.AvaterName}")" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; border:4px solid #EDEDED;top: 24%;background: white;" id="blah" />
+
+                </div>
+                <div style="margin-left: 20px;padding-top: 15px;">
+                    <div style="font-weight: 700;font-size: 28px;line-height: 36px;">
+                        @Model.UserName
+                    </div>
+                    <div style="font-weight: 900;font-size: 15px;line-height: 18px;color: #8C8C8C; padding-top: 10px;">
+                        @Model.Description
                     </div>
                 </div>
-                
 
-                <div style="margin-top: 50px">
+            </div>
+        </div>
 
-         <h2 style="font-weight: 700;font-size: 24px;line-height: 30px;color: #CECECE;">History</h2>
-                </div>
+
+        <div style="margin-top: 50px">
+
+            <h2 style="font-weight: 700;font-size: 24px;line-height: 30px;color: #CECECE;">History</h2>
+        </div>
     </div>
 </div>
 
@@ -106,58 +109,61 @@
 
 
 <style>
-img {
-  -webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--o-user-select: none;
--ms-user-select: none;
-user-select: none;
+    img {
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        -ms-user-drag: none;
+        user-drag: none;
+        pointer-events: none;
+    }
 
--webkit-user-drag: none;
--khtml-user-drag: none;
--moz-user-drag: none;
--o-user-drag: none;
--ms-user-drag: none;
-user-drag: none;
-  pointer-events: none;
-}
-
-.Time-bg{
-    background: #ECECEC;
-padding: 20px;
-border-radius: 18px;
-}
+    .Time-bg {
+        background: #ECECEC;
+        padding: 20px;
+        border-radius: 18px;
+    }
 
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
-}
-input.middle:focus {
-    outline-width: 0;
-}
-*:focus {
-    outline: none;
-}
-.form-control:focus{
-    box-shadow: none;
-}
-.btn-outline-success:focus{
-    box-shadow: none;
-}
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+
+    input.middle:focus {
+        outline-width: 0;
+    }
+
+    *:focus {
+        outline: none;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+    }
+
+    .btn-outline-success:focus {
+        box-shadow: none;
+    }
 </style>
