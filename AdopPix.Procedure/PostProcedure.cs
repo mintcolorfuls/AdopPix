@@ -132,7 +132,8 @@ namespace AdopPix.Procedure
 
                         image = new PostImage
                         {
-                            ImageId = reader["ImageId"].ToString()
+                            ImageId = reader["ImageId"].ToString(),
+
                         };
                         // images.Add(image);
                         // image = null;
@@ -174,7 +175,7 @@ namespace AdopPix.Procedure
             return post;
         }
 
-        public async Task DeletePostAsync(Post postId)
+        public async Task DeletePostAsync(Post post)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -183,7 +184,7 @@ namespace AdopPix.Procedure
                     command.CommandText = "Post_DeletePost";
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = postId.PostId;
+                    command.Parameters.Add("@PostId", MySqlDbType.VarChar).Value = post.PostId;
 
                     await connection.OpenAsync();
                     await command.ExecuteNonQueryAsync();

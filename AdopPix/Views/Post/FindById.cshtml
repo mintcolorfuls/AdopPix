@@ -11,5 +11,5 @@
 </div>
 
 @if (@data.UserName == User.Identity.Name){
-    <a asp-action="DeleteById" asp-route-postId="@data.PostId" >Delete</a>
+    <a href="/post/remove/@data.PostId" >Delete</a>
 }

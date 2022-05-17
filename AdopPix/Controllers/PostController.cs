@@ -126,12 +126,9 @@ namespace AdopPix.Controllers
 
             return View();
         }
-
+        [HttpGet("/post/remove/{id}")]
         public async Task<IActionResult> DeleteById(string id)
         {
-            // หาว่าเป็นใครที่กำลังจะลบโพส
-            ViewData["NavbarDetail"] = await navbarService.FindByNameAsync(User.Identity.Name);
-
             // หาว่าต้องลบโพสไหน
             var post = await postProcedure.FindByPostId(id);
             // หาว่าต้องลบภาพจากโพสไหน
@@ -146,10 +143,12 @@ namespace AdopPix.Controllers
             {
                 return null;
             }
-            // ลบโพสตามที่ตรวจเจอ
-            await postProcedure.DeletePostAsync(post);
+
             // ลบภาพของโพสตามที่ตรวจเจอ
             await postProcedure.DeleteImageAsync(postImage);
+            // ลบโพสตามที่ตรวจเจอ
+            await postProcedure.DeletePostAsync(post);
+            
 
             return Redirect("/");
         }
